@@ -1,9 +1,9 @@
 {
   "name": "aaagamescompany-website-starter-template",
-  "description": "Build a personal website, blog, or portfolio with Astro.",
+  "description": "We are developing at game at AAA Games!",
   "private": true,
   "cloudflare": {
-    "label": "Astro Framework Starter",
+    "label": "AAA Games",
     "products": [
       "Workers"
     ],
