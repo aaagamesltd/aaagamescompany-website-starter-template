@@ -4,82 +4,109 @@ import { SITE_TITLE } from '../consts';
 ---
 
 <header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-		<div class="social-links">
-			<a href="https://www.instagram.com/aaagamescompany/" target="_blank">
-				<span class="sr-only">Follow AAA Games on Insta</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"
-					></path></svg
-				>
-			</a>
-			<a href="https://twitter.com/aaagamescompany" target="_blank">
-				<span class="sr-only">Follow AAA Games on Twitter</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-					></path></svg
-				>
-			</a>
-			<a href="https://www.tiktok.com/@aaagamescompany" target="_blank">
-				<span class="sr-only">Follow AAA Games on Tiktok</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-					></path></svg
-				>
-			</a>
-		</div>
-	</nav>
+  <nav>
+    <h2>
+      <a href="/">{SITE_TITLE}</a>
+    </h2>
+    <div class="internal-links">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+    </div>
+    <div class="social-links">
+	 <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener">
+  <span class="sr-only">Support AAA Games on Patreon</span>
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+    <path d="M5 0C2.243 0 0 2.243 0 5s2.243 5 5 5 5-2.243 5-5S7.757 0 5 0zm14 0H13v10h6V0z"/>
+  </svg>
+</a>
+	 <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener">
+  <span class="sr-only">Follow AAA Games on Facebook</span>
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+    <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 
+             24H12.82v-9.294H9.692V11.01h3.128V8.309c0-3.1 1.894-4.788 
+             4.659-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.918.001c-1.504 
+             0-1.796.715-1.796 1.764v2.31h3.587l-.467 3.696h-3.12V24h6.116C23.407 
+             24 24 23.407 24 22.676V1.325C24 .593 23.407 0 22.675 0z"/>
+  </svg>
+</a>
+	 <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener">
+  <span class="sr-only">Follow AAA Games on TikTok</span>
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16" fill="currentColor" stroke="none" aria-hidden="true">
+    <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
+  </svg>
+</a>
+	 <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener">
+  <span class="sr-only">Subscribe to AAA Games on YouTube</span>
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M23.498 6.186a2.998 2.998 0 0 0-2.113-2.123C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.385.563A2.998 2.998 0 0 0 .502 6.186C0 8.082 0 12 0 12s0 3.918.502 5.814a2.998 2.998 0 0 0 2.113 2.123C4.495 20.5 12 20.5 12 20.5s7.505 0 9.385-.563a2.998 2.998 0 0 0 2.113-2.123C24 15.918 24 12 24 12s0-3.918-.502-5.814ZM9.75 15.5v-7l6.5 3.5-6.5 3.5Z"/>
+  </svg>
+</a>
+	  <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener">
+  <span class="sr-only">Follow AAA Games on Kick</span>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/6/69/Kick.com_icon_logo.svg"
+    alt=""
+    width="32"
+    height="32"
+    style="display:inline-block;vertical-align:middle"
+  />
+</a>
+      <a href="https://www.instagram.com/aaagamescompany/" target="_blank">
+        <span class="sr-only">Follow AAA Games on Insta</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8a4 4 0 0 1 3.37 3.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+      <a href="https://x.com/aaagamescompany" target="_blank">
+        <span class="sr-only">Follow AAA Games on X</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.8l-5.228-6.917L4.99 21.75H1.68l7.73-8.83L1.254 2.25H8.08l4.714 6.236z"/>
+</svg>
+      </a>
+      <a href="https://linktr.ee/aaagamescompany" target="_blank">
+        <span class="sr-only">Follow AAA Games on Linktree</span>
+       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="10" fill="#90EE90"/>
+  <path d="M12 8v8M8 12h8M9 9l6 6M9 15l6-6M9 18h6"/>
+</svg>
+      </a>
+    </div>
+  </nav>
 </header>
 <style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
+  header {
+    margin: 0;
+    padding: 0 1em;
+    background: #1a1a1a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff; /* Added for dark theme */
+  }
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
-		display: flex;
-	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
-		}
-	}
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  a {
+    color: #ffffff; /* Added for dark theme */
+    text-decoration: none;
+  }
+
+  .internal-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
 </style>
