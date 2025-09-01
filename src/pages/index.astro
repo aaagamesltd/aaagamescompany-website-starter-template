@@ -35,6 +35,35 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         object-fit: cover; /* Ensures the GIF covers the entire container */
         opacity: 0.1; /* Adjust this value to change the transparency of the watermark */
     }
+
+  /* Your existing styles... */
+
+  /* The container for the watermark */
+  .watermark-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+  }
+
+  /* The GIF itself */
+  .watermark-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.1;
+  }
+  
+  /* Add this media query to ensure responsiveness on small screens */
+  @media (max-width: 600px) {
+    .watermark-container {
+      /* This is the key fix. It ensures the container itself does not exceed the viewport width. */
+      overflow-x: hidden; 
+    }
+  }
 </style>
 	</head>
 	<body>
