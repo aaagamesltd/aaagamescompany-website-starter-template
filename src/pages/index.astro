@@ -62,6 +62,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         height: 1em; /* scales with font size */
         transform: translateY(-0.05em); /* tiny vertical nudge */
       }
+
+      /* Content block spacing */
+      .content {
+        margin-bottom: 4rem; /* adds space below the blurb */
+      }
     </style>
   </head>
   <body>
@@ -74,11 +79,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         <img src="favicon.svg" alt="AAA Games icon">
         <span>AAA Games</span>
       </h1>
-      <p>
-        Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website. This is the home of AAA Games Company, who are developing a computer game!
-      </p>
-
-      <p style="margin-top: 10rem;"></p>
+      <div class="content">
+        <p>
+          Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website. This is the home of AAA Games Company, who are developing a computer game!
+        </p>
+      </div>
     </main>
     <Footer />
   </body>
