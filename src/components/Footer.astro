@@ -2,95 +2,126 @@
 const today = new Date();
 ---
 
-<footer>
-  &copy; {today.getFullYear()} AAA Games. All rights reserved.
-  <div class="social-links">
-    <a class="social-icon" href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener">
-      <span class="sr-only">Support AAA Games on Patreon</span>
-      <img src="/icons/patreon.svg" alt="Patreon" width="32" height="32" />
-    </a>
-    <a class="social-icon" href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener">
-      <span class="sr-only">Follow AAA Games on Facebook</span>
-      <img src="/icons/facebook.svg" alt="Facebook" width="32" height="32" />
-    </a>
-    <a class="social-icon" href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener">
-      <span class="sr-only">Follow AAA Games on TikTok</span>
-      <img src="/icons/tiktok.svg" alt="TikTok" width="32" height="32" />
-    </a>
-    <a class="social-icon" href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener">
-      <span class="sr-only">Subscribe to AAA Games on YouTube</span>
-      <img src="/icons/youtube.svg" alt="YouTube" width="32" height="32" />
-    </a>
-    <a class="social-icon" href="https://kick.com/aaagamescompany" target="_blank" rel="noopener">
-      <span class="sr-only">Follow AAA Games on Kick</span>
-      <img src="/icons/kick.svg" alt="Kick" width="32" height="32" />
-    </a>
-    <a class="social-icon" href="https://www.instagram.com/aaagamescompany/" target="_blank">
-      <span class="sr-only">Follow AAA Games on Instagram</span>
-      <img src="/icons/instagram.svg" alt="Instagram" width="32" height="32" />
-    </a>
-    <a class="social-icon" href="https://x.com/aaagamescompany" target="_blank">
-      <span class="sr-only">Follow AAA Games on X</span>
-      <img src="/icons/x.svg" alt="X" width="32" height="32" />
-    </a>
-  </div>
-</footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAA Games</title>
+  <style>
+    /* Make body full height and use flex layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
 
-<style>
-footer {
-  padding: 3em 1em 6em;
-  background-color: rgb(var(--black));
-  color: white;
-  text-align: center;
-  box-shadow: var(--box-shadow);
-}
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: sans-serif;
+    }
 
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1em;
-  margin-top: 1em;
-}
+    /* Main content will expand to push footer down */
+    main {
+      flex: 1;
+    }
 
-.social-links a {
-  display: inline-block;
-  position: relative;
-  transition: transform 0.2s ease, filter 0.2s ease;
-}
+    footer {
+      padding: 1.5em 1em 2em; /* tighter footer */
+      background-color: white;
+      color: rgb(var(--black));
+      text-align: center;
+      box-shadow: var(--box-shadow);
+    }
 
-.social-links a:hover {
-  transform: scale(1.15);
-  filter: drop-shadow(0 0 6px var(--accent));
-}
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8em;
+      margin-top: 0.8em;
+    }
 
-.social-links a::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -6px;
-  transform: translateX(-50%) scaleX(0);
-  width: 60%;
-  height: 2px;
-  background-color: var(--accent);
-  transition: transform 0.3s ease;
-  transform-origin: center;
-}
+    .social-links a {
+      display: inline-block;
+      position: relative;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
 
-.social-links a:hover::after {
-  transform: translateX(-50%) scaleX(1);
-}
+    .social-links a:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
 
-/* Invert icons for visibility on dark background */
-.social-links img[src*="patreon"],
-.social-links img[src*="x"],
-.social-links img[src*="kick"] {
-  filter: invert(1);
-  transition: filter 0.3s ease;
-}
+    .social-links a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      transform: translateX(-50%) scaleX(0);
+      width: 60%;
+      height: 2px;
+      background-color: var(--accent);
+      transition: transform 0.3s ease;
+      transform-origin: center;
+    }
 
-.social-links a:hover img[src*="patreon"],
-.social-links a:hover img[src*="x"],
-.social-links a:hover img[src*="kick"] {
-  filter: invert(0) drop-shadow(0 0 4px var(--accent));
-}
-</style>
+    .social-links a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Reset inverted icons for white background */
+    .social-links img[src*="patreon"],
+    .social-links img[src*="x"],
+    .social-links img[src*="kick"] {
+      filter: none;
+      transition: filter 0.3s ease;
+    }
+
+    .social-links a:hover img[src*="patreon"],
+    .social-links a:hover img[src*="x"],
+    .social-links a:hover img[src*="kick"] {
+      filter: drop-shadow(0 0 4px var(--accent));
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Your page content goes here -->
+
+  </main>
+
+  <footer>
+    &copy; {today.getFullYear()} AAA Games. All rights reserved.
+    <div class="social-links">
+      <a class="social-icon" href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener">
+        <span class="sr-only">Support AAA Games on Patreon</span>
+        <img src="/icons/patreon.svg" alt="Patreon" width="32" height="32" />
+      </a>
+      <a class="social-icon" href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener">
+        <span class="sr-only">Follow AAA Games on Facebook</span>
+        <img src="/icons/facebook.svg" alt="Facebook" width="32" height="32" />
+      </a>
+      <a class="social-icon" href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener">
+        <span class="sr-only">Follow AAA Games on TikTok</span>
+        <img src="/icons/tiktok.svg" alt="TikTok" width="32" height="32" />
+      </a>
+      <a class="social-icon" href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener">
+        <span class="sr-only">Subscribe to AAA Games on YouTube</span>
+        <img src="/icons/youtube.svg" alt="YouTube" width="32" height="32" />
+      </a>
+      <a class="social-icon" href="https://kick.com/aaagamescompany" target="_blank" rel="noopener">
+        <span class="sr-only">Follow AAA Games on Kick</span>
+        <img src="/icons/kick.svg" alt="Kick" width="32" height="32" />
+      </a>
+      <a class="social-icon" href="https://www.instagram.com/aaagamescompany/" target="_blank">
+        <span class="sr-only">Follow AAA Games on Instagram</span>
+        <img src="/icons/instagram.svg" alt="Instagram" width="32" height="32" />
+      </a>
+      <a class="social-icon" href="https://x.com/aaagamescompany" target="_blank">
+        <span class="sr-only">Follow AAA Games on X</span>
+        <img src="/icons/x.svg" alt="X" width="32" height="32" />
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
