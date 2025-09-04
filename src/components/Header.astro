@@ -1,112 +1,47 @@
 ---
-import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
 <header>
   <nav>
-    <h2>
-      <a href="/">{SITE_TITLE}</a>
-    </h2>
-    <div class="internal-links">
-      <HeaderLink href="/"></HeaderLink>
-      <HeaderLink href="/blog"></HeaderLink>
-      <HeaderLink href="/about"></HeaderLink>
+    <div class="header-left">
+      <h2 class="site-logo">
+        <a href="/">{SITE_TITLE}</a>
+      </h2>
     </div>
-    <div class="social-links">
-	 <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener">
-  <span class="sr-only">Support AAA Games on Patreon</span>
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
-    <path d="M5 0C2.243 0 0 2.243 0 5s2.243 5 5 5 5-2.243 5-5S7.757 0 5 0zm14 0H13v10h6V0z"/>
-  </svg>
-</a>
-	 <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener">
-  <span class="sr-only">Follow AAA Games on Facebook</span>
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
-    <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 
-             24H12.82v-9.294H9.692V11.01h3.128V8.309c0-3.1 1.894-4.788 
-             4.659-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.918.001c-1.504 
-             0-1.796.715-1.796 1.764v2.31h3.587l-.467 3.696h-3.12V24h6.116C23.407 
-             24 24 23.407 24 22.676V1.325C24 .593 23.407 0 22.675 0z"/>
-  </svg>
-</a>
-	 <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener">
-  <span class="sr-only">Follow AAA Games on TikTok</span>
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16" fill="currentColor" stroke="none" aria-hidden="true">
-    <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
-  </svg>
-</a>
-	 <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener">
-  <span class="sr-only">Subscribe to AAA Games on YouTube</span>
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M23.498 6.186a2.998 2.998 0 0 0-2.113-2.123C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.385.563A2.998 2.998 0 0 0 .502 6.186C0 8.082 0 12 0 12s0 3.918.502 5.814a2.998 2.998 0 0 0 2.113 2.123C4.495 20.5 12 20.5 12 20.5s7.505 0 9.385-.563a2.998 2.998 0 0 0 2.113-2.123C24 15.918 24 12 24 12s0-3.918-.502-5.814ZM9.75 15.5v-7l6.5 3.5-6.5 3.5Z"/>
-  </svg>
-</a>
-	  <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener">
-  <span class="sr-only">Follow AAA Games on Kick</span>
-  <img
-    src="https://upload.wikimedia.org/wikipedia/commons/6/69/Kick.com_icon_logo.svg"
-    alt=""
-    width="32"
-    height="32"
-    style="display:inline-block;vertical-align:middle"
-  />
-</a>
-      <a href="https://www.instagram.com/aaagamescompany/" target="_blank">
-        <span class="sr-only">Follow AAA Games on Insta</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8a4 4 0 0 1 3.37 3.37z"></path>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-        </svg>
+    <div class="header-right">
+      <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+        <span class="sr-only">Support AAA Games on Patreon</span>
+        <img src="/icons/patreon.svg" alt="Patreon" />
       </a>
-      <a href="https://x.com/aaagamescompany" target="_blank">
+      <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+        <span class="sr-only">Follow AAA Games on Facebook</span>
+        <img src="/icons/facebook.svg" alt="Facebook" />
+      </a>
+      <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+        <span class="sr-only">Follow AAA Games on TikTok</span>
+        <img src="/icons/tiktok.svg" alt="TikTok" />
+      </a>
+      <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener" class="social-icon">
+        <span class="sr-only">Subscribe to AAA Games on YouTube</span>
+        <img src="/icons/youtube.svg" alt="YouTube" />
+      </a>
+      <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+        <span class="sr-only">Follow AAA Games on Kick</span>
+        <img src="/icons/kick.svg" alt="Kick" />
+      </a>
+      <a href="https://www.instagram.com/aaagamescompany/" target="_blank" rel="noopener" class="social-icon">
+        <span class="sr-only">Follow AAA Games on Instagram</span>
+        <img src="/icons/instagram.svg" alt="Instagram" />
+      </a>
+      <a href="https://x.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
         <span class="sr-only">Follow AAA Games on X</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.8l-5.228-6.917L4.99 21.75H1.68l7.73-8.83L1.254 2.25H8.08l4.714 6.236z"/>
-</svg>
+        <img src="/icons/x.svg" alt="X" />
       </a>
-      <a href="https://linktr.ee/aaagamescompany" target="_blank">
+      <a href="https://linktr.ee/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
         <span class="sr-only">Follow AAA Games on Linktree</span>
-       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="12" cy="12" r="10" fill="#90EE90"/>
-  <path d="M12 8v8M8 12h8M9 9l6 6M9 15l6-6M9 18h6"/>
-</svg>
+        <img src="/icons/linktree.svg" alt="Linktree" />
       </a>
     </div>
   </nav>
 </header>
-<style>
-  header {
-    margin: 0;
-    padding: 0 1em;
-    background: #1a1a1a;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    color: #ffffff; /* Added for dark theme */
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  a {
-    color: #ffffff; /* Added for dark theme */
-    text-decoration: none;
-  }
-
-  .internal-links {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .social-links {
-    display: flex;
-    gap: 1rem;
-  }
-</style>

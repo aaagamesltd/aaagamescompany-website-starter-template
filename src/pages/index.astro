@@ -3,84 +3,37 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import "../styles/global.css";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-      html, body {
-        font-family: 'Inter', sans-serif;
-        position: relative;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden; /* Prevents sideways scrolling */
-      }
-
-      /* The container for the watermark */
-      .watermark-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1; /* Puts the watermark behind the content */
-        overflow: hidden;
-      }
-
-      /* The GIF itself */
-      .watermark-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensures the GIF covers the entire container */
-        opacity: 0.1; /* Adjust this value to change the transparency of the watermark */
-        max-width: 100%; /* Make sure it doesn't exceed container width */
-      }
-
-      main img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      /* Site title styling */
-      .site-title {
-        display: flex;
-        justify-content: center;   /* centers as one block */
-        align-items: center;       /* vertically align icon + text */
-        gap: 0.4em;                /* space between icon and text */
-        white-space: nowrap;       /* keep text on one line */
-        font-size: clamp(1.5rem, 5vw, 2.5rem); /* responsive text size */
-        margin: 0 auto;
-      }
-
-      .site-title img {
-        height: 1em; /* scales with font size */
-        transform: translateY(-0.05em); /* tiny vertical nudge */
-      }
-    </style>
   </head>
   <body>
+    <!-- Watermark background video -->
     <div class="watermark-container">
-      <img src="/AAA_Gif_Ident.gif" alt="Watermark GIF" />
+      <video autoplay muted loop playsinline>
+  <source src="/videos/AAA_Gif_Ident_small.webm" type="video/webm" />
+  <source src="/videos/AAA_Gif_Ident_small.mp4" type="video/mp4" />
+</video>
+
     </div>
+
     <Header />
+
     <main>
       <h1 class="site-title">
-        <img src="favicon.svg" alt="AAA Games icon">
+        <img src="/favicon.svg" alt="AAA Games icon" />
         <span>AAA Games</span>
       </h1>
+
       <p>
-        Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website. This is the home of AAA Games Company, who are developing a computer game!
+        Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website. This is the home of AAA Games Company, developing a computer game!
       </p>
-<br><br><br><b><br><br><br><br><br>
-      <p style="margin-top: 10rem;"></p>
-      
     </main>
+
     <Footer />
   </body>
 </html>
