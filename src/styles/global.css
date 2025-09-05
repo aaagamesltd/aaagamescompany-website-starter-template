@@ -279,5 +279,6 @@ header .header-right a[href*="linktr.ee"]:hover img {
 @keyframes linktreeHoverSpin {
   0%   { transform: scale(1) rotate(0deg); }
   50%  { transform: scale(1.04) rotate(180deg); }
+  60%  { transform: scale(0.94) rotate(205deg); }
   100% { transform: scale(1) rotate(360deg); }
 }
