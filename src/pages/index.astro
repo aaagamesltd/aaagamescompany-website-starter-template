@@ -10,28 +10,119 @@ import "../styles/global.css";
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        font-family: sans-serif;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      main.homepage-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* top-aligned */
+        align-items: center;         /* horizontally centered */
+        text-align: center;
+        width: 90%;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 1em;
+        /* key adjustment: move the entire block higher */
+        margin-top: -3em; /* tweak to perfect vertical position */
+      }
+
+      .site-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+        flex-wrap: wrap; /* prevent overflow on small screens */
+      }
+
+      .site-title img {
+        height: 64px;
+      }
+
+      .site-title span {
+        font-size: 2em;
+        font-weight: bold;
+      }
+
+      .homepage-intro {
+        margin-top: 0.75em; /* spacing below headline */
+        font-size: 1.1em;
+        line-height: 1.5;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        main.homepage-content {
+          margin-top: -2em;
+        }
+
+        .site-title img {
+          height: 48px;
+        }
+
+        .site-title span {
+          font-size: 1.5em;
+        }
+
+        .homepage-intro {
+          font-size: 1em;
+          margin-top: 0.5em;
+        }
+      }
+
+      @media (max-width: 480px) {
+        main.homepage-content {
+          margin-top: -1.5em;
+        }
+
+        .site-title img {
+          height: 40px;
+        }
+
+        .site-title span {
+          font-size: 1.3em;
+        }
+
+        .homepage-intro {
+          font-size: 0.95em;
+          margin-top: 0.5em;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <!-- Watermark background video -->
     <div class="watermark-container">
       <video autoplay muted loop playsinline>
-  <source src="/videos/AAA_Gif_Ident_small.webm" type="video/webm" />
-  <source src="/videos/AAA_Gif_Ident_small.mp4" type="video/mp4" />
-</video>
-
+        <source src="/videos/AAA_Gif_Ident_small.webm" type="video/webm" />
+        <source src="/videos/AAA_Gif_Ident_small.mp4" type="video/mp4" />
+      </video>
     </div>
 
     <Header />
 
-    <main>
+    <main class="homepage-content">
       <h1 class="site-title">
         <img src="/favicon.svg" alt="AAA Games icon" />
         <span>AAA Games</span>
         <img src="/icons/unreal.svg" alt="Unreal Engine icon" />
       </h1>
 
-      <p>
-        Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website. This is the home of AAA Games Company, developing a computer game!
+      <p class="homepage-intro">
+        Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website.
+        This is the home of AAA Games Company, developing a computer game!
       </p>
     </main>
 

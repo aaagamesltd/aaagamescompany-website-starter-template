@@ -1,125 +1,147 @@
-<!-- START FOOTER -->
+---
+const today = new Date();
+---
+
 <footer>
   <div class="footer-top">
     <a href="/cookies" class="footer-link">Cookies Policy</a>
-    <span class="footer-link">&copy; <script>document.write(new Date().getFullYear());</script> AAA Games</span>
+    <span class="footer-copy">&copy; {today.getFullYear()} AAA Games</span>
     <a href="/privacy" class="footer-link">Privacy Policy</a>
   </div>
 
   <div class="social-links">
-    <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener">
-      <img src="/icons/patreon.svg" alt="Patreon" width="32" height="32" />
-    </a>
-    <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener">
-      <img src="/icons/facebook.svg" alt="Facebook" width="32" height="32" />
-    </a>
-    <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener">
-      <img src="/icons/tiktok.svg" alt="TikTok" width="32" height="32" />
-    </a>
-    <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener">
-      <img src="/icons/youtube.svg" alt="YouTube" width="32" height="32" />
-    </a>
-    <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener">
-      <img src="/icons/kick.svg" alt="Kick" width="32" height="32" />
-    </a>
-    <a href="https://www.instagram.com/aaagamescompany/" target="_blank">
-      <img src="/icons/instagram.svg" alt="Instagram" width="32" height="32" />
-    </a>
-    <a href="https://x.com/aaagamescompany" target="_blank">
-      <img src="/icons/x.svg" alt="X" width="32" height="32" />
-    </a>
+    <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener"><img src="/icons/patreon.svg" alt="Patreon" width="32" height="32" /></a>
+    <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener"><img src="/icons/facebook.svg" alt="Facebook" width="32" height="32" /></a>
+    <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener"><img src="/icons/tiktok.svg" alt="TikTok" width="32" height="32" /></a>
+    <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener"><img src="/icons/youtube.svg" alt="YouTube" width="32" height="32" /></a>
+    <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener"><img src="/icons/kick.svg" alt="Kick" width="32" height="32" /></a>
+    <a href="https://www.instagram.com/aaagamescompany/" target="_blank"><img src="/icons/instagram.svg" alt="Instagram" width="32" height="32" /></a>
+    <a href="https://x.com/aaagamescompany" target="_blank"><img src="/icons/x.svg" alt="X" width="32" height="32" /></a>
   </div>
+
+  <script>
+    // Cookie consent + analytics
+    if (!localStorage.getItem('cookiesAccepted')) {
+      const banner = document.createElement('div');
+      banner.style.position = 'fixed';
+      banner.style.bottom = '0';
+      banner.style.left = '0';
+      banner.style.right = '0';
+      banner.style.background = 'white';
+      banner.style.color = 'black';
+      banner.style.padding = '1em';
+      banner.style.textAlign = 'center';
+      banner.style.boxShadow = '0 -2px 5px rgba(0,0,0,0.2)';
+      banner.style.zIndex = '9999';
+      banner.innerHTML = `
+        We use cookies for essential functionality and analytics. <a href="/cookies">Learn more</a>
+        <button id="acceptCookies">Accept</button>
+      `;
+      document.body.appendChild(banner);
+
+      document.getElementById('acceptCookies').onclick = function() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        banner.remove();
+
+        // Load Google Analytics after consent
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'YOUR_TRACKING_ID', 'auto'); 
+        ga('send', 'pageview');
+      };
+    } else {
+      // Load analytics automatically if consent already given
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'YOUR_TRACKING_ID', 'auto'); 
+      ga('send', 'pageview');
+    }
+  </script>
+
+  <style>
+    footer {
+      padding: 1.5em 1em 2em;
+      background: white;
+      color: rgb(var(--black));
+      box-shadow: var(--box-shadow);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2em;
+      flex-wrap: wrap;
+      font-size: 0.9em;
+      margin-bottom: 0.8em;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: rgb(var(--black));
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      color: rgb(var(--black));
+    }
+
+    .footer-copy:hover {
+      color: rgb(var(--black));
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8em;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      display: inline-block;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      position: relative;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
+
+    .social-links a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      transform: translateX(-50%) scaleX(0);
+      width: 60%;
+      height: 2px;
+      background-color: var(--accent);
+      transition: transform 0.3s ease;
+      transform-origin: center;
+    }
+
+    .social-links a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    .social-links img {
+      filter: none;
+      transition: filter 0.3s ease;
+    }
+
+    .social-links a:hover img {
+      filter: drop-shadow(0 0 4px var(--accent));
+    }
+  </style>
 </footer>
-
-<style>
-  html, body { height: 100%; margin: 0; font-family: sans-serif; }
-  body { display: flex; flex-direction: column; }
-
-  main { flex: 1; } /* Push footer to bottom */
-
-  footer {
-    padding: 1.5em 1em 2em;
-    background-color: white;
-    color: rgb(var(--black));
-    box-shadow: var(--box-shadow);
-  }
-
-  .footer-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2em;
-    flex-wrap: wrap;
-    font-size: 0.9em;
-    margin-bottom: 0.8em;
-  }
-
-  .footer-link {
-    text-decoration: none;
-    color: rgb(var(--black));
-    transition: color 0.3s ease;
-  }
-
-  .footer-link:hover { color: var(--accent); }
-
-  .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 0.8em;
-    flex-wrap: wrap;
-  }
-
-  .social-links a {
-    display: inline-block;
-    position: relative;
-    transition: transform 0.2s ease, filter 0.2s ease;
-  }
-
-  .social-links a:hover {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 6px var(--accent));
-  }
-
-  .social-links a::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -4px;
-    transform: translateX(-50%) scaleX(0);
-    width: 60%;
-    height: 2px;
-    background-color: var(--accent);
-    transition: transform 0.3s ease;
-    transform-origin: center;
-  }
-
-  .social-links a:hover::after { transform: translateX(-50%) scaleX(1); }
-</style>
-
-<script>
-  // Optional cookie consent
-  if (!localStorage.getItem('cookiesAccepted')) {
-    const banner = document.createElement('div');
-    banner.style.position = 'fixed';
-    banner.style.bottom = '0';
-    banner.style.left = '0';
-    banner.style.right = '0';
-    banner.style.background = 'white';
-    banner.style.color = 'black';
-    banner.style.padding = '1em';
-    banner.style.textAlign = 'center';
-    banner.style.boxShadow = '0 -2px 5px rgba(0,0,0,0.2)';
-    banner.style.zIndex = '9999';
-    banner.innerHTML = `
-      We use cookies for essential functionality. <a href="/cookies">Learn more</a>
-      <button id="acceptCookies">Accept</button>
-    `;
-    document.body.appendChild(banner);
-
-    document.getElementById('acceptCookies').onclick = function() {
-      localStorage.setItem('cookiesAccepted', 'true');
-      banner.remove();
-    };
-  }
-</script>
-<!-- END FOOTER -->
