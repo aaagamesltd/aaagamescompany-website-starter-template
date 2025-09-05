@@ -205,21 +205,20 @@ footer {
   padding-bottom: 2rem; 
 }
 
-/* ---------- Linktree Attract Mode (Inward Pulse) ---------- */
+/* ---------- Linktree Attract Mode (Organic + Spin on Hover) ---------- */
 header .header-right a[href*="linktr.ee"] img {
-  width: 42px;
-  height: 42px;
+  width: 32px;   /* match size of other icons */
+  height: 32px;
   border-radius: 50%;
-  animation: linktreeMagicShrink 8s infinite ease-in-out;
+  animation: linktreeMagicOrganic 9s infinite ease-in-out;
   position: relative;
   z-index: 1;
+  transform-origin: center;
 }
 
-/* On hover: stop animation + restore original colour */
+/* On hover: stop attract mode + spin 360 + reset */
 header .header-right a[href*="linktr.ee"]:hover img {
-  animation: none;
-  transform: scale(1);
-  rotate: 0deg;
+  animation: linktreeSpin 0.6s ease-in-out forwards;
   filter: none;
 }
 
@@ -238,40 +237,47 @@ header .header-right a[href*="linktr.ee"] img::after {
   pointer-events: none;
 }
 
-/* Shrinking pulses with gradual colour transitions */
-@keyframes linktreeMagicShrink {
-  0% {
-    transform: scale(1) rotate(0deg);
-    filter: none; /* Original colour */
-  }
-  20% {
-    transform: scale(0.9) rotate(-2deg);
-    filter: hue-rotate(45deg) drop-shadow(0 0 12px rgba(173, 216, 230, 0.5));
-  }
-  40% {
-    transform: scale(0.85) rotate(2deg);
-    filter: hue-rotate(120deg) drop-shadow(0 0 18px rgba(144, 238, 144, 0.6));
-  }
-  50% {
-    transform: scale(1) rotate(0deg);
-    filter: none; /* Back to original */
-  }
-  65% {
-    transform: scale(0.92) rotate(-2deg);
-    filter: hue-rotate(200deg) drop-shadow(0 0 18px rgba(221, 160, 221, 0.6));
-  }
-  80% {
-    transform: scale(0.88) rotate(2deg);
-    filter: hue-rotate(280deg) drop-shadow(0 0 24px rgba(255, 218, 185, 0.7));
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    filter: none; /* Reset to original */
-  }
+/* Organic pulsing & drifting rotation */
+@keyframes linktreeMagicOrganic {
+  0%   { transform: scale(1) rotate(0deg); filter: none; }
+  12%  { transform: scale(0.9) rotate(-3deg); filter: hue-rotate(40deg) drop-shadow(0 0 12px rgba(173,216,230,0.5)); }
+  28%  { transform: scale(0.85) rotate(2deg);  filter: hue-rotate(100deg) drop-shadow(0 0 18px rgba(144,238,144,0.6)); }
+  41%  { transform: scale(0.92) rotate(-5deg); filter: hue-rotate(160deg) drop-shadow(0 0 20px rgba(255,192,203,0.6)); }
+  53%  { transform: scale(1.02) rotate(1deg);  filter: none; }
+  67%  { transform: scale(0.87) rotate(4deg);  filter: hue-rotate(220deg) drop-shadow(0 0 22px rgba(221,160,221,0.7)); }
+  79%  { transform: scale(0.93) rotate(-2deg); filter: hue-rotate(280deg) drop-shadow(0 0 24px rgba(255,218,185,0.7)); }
+  91%  { transform: scale(0.88) rotate(5deg);  filter: hue-rotate(320deg) drop-shadow(0 0 16px rgba(255,255,224,0.7)); }
+  100% { transform: scale(1) rotate(0deg); filter: none; }
+}
+
+/* Quick spin when hovered */
+@keyframes linktreeSpin {
+  0%   { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1) rotate(360deg); }
 }
 
 /* Gentle sparkle twinkle */
 @keyframes sparkle {
   0%, 100% { opacity: 0.15; transform: scale(0.9) rotate(0deg); }
-  50% { opacity: 0.5; transform: scale(1.1) rotate(20deg); }
+  50% { opacity: 0.5; transform: scale(1.1) rotate(25deg); }
+}
+
+/* ---------- Linktree Hover: clear spin override (360°) ---------- */
+/* ensure rotation uses the center */
+header .header-right a[href*="linktr.ee"] img {
+  transform-origin: center;
+}
+
+/* On hover: override the ongoing attract animation with a single quick 360° spin.
+   We also clear filter so the icon shows its original colour during the spin. */
+header .header-right a[href*="linktr.ee"]:hover img {
+  animation: linktreeHoverSpin 0.6s cubic-bezier(.21,.9,.31,1) 1 both;
+  filter: none !important;
+}
+
+/* 360° spin keyframes (includes a tiny overshoot scale for a little snap) */
+@keyframes linktreeHoverSpin {
+  0%   { transform: scale(1) rotate(0deg); }
+  50%  { transform: scale(1.04) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
 }
