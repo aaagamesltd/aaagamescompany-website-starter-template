@@ -204,3 +204,74 @@ footer {
   color: rgb(var(--gray)); 
   padding-bottom: 2rem; 
 }
+
+/* ---------- Linktree Attract Mode (Inward Pulse) ---------- */
+header .header-right a[href*="linktr.ee"] img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  animation: linktreeMagicShrink 8s infinite ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+/* On hover: stop animation + restore original colour */
+header .header-right a[href*="linktr.ee"]:hover img {
+  animation: none;
+  transform: scale(1);
+  rotate: 0deg;
+  filter: none;
+}
+
+/* Sparkle overlay */
+header .header-right a[href*="linktr.ee"] img::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: sparkle 5s infinite ease-in-out;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Shrinking pulses with gradual colour transitions */
+@keyframes linktreeMagicShrink {
+  0% {
+    transform: scale(1) rotate(0deg);
+    filter: none; /* Original colour */
+  }
+  20% {
+    transform: scale(0.9) rotate(-2deg);
+    filter: hue-rotate(45deg) drop-shadow(0 0 12px rgba(173, 216, 230, 0.5));
+  }
+  40% {
+    transform: scale(0.85) rotate(2deg);
+    filter: hue-rotate(120deg) drop-shadow(0 0 18px rgba(144, 238, 144, 0.6));
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+    filter: none; /* Back to original */
+  }
+  65% {
+    transform: scale(0.92) rotate(-2deg);
+    filter: hue-rotate(200deg) drop-shadow(0 0 18px rgba(221, 160, 221, 0.6));
+  }
+  80% {
+    transform: scale(0.88) rotate(2deg);
+    filter: hue-rotate(280deg) drop-shadow(0 0 24px rgba(255, 218, 185, 0.7));
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: none; /* Reset to original */
+  }
+}
+
+/* Gentle sparkle twinkle */
+@keyframes sparkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.9) rotate(0deg); }
+  50% { opacity: 0.5; transform: scale(1.1) rotate(20deg); }
+}
