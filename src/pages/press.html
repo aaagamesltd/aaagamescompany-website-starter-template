@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aardvark Anteater Acoustics Games | Official Site</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Creepster&display=swap" rel="stylesheet">
+    <!-- 
+      Chosen Palette: "Nocturne Neon". A dark, moody base of charcoal and deep purple, evoking a Halloween night. This is accented by vibrant, electric pops of neon green, magenta, and cyan for each interactive zone, reflecting the underground party/festival aesthetic.
+      Application Structure Plan: A single-page, vertical-scrolling promotional website designed to introduce the studio and its debut game. The structure is thematic, guiding the user on a journey:
+      1. Hero Section: Grabs attention with the game's title and core premise.
+      2. Game Overview: Provides the narrative context of All Hallows.
+      3. Interactive Zones Section: The core feature. Users can click on different musical zones to reveal details and hear audio samples. This fosters exploration and highlights the game's unique selling point (the diverse, integral soundscape) in a non-linear way.
+      4. Sound as Gameplay Section: Explicitly details the audio-centric mechanics, reinforcing the studio's expertise.
+      5. Media Gallery: Showcases visual assets like screenshots and the trailer.
+      6. About the Studio: Builds brand identity and credibility.
+      This top-down narrative structure is logical for a new user, introducing the high-level concept before diving into interactive details, making it more digestible and engaging than a static report.
+      Visualization & Content Choices: 
+      - Report Info: Game concept, studio branding, music-themed zones. -> Goal: Inform & Engage. -> Viz/Presentation Method: Interactive cards for each zone. -> Interaction: On-click reveal of details and an audio player. -> Justification: This is the most effective way to demonstrate the core concept of distinct audio-visual zones without requiring the user to watch a full video. It turns a descriptive point into an interactive discovery. -> Library/Method: Vanilla JavaScript and HTML5 Audio.
+      - Report Info: Game's visual identity. -> Goal: Showcase. -> Viz/Presentation Method: Image gallery. -> Interaction: Simple grid layout. -> Justification: Standard, intuitive way to present visual assets. -> Library/Method: HTML/Tailwind CSS.
+      - Report Info: Studio's focus on sound. -> Goal: Emphasize Expertise. -> Viz/Presentation Method: Dedicated text section with icons. -> Interaction: Static. -> Justification: A clear, direct explanation is needed to cement the importance of the audio mechanics, which might be a new concept for many players. -> Library/Method: HTML/Tailwind CSS.
+      - Data charts (e.g., Chart.js) were deliberately omitted as there is no quantitative data in the source material (our conversation) to visualize. Forcing charts would be inappropriate for a promotional website focused on atmosphere and qualitative experience.
+      CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+        }
+        .font-creepster {
+            font-family: 'Creepster', cursive;
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+        }
+        .text-glow-magenta {
+            text-shadow: 0 0 8px rgba(255, 0, 255, 0.7);
+        }
+        .text-glow-green {
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
+        }
+        .zone-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .zone-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .zone-active {
+            display: block !important;
+        }
+        .nav-link {
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .nav-link:hover {
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+        .btn-primary {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header & Navigation -->
+    <header class="bg-black bg-opacity-50 backdrop-blur-md fixed top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-wider">
+                <span class="font-creepster text-3xl text-cyan-400 text-glow-cyan">AAA</span> Games
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#game" class="nav-link">The Game</a>
+                <a href="#zones" class="nav-link">The Zones</a>
+                <a href="#media" class="nav-link">Media</a>
+                <a href="#studio" class="nav-link">Studio</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/e0e0e0?text=All+Hallows');">
+            <div class="bg-black bg-opacity-60 p-8 rounded-lg">
+                <h1 class="font-creepster text-7xl md:text-9xl text-white tracking-widest text-glow-magenta">All Hallows</h1>
+                <p class="text-xl md:text-2xl mt-4 text-gray-300">A Halloween Haunt for the Senses.</p>
+                <div class="mt-8 space-x-4">
+                    <a href="#trailer" class="btn-primary inline-block bg-cyan-500 text-black font-bold py-3 px-8 rounded-lg text-lg">Watch Trailer</a>
+                    <button class="btn-primary inline-block bg-purple-600 text-white font-bold py-3 px-8 rounded-lg text-lg">Wishlist on Epic</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Game Section -->
+        <section id="game" class="py-20 bg-[#161625]">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="font-creepster text-6xl text-cyan-400 text-glow-cyan">The Sound is Your Guide</h2>
+                <p class="max-w-3xl mx-auto mt-6 text-lg leading-relaxed">
+                    Welcome to All Hallows, a sprawling, mysterious world where the lines between a Halloween party and the afterlife have blurred. As a lost soul, you must navigate a labyrinth of unique, musically-themed zones to uncover the secrets of your past and find your way. This isn't just a game you see; it's a world you hear. Every beat, every melody, and every ambient drone is a clue. Listen closely.
+                </p>
+            </div>
+        </section>
+
+        <!-- The Zones Section -->
+        <section id="zones" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="font-creepster text-6xl text-center text-magenta-500 text-glow-magenta">Explore the Zones</h2>
+                <p class="text-center max-w-2xl mx-auto mt-4 mb-12">Click on a zone to discover its unique vibe and hear a sample of its soundscape. Each zone offers different quests, challenges, and pieces of the story.</p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Zone Cards -->
+                    <div class="zone-card cursor-pointer bg-gray-900 rounded-lg overflow-hidden shadow-lg border-2 border-transparent hover:border-cyan-500" data-zone="dnb">
+                        <img src="https://placehold.co/600x400/101010/00ffff?text=The+Boiler+Room" alt="The Boiler Room" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold font-creepster text-cyan-400">The Boiler Room</h3>
+                            <p class="mt-2 text-gray-400">Genre: Drum & Bass</p>
+                        </div>
+                    </div>
+                    <div class="zone-card cursor-pointer bg-gray-900 rounded-lg overflow-hidden shadow-lg border-2 border-transparent hover:border-green-500" data-zone="jazz">
+                        <img src="https://placehold.co/600x400/101010/00ff00?text=The+Velvet+Crypt" alt="The Velvet Crypt" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold font-creepster text-green-400">The Velvet Crypt</h3>
+                            <p class="mt-2 text-gray-400">Genre: Cool Jazz</p>
+                        </div>
+                    </div>
+                    <div class="zone-card cursor-pointer bg-gray-900 rounded-lg overflow-hidden shadow-lg border-2 border-transparent hover:border-purple-500" data-zone="house">
+                        <img src="https://placehold.co/600x400/101010/ff00ff?text=The+Mausoleum" alt="The Mausoleum" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold font-creepster text-purple-400">The Mausoleum</h3>
+                            <p class="mt-2 text-gray-400">Genre: Deep House</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone Details -->
+                <div id="zone-details" class="mt-16">
+                    <div id="dnb-zone" class="hidden bg-black bg-opacity-50 p-8 rounded-lg">
+                        <h3 class="font-creepster text-4xl text-cyan-400 text-glow-cyan">The Boiler Room</h3>
+                        <p class="mt-4">An industrial underworld of rusted pipes and flickering pressure gauges. The air crackles with the raw energy of high-tempo Drum & Bass. Navigate the machinery and complete rhythmic challenges to appease the spirits of industry.</p>
+                        <div class="mt-6">
+                            <audio controls class="w-full">
+                                <source src="#" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                    <div id="jazz-zone" class="hidden bg-black bg-opacity-50 p-8 rounded-lg">
+                        <h3 class="font-creepster text-4xl text-green-400 text-glow-green">The Velvet Crypt</h3>
+                        <p class="mt-4">A forgotten speakeasy hidden deep within a crypt. Shadows dance to the smooth, melancholic sounds of Cool Jazz. Talk to the lingering specters, solve conversational puzzles, and piece together forgotten memories.</p>
+                         <div class="mt-6">
+                            <audio controls class="w-full">
+                                <source src="#" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                    <div id="house-zone" class="hidden bg-black bg-opacity-50 p-8 rounded-lg">
+                        <h3 class="font-creepster text-4xl text-purple-400">The Mausoleum</h3>
+                        <p class="mt-4">A grand, echoing hall of marble and stained glass, transformed into a sanctuary of hypnotic Deep House. The steady 4/4 beat guides you through light-based puzzles and meditative quests of reflection.</p>
+                         <div class="mt-6">
+                            <audio controls class="w-full">
+                                <source src="#" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Media Section -->
+        <section id="media" class="py-20 bg-[#161625]">
+            <div class="container mx-auto px-6">
+                <h2 class="font-creepster text-6xl text-center text-white">Media</h2>
+                
+                <div id="trailer" class="my-12">
+                    <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden shadow-2xl">
+                         <img src="https://placehold.co/1280x720/000000/ffffff?text=Trailer+Here" alt="Game Trailer" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Screenshot+1" alt="Screenshot 1" class="rounded-lg shadow-lg">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Screenshot+2" alt="Screenshot 2" class="rounded-lg shadow-lg">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Screenshot+3" alt="Screenshot 3" class="rounded-lg shadow-lg">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Screenshot+4" alt="Screenshot 4" class="rounded-lg shadow-lg">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Screenshot+5" alt="Screenshot 5" class="rounded-lg shadow-lg">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Screenshot+6" alt="Screenshot 6" class="rounded-lg shadow-lg">
+                </div>
+            </div>
+        </section>
+
+        <!-- The Studio Section -->
+        <section id="studio" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <img src="https://placehold.co/150x150/ffffff/1a1a2e?text=AAA" alt="Studio Logo" class="mx-auto mb-6 rounded-full">
+                <h2 class="font-creepster text-6xl text-cyan-400 text-glow-cyan">Aardvark Anteater Acoustics</h2>
+                <p class="max-w-3xl mx-auto mt-6 text-lg leading-relaxed">
+                    Based in Scotland, Aardvark Anteater Acoustics is a new independent game studio with a name as unique as its mission. Founded by a sound designer with a Master's degree in the field, our focus is on crafting unforgettable, high-quality games where audio is not an afterthought, but the very foundation of the experience. We believe in the power of sound to tell stories, create atmosphere, and build worlds.
+                </p>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="flex justify-center space-x-6 mb-4">
+                 <a href="#" class="hover:text-cyan-400">Twitter/X</a>
+                 <a href="#" class="hover:text-cyan-400">YouTube</a>
+                 <a href="#" class="hover:text-cyan-400">Instagram</a>
+                 <a href="#" class="hover:text-cyan-400">TikTok</a>
+            </div>
+            <p>&copy; 2025 Aardvark Anteater Acoustics Games. All Rights Reserved.</p>
+            <p class="mt-2 text-sm"><a href="#" class="hover:underline">Press Kit</a> | <a href="#" class="hover:underline">Contact Us</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const zoneCards = document.querySelectorAll('.zone-card');
+            const zoneDetails = document.querySelectorAll('#zone-details > div');
+            const allAudio = document.querySelectorAll('audio');
+
+            zoneCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const zoneId = card.dataset.zone + '-zone';
+                    
+                    // Stop all other audio players
+                    allAudio.forEach(audio => {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    });
+                    
+                    // Hide all detail panes
+                    zoneDetails.forEach(detail => {
+                        if (detail.id === zoneId) {
+                            detail.classList.toggle('zone-active');
+                        } else {
+                            detail.classList.remove('zone-active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
