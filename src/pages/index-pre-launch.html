@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Hallows | Aardvark Anteater Acoustics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Creepster&display=swap" rel="stylesheet">
+    <!-- 
+        This is the new homepage, designed to look like a blog or news feed.
+        It emulates the layout and feel of the provided Astro component using
+        plain HTML and Tailwind CSS for a fully self-contained page.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+        }
+        .font-creepster {
+            font-family: 'Creepster', cursive;
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+        }
+        .text-glow-magenta {
+            text-shadow: 0 0 8px rgba(255, 0, 255, 0.7);
+        }
+        .btn-primary {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+        .post-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .post-list li {
+            width: calc(50% - 1rem);
+        }
+        .post-list li:first-child {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .post-list a:hover h4,
+        .post-list a:hover .date {
+            color: #00ffff;
+        }
+        .post-list a:hover img {
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        @media (max-width: 768px) {
+            .post-list {
+                gap: 0.5rem;
+            }
+            .post-list li {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</a>
+            <div class="flex items-center space-x-6">
+                <a href="#" class="text-lg hover:text-cyan-400 transition-colors">Home</a>
+                <a href="#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
+                <a href="#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
+                <a href="#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
+                <a href="press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="h-screen flex flex-col items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/e0e0e0?text=All+Hallows+Hero+Image');">
+            <h1 class="font-creepster text-6xl md:text-8xl text-white tracking-widest text-glow-magenta">All Hallows</h1>
+            <p class="text-xl md:text-2xl mt-4">A music-driven horror experience. Uncover the secrets within the sound.</p>
+            <a href="https://store.epicgames.com/all-hallows" class="btn-primary mt-8 inline-block bg-cyan-500 text-black font-bold py-4 px-10 rounded-lg text-xl" target="_blank" rel="noopener noreferrer">
+                Wishlist Now on Epic Games Store!
+            </a>
+            <p class="mt-2 text-sm text-gray-300">Wishlist available from March 17, 2025</p>
+        </section>
+
+        <!-- Key Features Section -->
+        <section id="features" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="font-creepster text-5xl text-cyan-400 text-glow-cyan mb-8 text-center">Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <span class="text-6xl mb-4 block">🎧</span>
+                        <h3 class="text-2xl font-bold mb-2">Audio-Driven Gameplay</h3>
+                        <p class="text-gray-400">Navigate a world where sound is your guide and your greatest threat. Solve puzzles by manipulating the sonic landscape.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <span class="text-6xl mb-4 block">🎵</span>
+                        <h3 class="text-2xl font-bold mb-2">Musically-Themed Zones</h3>
+                        <p class="text-gray-400">Explore distinct areas, each with its own musical genre and unique atmosphere, from haunting jazz to vibrant drum & bass.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <span class="text-6xl mb-4 block">📜</span>
+                        <h3 class="text-2xl font-bold mb-2">Engaging Story</h3>
+                        <p class="text-gray-400">Uncover the dark history of the All Hallows festival and piece together the secrets of your own past.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trailer Section -->
+        <section id="trailer" class="py-20 bg-black">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="font-creepster text-5xl text-cyan-400 text-glow-cyan mb-8">Official Trailer</h2>
+                <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
+                    <!-- Placeholder iframe for YouTube/Vimeo trailer -->
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full"
+                        src="https://www.youtube.com/embed/placeholder" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="text-sm text-gray-400 mt-4">Replace the "src" attribute in the iframe with your trailer URL.</p>
+            </div>
+        </section>
+
+        <!-- News/Blog Section -->
+        <section id="posts" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="font-creepster text-5xl text-cyan-400 text-glow-cyan mb-8 text-center">Latest News</h2>
+                <ul class="post-list">
+                    <li>
+                        <a href="#">
+                            <img width="720" height="360" src="https://placehold.co/720x360/1a1a2e/e0e0e0?text=Press+Release+Image" alt="Latest news image" class="w-full h-auto rounded-xl">
+                            <h4 class="title text-3xl font-bold mt-2">All Hallows Announces Epic Games Store Exclusivity</h4>
+                            <p class="date text-gray-400 text-sm">March 13, 2025</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img width="720" height="360" src="https://placehold.co/720x360/1a1a2e/e0e0e0?text=Dev+Blog+Image" alt="Dev blog image" class="w-full h-auto rounded-xl">
+                            <h4 class="title text-xl font-bold mt-2">Dev Blog: The Sound Design Behind Our Scary Didgeridoo</h4>
+                            <p class="date text-gray-400 text-sm">February 28, 2025</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img width="720" height="360" src="https://placehold.co/720x360/1a1a2e/e0e0e0?text=Studio+Announcement+Image" alt="Studio announcement image" class="w-full h-auto rounded-xl">
+                            <h4 class="title text-xl font-bold mt-2">Aardvark Anteater Acoustics: The Studio is Live!</h4>
+                            <p class="date text-gray-400 text-sm">February 14, 2025</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Sticky Mobile Wishlist Button -->
+    <a href="https://store.epicgames.com/all-hallows" class="md:hidden fixed bottom-4 right-4 bg-cyan-500 text-black font-bold py-3 px-6 rounded-full text-lg shadow-lg z-50 text-center" target="_blank" rel="noopener noreferrer">
+        Wishlist Now!
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2025 Aardvark Anteater Acoustics Games. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
