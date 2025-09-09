@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Hallows | Digital Press Kit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Creepster&display=swap" rel="stylesheet">
+    <!-- 
+        This is a single-page digital press kit for the game All Hallows, designed to be simple and easy to navigate.
+        It emulates a file structure provided by the user, with sections for each type of asset.
+        Styling is consistent with the main website for a unified brand identity.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+        }
+        .font-creepster {
+            font-family: 'Creepster', cursive;
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+        }
+        .text-glow-magenta {
+            text-shadow: 0 0 8px rgba(255, 0, 255, 0.7);
+        }
+        .btn-primary {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex flex-col items-center">
+            <h1 class="font-creepster text-5xl md:text-7xl text-white tracking-widest text-glow-magenta">Press Kit</h1>
+            <p class="text-xl mt-2">All Hallows by Aardvark Anteater Acoustics</p>
+            <a href="#" class="btn-primary mt-4 inline-block bg-cyan-500 text-black font-bold py-3 px-8 rounded-lg text-lg">
+                Download All Assets (.zip)
+            </a>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <!-- 1_Fact_Sheet Section -->
+        <section id="fact-sheet" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">1. Fact Sheet</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Aardvark_Anteater_Acoustics_Fact_Sheet.pdf</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Aardvark_Anteater_Acoustics_Fact_Sheet.txt</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2_Press_Releases Section -->
+        <section id="press-releases" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">2. Press Releases</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">PR_Announce_Game.pdf</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">PR_Trailer_Reveal.pdf</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">PR_Launch_Day.pdf</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- 3_About_The_Studio Section -->
+        <section id="about-studio" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">3. About The Studio</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Aardvark_Anteater_Acoustics_Boilerplate.txt</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Studio_Bio.txt</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Headshot_[Your_Name].jpg</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 4_Logos Section -->
+        <section id="logos" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">4. Logos</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Placeholder images for logos -->
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/400x400/1a1a2e/e0e0e0?text=AAA+HighRes+Logo" alt="AAA Logo HighRes" class="w-full h-auto rounded-lg mb-2">
+                    <span class="text-lg font-bold">AAA_Logo_HighRes.png</span>
+                    <span class="text-sm text-gray-500">(Placeholder)</span>
+                </a>
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/400x400/1a1a2e/e0e0e0?text=AAA+White+Logo" alt="AAA Logo White" class="w-full h-auto rounded-lg mb-2">
+                    <span class="text-lg font-bold">AAA_Logo_White.png</span>
+                    <span class="text-sm text-gray-500">(Placeholder)</span>
+                </a>
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/400x400/1a1a2e/e0e0e0?text=AAA+Black+Logo" alt="AAA Logo Black" class="w-full h-auto rounded-lg mb-2">
+                    <span class="text-lg font-bold">AAA_Logo_Black.png</span>
+                    <span class="text-sm text-gray-500">(Placeholder)</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 5_Screenshots Section -->
+        <section id="screenshots" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">5. Screenshots</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Placeholder images for screenshots -->
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Gameplay+Screenshot+01" alt="Screenshot 01" class="w-full h-auto rounded-lg">
+                </a>
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Gameplay+Screenshot+02" alt="Screenshot 02" class="w-full h-auto rounded-lg">
+                </a>
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Gameplay+Screenshot+03" alt="Screenshot 03" class="w-full h-auto rounded-lg">
+                </a>
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Gameplay+Screenshot+04" alt="Screenshot 04" class="w-full h-auto rounded-lg">
+                </a>
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Gameplay+Screenshot+05" alt="Screenshot 05" class="w-full h-auto rounded-lg">
+                </a>
+            </div>
+        </section>
+
+        <!-- 6_Key_Art Section -->
+        <section id="key-art" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">6. Key Art</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/600x800/1a1a2e/e0e0e0?text=Box+Art" alt="Box Art" class="w-full h-auto rounded-lg">
+                </a>
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/800x400/1a1a2e/e0e0e0?text=Horizontal+Banner" alt="Horizontal Banner" class="w-full h-auto rounded-lg">
+                </a>
+                <a href="#" class="block hover:opacity-80 transition-opacity">
+                    <img src="https://placehold.co/400x800/1a1a2e/e0e0e0?text=Vertical+Poster" alt="Vertical Poster" class="w-full h-auto rounded-lg">
+                </a>
+            </div>
+        </section>
+
+        <!-- 7_Videos Section -->
+        <section id="videos" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">7. Videos</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Trailer_Reveal_4K.mp4</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Gameplay_B-Roll_1080p.mp4</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Logo_Animation_Final.mp4</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 8_Audio Section -->
+        <section id="audio" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">8. Audio</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">OST_Sample_Track_01.mp3</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Ambient_Soundscape_Sample_01.mp3</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                            <span class="font-bold">Didgeridoo_Ident_Sound.mp3</span>
+                            <span class="text-gray-500 text-sm">(Placeholder)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- 9. README.txt Section -->
+        <section id="readme" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">9. README.txt</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <p>
+                    <a href="#" class="flex items-center space-x-2 text-lg hover:text-cyan-400 transition-colors">
+                        <span class="font-bold">README.txt</span>
+                        <span class="text-gray-500 text-sm">(Placeholder)</span>
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Latest News Section -->
+        <section id="latest-news" class="mb-12">
+            <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">Latest News</h2>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <h3 class="font-bold text-3xl mb-2">Aardvark Anteater Acoustics Announces 'All Hallows' Coming Exclusively to the Epic Games Store</h3>
+                <p class="mb-4"><strong>GLASGOW, SCOTLAND</strong> – Aardvark Anteater Acoustics, a new independent game studio, today announced that its highly anticipated debut title, <strong>All Hallows</strong>, will be released exclusively on the Epic Games Store. The game will be available to add to your Wishlist starting <strong>March 17, 2025</strong>, with an official launch date set for <strong>May 19, 2025</strong>.</p>
+                <p class="mb-4"><em>All Hallows</em> invites players into a mysterious, music-driven world where sound is the key to survival and discovery. Navigate through a unique, sprawling festival of musically-themed zones, solving puzzles and uncovering secrets as a lost soul trying to find its way.</p>
+                <p class="mb-8">The game will be priced at <strong>€39.99</strong>.</p>
+
+                <h4 class="font-bold text-xl mb-2">About Aardvark Anteater Acoustics</h4>
+                <p class="mb-4">Based in Scotland, Aardvark Anteater Acoustics is a new independent game studio with a name as unique as its mission. Founded by a sound designer with a Master's degree in the field, our focus is on crafting unforgettable, high-quality games where audio is not an afterthought, but the very foundation of the experience. We believe in the power of sound to tell stories, create atmosphere, and build worlds.</p>
+
+                <h4 class="font-bold text-xl mb-2">Media Contact</h4>
+                <p><span>[Your Name]</span><br><span>[Your Email]</span><br><span>[Your Phone Number]</span></p>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2025 Aardvark Anteater Acoustics Games. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
