@@ -17,12 +17,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Creepster&display=swap" rel="stylesheet">
-    <!-- 
-        This is the new homepage, designed to look like a blog or news feed.
-        It emulates the layout and feel of the provided Astro component using
-        plain HTML and Tailwind CSS for a fully self-contained page.
-    -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -78,16 +73,13 @@
 </head>
 <body class="overflow-x-hidden">
 
-    <!-- Header -->
-<header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 left-0 right-0 z-50">
+    <header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 left-0 right-0 z-50">
     <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-        <!-- Logo + Title -->
         <a href="/all-hallows/index.html" class="flex items-center space-x-3">
             <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
             <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
         </a>
 
-        <!-- Navigation -->
         <div class="flex items-center space-x-6">
             <a href="/all-hallows/index.html" class="text-lg hover:text-cyan-400 transition-colors">Home</a>
             <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
@@ -100,28 +92,16 @@
 
 
     <main>
-<!-- Hero Section -->
 <section class="h-screen flex flex-col items-center justify-center text-center bg-cover bg-center" 
          style="background-image: url('/icons/all-hallows4x.png');">
     <h1 class="font-creepster text-6xl md:text-8xl text-white tracking-widest text-glow-magenta">All Hallows</h1>
-    
-    <!-- Luminous green glowing paragraph 
-    <p class="mt-2 text-lg md:text-3xl text-green-400 text-glow-green font-medium">
-    A music-driven horror experience. Uncover the secrets within the sound.
-</p> -->
-
     
     <a href="https://store.epicgames.com/all-hallows" class="btn-primary mt-8 inline-block bg-cyan-500 text-black font-bold py-4 px-10 rounded-lg text-xl" target="_blank" rel="noopener noreferrer">
         Wishlist March 17 on Epic Games Store!
     </a>
     
-    <!-- Luminous green glowing smaller text 
-    <p class="mt-2 text-lg md:text-xl text-cyan-400 text-glow-green font-medium">
-        Wishlist available from March 17, 2025
-    </p> -->
-</section>
+    </section>
 
-        <!-- Key Features Section -->
         <section id="features" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
                 <h2 class="font-creepster text-5xl text-cyan-400 text-glow-cyan mb-8 text-center">Key Features</h2>
@@ -145,12 +125,10 @@
             </div>
         </section>
 
-        <!-- Trailer Section -->
         <section id="trailer" class="py-20 bg-black">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="font-creepster text-5xl text-cyan-400 text-glow-cyan mb-8">Official Trailer</h2>
                 <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
-                    <!-- Placeholder iframe for YouTube/Vimeo trailer -->
                     <iframe 
                         class="absolute top-0 left-0 w-full h-full"
                         src="https://www.youtube.com/embed/placeholder" 
@@ -163,7 +141,6 @@
             </div>
         </section>
 
-        <!-- News/Blog Section -->
         <section id="posts" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
                 <h2 class="font-creepster text-5xl text-cyan-400 text-glow-cyan mb-8 text-center">Latest News</h2>
@@ -194,7 +171,6 @@
         </section>
     </main>
     
-    <!-- Sticky Mobile Wishlist Button -->
     <a href="https://store.epicgames.com/all-hallows" class="md:hidden fixed bottom-4 right-4 bg-cyan-500 text-black font-bold py-3 px-6 rounded-full text-lg shadow-lg z-50 text-center" target="_blank" rel="noopener noreferrer">
         Wishlist Now!
     </a>
