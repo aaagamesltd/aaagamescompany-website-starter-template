@@ -274,11 +274,140 @@
     </main>
     
     <!-- Footer -->
-    <footer class="bg-black py-8">
-        <div class="container mx-auto px-6 text-center text-gray-400">
-            <p>&copy; 2025 Aardvark Anteater Acoustics Games. All Rights Reserved.</p>
-        </div>
-    </footer>
+<footer>
+  <div class="footer-top">
+    <a href="/all-hallows/terms.html" class="footer-link">Terms of Service</a>
+    <a href="/all-hallows/cookies.html" class="footer-link">Cookies Policy</a>
 
-</body>
-</html>
+    <span class="footer-copy" id="companyName">&copy; <span id="companyText">Aardvark Anteater Acoustics Games</span></span>
+
+    <a href="/all-hallows/privacy.html" class="footer-link">Privacy Policy</a>
+    <a href="/all-hallows/disclaimer.html" class="footer-link">Disclaimer</a>
+  </div>
+
+  <div class="social-links" id="footerSocialLinks">
+    <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Support AAA Games on Patreon</span>
+      <img src="/icons/patreon.svg" alt="Patreon - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on Facebook</span>
+      <img src="/icons/facebook.svg" alt="Facebook - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on TikTok</span>
+      <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Subscribe to AAA Games on YouTube</span>
+      <img src="/icons/youtube.svg" alt="YouTube - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on Kick</span>
+      <img src="/icons/kick.svg" alt="Kick - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.instagram.com/aaagamescompany/" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on Instagram</span>
+      <img src="/icons/instagram.svg" alt="Instagram - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://x.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on X</span>
+      <img src="/icons/x.svg" alt="X - AAA Games" width="32" height="32" />
+    </a>
+  </div>
+
+  <script>
+    (function () {
+      const companyText = document.getElementById("companyText");
+      const footerSocialLinks = document.getElementById("footerSocialLinks");
+      const newName = "Aardvark Anteater Acoustics Games";
+
+      if (!companyText) return;
+
+      companyText.addEventListener("mouseenter", () => {
+        companyText.classList.add("fade-out");
+
+        companyText.addEventListener("transitionend", () => {
+          companyText.textContent = newName;
+
+          if (footerSocialLinks) {
+            const srOnlySpans = footerSocialLinks.querySelectorAll(".sr-only");
+            const images = footerSocialLinks.querySelectorAll("img");
+
+            srOnlySpans.forEach(span => {
+              span.textContent = span.textContent.replace(/AAA Games/g, newName);
+            });
+
+            images.forEach(img => {
+              if (img.alt && img.alt.includes("AAA Games")) {
+                img.alt = img.alt.replace(/AAA Games/g, newName);
+              }
+            });
+          }
+
+          companyText.classList.remove("fade-out");
+          companyText.classList.add("fade-in");
+        }, { once: true });
+      }, { once: true });
+    })();
+  </script>
+
+  <style>
+    footer {
+      padding: 1.5em 1em 2em;
+      background: #fff;
+      color: #222;
+      box-shadow: var(--box-shadow);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25em;
+      flex-wrap: wrap;
+      font-size: 0.95em;
+      margin-bottom: 0.8em;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: #222;
+      transition: color 0.25s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      color: #222;
+      cursor: pointer;
+    }
+
+    #companyText {
+      transition: opacity 0.6s ease;
+      display: inline-block;
+    }
+    .fade-out { opacity: 0; }
+    .fade-in  { opacity: 1; }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8em;
+      flex-wrap: wrap;
+    }
+
+    .social-icon img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .social-icon:hover img {
+      transform: scale(1.12);
+      filter: drop-shadow(0 0 4px var(--accent));
+    }
+  </style>
+</footer>
