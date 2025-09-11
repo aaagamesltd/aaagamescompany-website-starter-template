@@ -8,11 +8,11 @@ import { SITE_TITLE } from '../consts';
       <h2 class="site-logo">
         <a href="/" id="siteTitle">{SITE_TITLE}</a>
       </h2>
-      </div>
-      <div class="header-right" id="socialLinks">
+    </div>
+    <div class="header-right" id="socialLinks">
       <a href="/all-hallows" class="social-icon logo-icon">
-      <span class="sr-only">All Hallows Home</span>
-      <img src="/icons/all-hallows.png" alt="All Hallows - Home" />
+        <span class="sr-only">All Hallows Home</span>
+        <img src="/icons/all-hallows.png" alt="All Hallows - Home" />
       </a>
       <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
         <span class="sr-only">Support AAA Games on Patreon</span>
@@ -58,12 +58,10 @@ import { SITE_TITLE } from '../consts';
       siteTitle.classList.add("fade-out");
 
       siteTitle.addEventListener("transitionend", () => {
-        // Update site title
         siteTitle.textContent = newHeaderName;
         siteTitle.classList.remove("fade-out");
         siteTitle.classList.add("fade-in");
 
-        // Update all sr-only and alt texts
         const srOnlySpans = socialLinks.querySelectorAll(".sr-only");
         const images = socialLinks.querySelectorAll("img");
 
@@ -81,24 +79,27 @@ import { SITE_TITLE } from '../consts';
   <style>
     .site-logo a {
       text-decoration: none;
-      color: white; /* keep white text for black background */
+      color: white;
       transition: opacity 0.6s ease;
       display: inline-block;
       cursor: pointer;
     }
 
-    .fade-out {
-      opacity: 0;
-    }
+    .fade-out { opacity: 0; }
+    .fade-in  { opacity: 1; }
 
-    .fade-in {
-      opacity: 1;
-    }
-
+    /* Default for all icons */
     .social-icon img {
       width: 28px;
       height: 28px;
       transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    /* Larger centerpiece All Hallows logo */
+    .logo-icon img {
+      width: auto;
+      height: 40px;     /* bigger than others */
+      max-width: 70px;  /* keep proportions */
     }
 
     .social-icon:hover img {

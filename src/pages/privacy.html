@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Privacy Policy — Aardvark Anteater Acoustics Games OÜ</title>
   <meta name="robots" content="noarchive" />
+
+  <!-- Favicon for browser tab -->
+  <link rel="icon" href="/public/favicon.svg" type="image/svg+xml" />
+
   <style>
     body {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -20,9 +24,23 @@
     }
     a { color: var(--accent, #0073e6); text-decoration: underline; }
     pre { background: #f6f6f6; padding: 1rem; border-radius: 6px; overflow: auto; }
+
+    /* logo placement */
+    .site-logo {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      width: 32px;
+      height: 32px;
+    }
   </style>
 </head>
 <body>
+  <!-- favicon in top-left corner -->
+  <a href="/" class="site-logo">
+    <img src="/public/favicon.svg" alt="AAA Games Logo" width="32" height="32" />
+  </a>
+
   <h1>Privacy Policy</h1>
   <p>Last updated: <strong>2025-09-11</strong></p>
 
@@ -95,9 +113,7 @@
      Registered in: Estonia<br/>
      Email: <a href="mailto:privacy@aaagamescompany.com">privacy@aaagamescompany.com</a></p>
 
-  
   <hr>
-<!-- <p><em>Note:</em> Contact us for the most up to date terms of service.</p> -->
 </body>
 </html>
 
@@ -167,7 +183,6 @@
             const images = footerSocialLinks.querySelectorAll("img");
 
             srOnlySpans.forEach(span => {
-              // replace only if original contains 'AAA Games' to avoid accidental changes
               span.textContent = span.textContent.replace(/AAA Games/g, newName);
             });
 
@@ -218,7 +233,6 @@
       cursor: pointer;
     }
 
-    /* Fade animation for the name change */
     #companyText {
       transition: opacity 0.6s ease;
       display: inline-block;
