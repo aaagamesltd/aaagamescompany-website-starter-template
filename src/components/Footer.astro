@@ -11,9 +11,6 @@ const today = new Date();
 
     <a href="/privacy" class="footer-link">Privacy Policy</a>
     <a href="/disclaimer" class="footer-link">Disclaimer</a>
-
-    <!-- Manage Cookies link for Cookiebot -->
-    <a href="javascript:void(0);" onclick="Cookiebot?.renew()" class="footer-link">Manage Cookies</a>
   </div>
 
   <div class="social-links" id="footerSocialLinks">
@@ -47,20 +44,8 @@ const today = new Date();
     </a>
   </div>
 
-  <script client:load>
-    // Load Cookiebot banner once
-    (function() {
-      if (!document.getElementById("Cookiebot")) {
-        const cb = document.createElement("script");
-        cb.id = "Cookiebot";
-        cb.src = "https://consent.cookiebot.com/uc.js";
-        cb.setAttribute("data-cbid", "f8906613-166a-4534-a5e5-5e83c7a6270a");
-        cb.type = "text/javascript";
-        cb.async = true;
-        document.head.appendChild(cb);
-      }
-    })();
-
+  <!-- client-side scripts -->
+  <script>
     // Footer company name hover swap
     const companyText = document.getElementById("companyText");
     const footerSocialLinks = document.getElementById("footerSocialLinks");
