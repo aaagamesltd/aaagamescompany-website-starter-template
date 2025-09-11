@@ -10,48 +10,23 @@ import "../styles/global.css";
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-
-    <!-- Google Analytics (blocked until consent) -->
-    <script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-MVZ3YM60WQ"></script>
-    <script type="text/plain" data-cookieconsent="statistics">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MVZ3YM60WQ');
-    </script>
-
     <style>
       html, body { height: 100%; margin: 0; font-family: sans-serif; }
       body { display: flex; flex-direction: column; }
-
       main.homepage-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: center;
-        width: 90%;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-        gap: 1em;
-        margin-top: -3em;
+        flex: 1; display: flex; flex-direction: column; justify-content: flex-start;
+        align-items: center; text-align: center; width: 90%; max-width: 900px; margin: 0 auto; gap: 1em; margin-top: -3em;
       }
-
       .site-title { display: flex; align-items: center; justify-content: center; gap: 0.5em; flex-wrap: wrap; }
       .site-title img { height: 64px; }
       .site-title span { font-size: 2em; font-weight: bold; }
-
       .homepage-intro { margin-top: 0.75em; font-size: 1.1em; line-height: 1.5; }
-
       @media (max-width: 768px) {
         main.homepage-content { margin-top: -2em; }
         .site-title img { height: 48px; }
         .site-title span { font-size: 1.5em; }
         .homepage-intro { font-size: 1em; margin-top: 0.5em; }
       }
-
       @media (max-width: 480px) {
         main.homepage-content { margin-top: -1.5em; }
         .site-title img { height: 40px; }
