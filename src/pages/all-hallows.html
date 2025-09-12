@@ -13,42 +13,75 @@
 <link rel="stylesheet" href="/style.css">
 
 <style>
-.text-glow-cyan { text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff; }
-.text-glow-magenta { text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff; }
+/* Global Glows */
+.text-glow-cyan { text-shadow: 0 0 8px #00ffff, 0 0 16px #00ffff; }
+.text-glow-magenta { text-shadow: 0 0 8px #ff33ff, 0 0 16px #ff33ff; }
 a { color: #00ffff; transition: color 0.3s; }
 a:hover { color: #ffffff; }
-.hero-bg { background: url('/icons/all-hallows4x.png') center/cover no-repeat; }
 img { display: block; max-width: 100%; height: auto; }
 button { cursor: pointer; transition: transform 0.25s; }
 button:hover { transform: scale(1.05); }
+
+/* Hero */
+.hero-bg { background: url('/icons/all-hallows4x.png') center/cover no-repeat; background-attachment: fixed; }
+
+/* Carousel */
+.carousel-container { position: relative; overflow: hidden; border-radius: 16px; box-shadow: 0 0 32px rgba(0,255,255,0.3); max-width: 100%; margin: auto; }
+.carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+.carousel-slide { flex: 0 0 100%; margin: 0 0.5rem; border-radius: 12px; overflow: hidden; box-shadow: 0 0 16px rgba(0,255,255,0.25); }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,255,255,0.3); color: black; border: none; font-size: 2rem; padding: 0.25rem 0.5rem; cursor: pointer; border-radius: 6px; z-index: 10; }
+.carousel-btn:hover { background: rgba(0,255,255,0.6); }
+.carousel-prev { left: 1rem; }
+.carousel-next { right: 1rem; }
+
+/* Asset previews */
+.asset-preview { width: 100%; height: auto; display: block; border-radius: 12px; box-shadow: 0 0 12px rgba(0,255,255,0.3); transition: transform 0.3s; }
+.asset-preview:hover { transform: scale(1.05); }
+
+/* Trailer hover */
+.trailer-container { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 0 16px rgba(0,255,255,0.3); }
+.trailer-container:hover::after { content: ""; position: absolute; inset: 0; background: rgba(0,255,255,0.08); pointer-events: none; }
+
+/* Features hover */
+.feature-card { transition: transform 0.3s, box-shadow 0.3s; }
+.feature-card:hover { transform: translateY(-5px); box-shadow: 0 0 24px rgba(0,255,255,0.3); }
+
+/* News hover */
+.news-card { transition: transform 0.3s, box-shadow 0.3s; }
+.news-card:hover { transform: scale(1.02); box-shadow: 0 0 24px rgba(0,255,255,0.3); }
+
+/* Footer icons hover */
+.social-links img { transition: transform 0.3s, filter 0.3s; }
+.social-links img:hover { transform: scale(1.2); filter: drop-shadow(0 0 6px #00ffff); }
+
 </style>
 </head>
 
 <body class="overflow-x-hidden bg-gray-900 text-gray-100">
 
 <header class="bg-black bg-opacity-60 backdrop-blur-md sticky top-0 z-50">
-  <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/all-hallows/index.html" class="flex items-center space-x-3">
-      <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain" loading="lazy">
-      <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
-    </a>
-    <div class="flex items-center space-x-6">
-      <a href="#features" class="text-lg hover:text-cyan-400">Features</a>
-      <a href="#trailer" class="text-lg hover:text-cyan-400">Trailer</a>
-      <a href="#posts" class="text-lg hover:text-cyan-400">News</a>
-      <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400">Press Kit</a>
-    </div>
-  </nav>
+    <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/all-hallows/index.html" class="flex items-center space-x-3">
+            <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
+            <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
+        </a>
+        <div class="flex items-center space-x-6">
+            <a href="#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
+            <a href="#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
+            <a href="#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
+            <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
+        </div>
+    </nav>
 </header>
 
 <main class="container mx-auto px-6 py-16 max-w-6xl space-y-16">
 
   <!-- Hero -->
   <section class="hero-bg relative h-screen flex flex-col items-center justify-center text-center text-white">
-    <div class="bg-black bg-opacity-50 p-6 rounded-xl">
-      <h1 class="font-creepster text-5xl md:text-6xl mb-4 text-glow-cyan">All Hallows</h1>
+    <div class="bg-black bg-opacity-50 p-6 rounded-xl animate-fade-in">
+      <h1 class="font-creepster text-5xl md:text-6xl mb-4 text-glow-cyan animate-pulse">All Hallows</h1>
       <p class="text-gray-300 text-lg mb-6">Launch of our AAA studio and game — wishlist now!</p>
-      <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white text-black font-bold py-4 px-12 rounded-lg hover:bg-gray-200 shadow-lg transition-colors">
+      <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white text-black font-bold py-4 px-12 rounded-lg hover:bg-gray-200 shadow-lg transition-transform transform hover:scale-105">
         Wishlist Now
         <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="w-6 h-auto ml-3">
       </a>
@@ -57,27 +90,44 @@ button:hover { transform: scale(1.05); }
 
   <!-- Features -->
   <section id="features" class="grid md:grid-cols-3 gap-8 text-center">
-    <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+    <div class="feature-card bg-gray-800 p-6 rounded-xl shadow-lg">
       <h2 class="font-creepster text-2xl mb-2 text-glow-cyan">Immersive Horror</h2>
       <p class="text-gray-300">Experience chilling AAA-quality environments.</p>
     </div>
-    <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+    <div class="feature-card bg-gray-800 p-6 rounded-xl shadow-lg">
       <h2 class="font-creepster text-2xl mb-2 text-glow-cyan">Next-Gen Graphics</h2>
       <p class="text-gray-300">Unreal Engine 5.3 cinematic visuals.</p>
     </div>
-    <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+    <div class="feature-card bg-gray-800 p-6 rounded-xl shadow-lg">
       <h2 class="font-creepster text-2xl mb-2 text-glow-cyan">Dynamic Gameplay</h2>
       <p class="text-gray-300">Evolving challenges and emergent AI.</p>
     </div>
   </section>
 
+  <!-- Screenshots & Artwork Carousel -->
+  <section class="text-center">
+    <h2 class="font-creepster text-4xl mb-6 text-glow-cyan">Screenshots & Artwork</h2>
+    <div class="carousel-container mb-4 max-w-5xl mx-auto">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="/icons/all-hallows4x.png" alt="Screenshot 1" class="asset-preview"></div>
+        <div class="carousel-slide"><img src="/icons/studio_image.png" alt="Screenshot 2" class="asset-preview"></div>
+        <div class="carousel-slide"><img src="/icons/all-hallows4x.png" alt="Screenshot 3" class="asset-preview"></div>
+      </div>
+      <button class="carousel-btn carousel-prev">&#10094;</button>
+      <button class="carousel-btn carousel-next">&#10095;</button>
+    </div>
+    <a href="/assets/screenshots.zip" target="_blank" rel="noopener noreferrer" class="inline-block bg-cyan-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-cyan-400 shadow-lg">
+      Download Images
+    </a>
+  </section>
+
   <!-- Trailer -->
   <section id="trailer" class="text-center">
     <h2 class="font-creepster text-4xl mb-6 text-glow-cyan">Official Trailer</h2>
-    <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-xl shadow-lg mb-6">
-      <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/kvySeAu9L5E?si=xE375D-R-liefXC7" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <div class="trailer-container relative pb-[56.25%] h-0 overflow-hidden rounded-xl mb-4">
+      <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/kvySeAu9L5E?si=xE375D-R-liefXC7" frameborder="0" allowfullscreen></iframe>
     </div>
-    <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white text-black font-bold py-3 px-8 rounded-lg hover:bg-gray-200 shadow-lg transition-colors">
+    <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 shadow-lg">
       Wishlist on Epic Games Store
       <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="w-6 h-auto ml-3">
     </a>
@@ -87,11 +137,11 @@ button:hover { transform: scale(1.05); }
   <section id="posts" class="space-y-8">
     <h2 class="font-creepster text-4xl text-center mb-6 text-glow-cyan">Latest News</h2>
     <div class="grid md:grid-cols-2 gap-6">
-      <article class="bg-gray-800 p-6 rounded-xl shadow-lg hover:scale-105 transition-transform">
+      <article class="news-card bg-gray-800 p-6 rounded-xl shadow-lg">
         <h3 class="text-2xl font-bold text-cyan-400 mb-2">Studio Launch Announced</h3>
         <p class="text-gray-300 text-sm">AAA Games Studio is live with the first title All Hallows.</p>
       </article>
-      <article class="bg-gray-800 p-6 rounded-xl shadow-lg hover:scale-105 transition-transform">
+      <article class="news-card bg-gray-800 p-6 rounded-xl shadow-lg">
         <h3 class="text-2xl font-bold text-cyan-400 mb-2">Trailer Released</h3>
         <p class="text-gray-300 text-sm">Watch the cinematic trailer on YouTube now.</p>
       </article>
@@ -118,6 +168,59 @@ button:hover { transform: scale(1.05); }
     <a href="https://x.com/aaagamescompany" target="_blank"><img src="/icons/x.svg" alt="X" width="32"></a>
   </div>
 </footer>
+
+<script>
+// Multi-slide infinite-loop carousel
+const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+const prevBtn = document.querySelector('.carousel-prev');
+const nextBtn = document.querySelector('.carousel-next');
+
+const slideWidth = slides[0].getBoundingClientRect().width + 16; // 16px margin total
+let currentIndex = 0;
+let autoPlayInterval = null;
+
+// Clone for infinite-loop
+const firstClone = slides[0].cloneNode(true);
+const lastClone = slides[slides.length-1].cloneNode(true);
+track.appendChild(firstClone);
+track.prepend(lastClone);
+const allSlides = Array.from(track.children);
+track.style.transform = `translateX(-${slideWidth}px)`;
+currentIndex = 1;
+
+function updateCarousel() {
+    track.style.transition = 'transform 0.5s ease-in-out';
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+}
+
+track.addEventListener('transitionend', () => {
+    if (allSlides[currentIndex] === firstClone) {
+        track.style.transition = 'none';
+        currentIndex = 1;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+    if (allSlides[currentIndex] === lastClone) {
+        track.style.transition = 'none';
+        currentIndex = allSlides.length - 2;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+});
+
+prevBtn.addEventListener('click', () => { currentIndex--; updateCarousel(); });
+nextBtn.addEventListener('click', () => { currentIndex++; updateCarousel(); });
+
+function startAutoPlay() { autoPlayInterval = setInterval(() => { currentIndex++; updateCarousel(); }, 5000); }
+function stopAutoPlay() { clearInterval(autoPlayInterval); }
+startAutoPlay();
+
+document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoPlay);
+document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoPlay);
+
+let startX = 0;
+track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; stopAutoPlay(); });
+track.addEventListener('touchend', e => { const endX = e.changedTouches[0].clientX; if (endX - startX > 50) currentIndex--; else if (startX - endX > 50) currentIndex++; updateCarousel(); startAutoPlay(); });
+</script>
 
 </body>
 </html>

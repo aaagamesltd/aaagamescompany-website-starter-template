@@ -38,10 +38,31 @@ section h2 { text-shadow: 0 0 4px #00ffff; }
 .carousel-prev { left: 1rem; }
 .carousel-next { right: 1rem; }
 
+/* Mobile carousel buttons */
+@media (max-width: 640px) {
+    .carousel-btn { font-size: 1.5rem; padding: 0.2rem 0.4rem; }
+}
+
 /* Trailer hover effect */
 .trailer-container { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 0 12px rgba(0,255,255,0.3); }
 .trailer-container:hover::after { content: ""; position: absolute; inset: 0; background: rgba(0,255,255,0.1); pointer-events: none; }
 </style>
+
+<!-- Structured Data for Press/SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "All Hallows",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aardvark Anteater Acoustics Games"
+  },
+  "url": "https://store.epicgames.com/all-hallows",
+  "image": "/icons/all-hallows.png",
+  "description": "All Hallows is a AAA horror game from Aardvark Anteater Acoustics Games. Media assets available in the press kit."
+}
+</script>
 </head>
 
 <body class="overflow-x-hidden bg-gray-900 text-gray-100">
@@ -80,7 +101,7 @@ section h2 { text-shadow: 0 0 4px #00ffff; }
     <section class="bg-gray-800 p-6 rounded-xl shadow-lg text-center">
         <h2 class="font-creepster text-3xl text-cyan-400 mb-4 text-glow-cyan">Logos & Icons</h2>
         <p class="text-gray-300 mb-4">High-resolution logos for articles, social media, or promotional material.</p>
-        <img src="/icons/all-hallows.png" alt="All Hallows Logo Preview" class="asset-preview">
+        <img src="/icons/all-hallows.png" alt="All Hallows Logo Preview" class="asset-preview" loading="lazy">
         <a href="/assets/logos.zip" target="_blank" rel="noopener noreferrer" class="download-btn inline-block bg-cyan-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-cyan-400 shadow-lg">Download Logos</a>
     </section>
 
@@ -90,8 +111,8 @@ section h2 { text-shadow: 0 0 4px #00ffff; }
         <p class="text-gray-300 mb-4">High-quality screenshots, character concepts, and artwork for editorial coverage.</p>
         <div class="carousel-container mb-4">
             <div class="carousel-track">
-                <div class="carousel-slide"><img src="/icons/all-hallows4x.png" alt="All Hallows Screenshot 1" class="asset-preview"></div>
-                <div class="carousel-slide"><img src="/icons/studio_image.png" alt="Studio Screenshot" class="asset-preview"></div>
+                <div class="carousel-slide"><img src="/icons/all-hallows4x.png" alt="All Hallows Screenshot 1" class="asset-preview" loading="lazy"></div>
+                <div class="carousel-slide"><img src="/icons/studio_image.png" alt="Studio Screenshot" class="asset-preview" loading="lazy"></div>
             </div>
             <button class="carousel-btn carousel-prev">&#10094;</button>
             <button class="carousel-btn carousel-next">&#10095;</button>
@@ -169,7 +190,7 @@ section h2 { text-shadow: 0 0 4px #00ffff; }
 </footer>
 
 <script>
-// Simple Carousel JS
+// Carousel JS
 const track = document.querySelector('.carousel-track');
 const slides = Array.from(track.children);
 const prevBtn = document.querySelector('.carousel-prev');
@@ -188,6 +209,18 @@ prevBtn.addEventListener('click', () => {
 nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
     updateCarousel();
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') {
+        currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+        updateCarousel();
+    }
+    if (e.key === 'ArrowRight') {
+        currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+        updateCarousel();
+    }
 });
 </script>
 
