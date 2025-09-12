@@ -323,21 +323,21 @@ header .header-right a[href*="/all-hallows"]:hover img {
     text-shadow: 0 0 6px #00ff99, 0 0 12px #00ff99, 0 0 18px #00ff99, 0 0 24px #00ff99;
 }
 
-/* ---------- Mobile Landscape Icon Adjustments (Force Override) ---------- */
-@media screen and (max-height: 500px) and (max-width: 900px) and (orientation: landscape) {
-  /* Force all header icons to double size */
+/* ---------- Mobile Portrait Icon Adjustments ---------- */
+@media screen and (max-width: 900px) and (orientation: portrait) {
+  /* Make all header icons bigger in portrait mode */
   header .header-right a img {
     width: 64px !important;
     height: 64px !important;
   }
 
-  /* Keep All Hallows logo fixed at its special size */
+  /* Keep All Hallows logo at its special size */
   header .header-right a[href*="/all-hallows"] img {
     width: 100px !important;
     height: 100px !important;
   }
 
-  /* Tighter spacing between icons */
+  /* Tighter spacing so they fit nicely */
   header .header-right {
     gap: 0.4rem !important;
   }
