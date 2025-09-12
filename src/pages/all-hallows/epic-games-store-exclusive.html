@@ -29,19 +29,33 @@
 
 <!-- Hero Section with Epic Games Store Imagery -->
 <section class="relative h-screen flex items-center justify-center text-center bg-black">
-    <img src="/public/icons/all-hallows4x.png" alt="All Hallows" class="object-cover w-full h-full opacity-70">
+    <img src="/icons/all-hallows4x.png" alt="All Hallows" class="object-cover w-full h-full opacity-70">
 
-    <!-- Epic Games Store logo above overlay -->
-    <img src="/public/icons/epic-games-store-white.svg" alt="Epic Games Store" class="absolute top-6 right-6 w-32 h-auto z-50">
+    <!-- Clickable Epic Games Store logo fixed in top-right -->
+    <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer">
+        <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" 
+             class="fixed top-16 right-6 w-32 h-auto z-50 cursor-pointer">
+    </a>
 
     <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center px-6 z-10">
         <h1 class="font-creepster text-6xl md:text-8xl text-cyan-400 mb-4">Epic Games Store Exclusive!</h1>
-        <p class="text-xl md:text-2xl text-gray-200 max-w-2xl mb-6">All Hallows is launching exclusively on the Epic Games Store. Prepare for a spine-chilling adventure starting March 17, 2025!</p>
-        <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="inline-block bg-cyan-500 text-black font-bold py-4 px-10 rounded-lg text-xl hover:bg-cyan-400 transition-colors">
-            Wishlist Now!
+        <p class="text-xl md:text-2xl text-gray-200 max-w-2xl mb-6">
+            All Hallows is launching exclusively on the Epic Games Store. Prepare for a spine-chilling adventure starting March 17, 2025!
+        </p>
+        <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer"
+           class="group relative inline-flex items-center bg-cyan-500 text-black font-bold py-4 px-10 rounded-lg text-xl 
+                  hover:bg-cyan-400 transition-colors overflow-hidden">
+            <!-- Left icon further left -->
+            <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" 
+                 class="w-6 h-auto absolute left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="relative z-10">Wishlist Now!</span>
+            <!-- Right icon further right -->
+            <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" 
+                 class="w-6 h-auto absolute right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         </a>
     </div>
 </section>
+
 
 <!-- Press Release Content -->
 <section class="py-20 bg-gray-800/80 backdrop-blur-sm">
@@ -50,7 +64,7 @@
 
         <p class="mb-6"><strong>March 13, 2025</strong> — <strong>All Hallows</strong>, the highly anticipated horror-musical adventure from Aardvark Anteater Acoustics, is thrilled to announce its <strong>exclusive launch on the Epic Games Store</strong>. Players will explore haunted musical worlds, solve audio-driven puzzles, and uncover the mysteries of the All Hallows festival starting <strong>March 17, 2025</strong>.</p>
 
-        <img src="/public/icons/all-hallows4x.png" alt="All Hallows Game Artwork" class="w-full h-auto rounded-xl mb-6 shadow-lg">
+        <img src="/icons/all-hallows4x.png" alt="All Hallows Game Artwork" class="w-full h-auto rounded-xl mb-6 shadow-lg">
 
         <p class="mb-6">This exclusivity deal with Epic Games Store allows the developers to focus on delivering a rich, immersive experience with enhanced support for high-quality audio and visuals. "We are excited to partner with Epic Games to bring All Hallows to an audience that appreciates unique storytelling and innovative sound design," said the lead designer at Aardvark Anteater Acoustics.</p>
 
@@ -70,7 +84,7 @@
     </div>
 </section>
 
-<!-- Footer (same as all-hallows.html) -->
+<!-- Footer -->
 <footer>
   <div class="footer-top">
     <a href="/all-hallows/terms.html" class="footer-link">Terms of Service</a>
@@ -205,6 +219,14 @@
     .social-icon:hover img {
       transform: scale(1.12);
       filter: drop-shadow(0 0 4px var(--accent));
+    }
+
+    .text-glow-cyan {
+      text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+    }
+
+    .text-glow-magenta {
+      text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff;
     }
   </style>
 </footer>
