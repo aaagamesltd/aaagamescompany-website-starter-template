@@ -343,12 +343,15 @@ header .header-right a[href*="/all-hallows"]:hover img {
   }
 }
 
-/* ---------- Mobile Portrait Linktree Fix ---------- */
+/* ---------- Mobile Portrait Linktree Fix (Bigger + Animation) ---------- */
 @media screen and (max-width: 900px) and (orientation: portrait) {
-  /* Make Linktree twice as big as other icons */
   header .header-right a[href*="linktr.ee"] img {
     width: 100px !important;
     height: 100px !important;
-    animation: linktreeMagicOrganic 9s infinite ease-in-out !important; /* restore animation */
+    border-radius: 50% !important;
+    transform-origin: center !important;
+
+    /* Force the original animation back in portrait */
+    animation: linktreeMagicOrganic 9s infinite ease-in-out !important;
   }
 }
