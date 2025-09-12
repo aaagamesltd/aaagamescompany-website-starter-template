@@ -342,3 +342,13 @@ header .header-right a[href*="/all-hallows"]:hover img {
     gap: 0.4rem !important;
   }
 }
+
+/* ---------- Mobile Portrait Linktree Fix ---------- */
+@media screen and (max-width: 900px) and (orientation: portrait) {
+  /* Make Linktree twice as big as other icons */
+  header .header-right a[href*="linktr.ee"] img {
+    width: 128px !important;
+    height: 128px !important;
+    animation: linktreeMagicOrganic 9s infinite ease-in-out !important; /* restore animation */
+  }
+}
