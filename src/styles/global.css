@@ -347,8 +347,8 @@ header .header-right a[href*="/all-hallows"]:hover img {
 @media screen and (max-width: 900px) and (orientation: portrait) {
   /* Make Linktree twice as big as other icons */
   header .header-right a[href*="linktr.ee"] img {
-    width: 111px !important;
-    height: 111px !important;
+    width: 100px !important;
+    height: 100px !important;
     animation: linktreeMagicOrganic 9s infinite ease-in-out !important; /* restore animation */
   }
 }
