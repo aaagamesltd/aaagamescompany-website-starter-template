@@ -3,157 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy | All Hallows | Aardvark Anteater Acoustics</title>
-
-<!-- Favicon -->
-<link rel="icon" href="/icons/all-hallows.png" type="image/png">
-
-<!-- Tailwind & Fonts -->
+<title>Privacy Policy | All Hallows</title>
+<link rel="icon" type="image/png" href="/icons/all-hallows.png">
+<link rel="shortcut icon" href="/icons/all-hallows.png" type="image/png">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
 
-<!-- Custom Styles -->
 <style>
-  .font-creepster { font-family: 'Creepster', cursive; }
-  .text-glow-magenta { text-shadow: 0 0 8px #ff33ff; }
-  .text-glow-cyan { text-shadow: 0 0 6px #33ffff; }
-  .fade-out { opacity: 0; transition: opacity 0.6s; }
-  .fade-in { opacity: 1; transition: opacity 0.6s; }
+.text-glow-cyan { text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff; }
+.text-glow-magenta { text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff; }
+.accordion-button { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #1f2937; border-radius: 0.5rem; font-weight: 700; transition: background 0.3s; }
+.accordion-button:hover { background: #374151; }
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #111827; padding: 0 1rem; border-radius: 0 0 0.5rem 0.5rem; margin-bottom: 1rem; }
 </style>
 </head>
 
-<body class="flex flex-col min-h-screen bg-black text-white">
+<body class="overflow-x-hidden bg-gray-900 text-gray-100">
 
-  <!-- HEADER -->
-  <header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 z-50">
+<header class="bg-black bg-opacity-60 backdrop-blur-md sticky top-0 z-50">
     <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/all-hallows/index.html" class="flex items-center space-x-3">
-        <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
-        <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
-      </a>
-      <div class="flex items-center space-x-6">
-        <a href="/all-hallows/index.html" class="text-lg hover:text-cyan-400 transition-colors">Home</a>
-        <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
-        <a href="/all-hallows/#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
-        <a href="/all-hallows/#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
-        <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
-      </div>
+        <a href="/all-hallows/index.html" class="flex items-center space-x-3">
+            <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
+            <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
+        </a>
+        <div class="flex items-center space-x-6">
+            <a href="/all-hallows/index.html" class="text-lg hover:text-cyan-400 transition-colors">Home</a>
+            <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
+            <a href="/all-hallows/#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
+            <a href="/all-hallows/#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
+            <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
+        </div>
     </nav>
-  </header>
+</header>
 
-  <!-- MAIN CONTENT -->
-  <main class="flex-grow container mx-auto px-6 py-20">
-    <h1 class="font-creepster text-6xl md:text-7xl text-white tracking-widest text-glow-magenta text-center mb-12">Privacy Policy</h1>
+<main class="container mx-auto px-6 py-16 max-w-5xl space-y-16">
 
-    <div class="max-w-4xl mx-auto space-y-8 text-lg">
+    <!-- Hero Section -->
+    <section class="text-center">
+        <h1 class="font-creepster text-5xl md:text-6xl text-cyan-400 mb-4 text-glow-cyan">Privacy Policy</h1>
+        <p class="text-gray-400 text-sm">Your privacy matters. Learn how <strong>Aardvark Anteater Acoustics Games</strong> collects and handles your data.</p>
+    </section>
 
-      <p class="leading-relaxed">Last updated: <strong>2025-09-11</strong></p>
-      <p class="leading-relaxed">
-        Aardvark Anteater Acoustics Games OÜ (“we”, “us”, “our”) is committed to protecting your privacy. 
-        This Privacy Policy explains how we collect, use, and share personal information when you visit our website and access related services, 
-        including promotional materials for the video game <em>All Hallows</em>. Our company is incorporated in Estonia.
-      </p>
+    <!-- Accordion Sections -->
+    <section class="space-y-6">
+        <div>
+            <button class="accordion-button w-full text-left">Information We Collect</button>
+            <div class="accordion-content text-gray-300">
+                <p>We collect only the necessary information to provide our services, including email addresses for newsletters and usage data for analytics.</p>
+            </div>
+        </div>
+        <div>
+            <button class="accordion-button w-full text-left">How We Use Data</button>
+            <div class="accordion-content text-gray-300">
+                <p>Your data is used solely to improve user experience, provide updates about our games, and comply with legal obligations. We do not sell your data to third parties.</p>
+            </div>
+        </div>
+        <div>
+            <button class="accordion-button w-full text-left">Cookies & Tracking</button>
+            <div class="accordion-content text-gray-300">
+                <p>We use cookies only to enhance site functionality and gather anonymized analytics. You can manage your cookie preferences using the Cookiebot banner.</p>
+            </div>
+        </div>
+        <div>
+            <button class="accordion-button w-full text-left">Third-Party Services</button>
+            <div class="accordion-content text-gray-300">
+                <p>Our site may include links or integrations with third-party platforms such as Epic Games Store, YouTube, and social media channels. We recommend reviewing their privacy policies.</p>
+            </div>
+        </div>
+        <div>
+            <button class="accordion-button w-full text-left">Your Rights</button>
+            <div class="accordion-content text-gray-300">
+                <p>You may request access to your data or ask for deletion by contacting us via our official channels. We will respond promptly in compliance with applicable laws.</p>
+            </div>
+        </div>
+    </section>
 
-      <!-- Section 1 -->
-      <section class="bg-gray-900 p-8 rounded-xl shadow-xl">
-        <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-4">1. Information We Collect</h2>
-        <p class="text-gray-300 leading-relaxed">Personal data you provide voluntarily, usage data, cookies, and tracking information.</p>
-      </section>
+</main>
 
-      <!-- Section 2 -->
-      <section class="bg-gray-900 p-8 rounded-xl shadow-xl">
-        <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-4">2. How We Use Your Information</h2>
-        <p class="text-gray-300 leading-relaxed">We use data to maintain the website, communicate updates, analyze usage, and comply with legal obligations.</p>
-      </section>
-
-      <!-- Section 3 -->
-      <section class="bg-gray-900 p-8 rounded-xl shadow-xl">
-        <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-4">3. Legal Basis (GDPR)</h2>
-        <p class="text-gray-300 leading-relaxed">Consent, legitimate interest, and legal obligations as applicable to EU users.</p>
-      </section>
-
-      <!-- Section 4 -->
-      <section class="bg-gray-900 p-8 rounded-xl shadow-xl">
-        <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-4">4. Cookies & Analytics</h2>
-        <p class="text-gray-300 leading-relaxed">Analytics scripts (e.g., Google Analytics) are only loaded after consent via the cookie banner. No personal identifying information is collected automatically.</p>
-      </section>
-
-      <!-- Section 5 -->
-      <section class="bg-gray-900 p-8 rounded-xl shadow-xl">
-        <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-4">5. Your Rights</h2>
-        <p class="text-gray-300 leading-relaxed">
-          Access, correction, erasure, objection, and data portability rights for EU users. Contact us at 
-          <a href="mailto:hallows_privacy@aaagamescompany.com" class="text-cyan-400 hover:underline">hallows_privacy@aaagamescompany.com</a>.
-        </p>
-      </section>
-
-      <!-- Section 6 -->
-      <section class="bg-gray-900 p-8 rounded-xl shadow-xl">
-        <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-4">6. Contact</h2>
-        <p class="text-gray-300 leading-relaxed">
-          Aardvark Anteater Acoustics Games OÜ, Registered in Estonia<br>
-          Email: <a href="mailto:hallows_privacy@aaagamescompany.com" class="text-cyan-400 hover:underline">hallows_privacy@aaagamescompany.com</a>
-        </p>
-      </section>
-
+<footer class="bg-white text-gray-800 mt-12">
+    <div class="footer-top flex justify-center flex-wrap gap-6 py-6">
+        <a href="/all-hallows/terms.html" class="footer-link">Terms of Service</a>
+        <a href="/all-hallows/cookies.html" class="footer-link">Cookies Policy</a>
+        <span class="footer-copy cursor-pointer">&copy; Aardvark Anteater Acoustics Games</span>
+        <a href="/all-hallows/privacy.html" class="footer-link">Privacy Policy</a>
+        <a href="/all-hallows/disclaimer.html" class="footer-link">Disclaimer</a>
     </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="bg-gray-900 text-gray-200 mt-auto shadow-lg">
-    <div class="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex flex-wrap items-center gap-4 justify-center md:justify-start text-sm">
-        <a href="/all-hallows/terms.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
-        <a href="/all-hallows/cookies.html" class="hover:text-cyan-400 transition-colors">Cookies Policy</a>
-        <a href="/all-hallows/privacy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
-        <a href="/all-hallows/disclaimer.html" class="hover:text-cyan-400 transition-colors">Disclaimer</a>
-      </div>
-      <span id="companyText" class="cursor-pointer text-sm mt-2 md:mt-0 transition-opacity">
-        &copy; Aardvark Anteater Acoustics Games
-      </span>
+    <div class="social-links flex justify-center flex-wrap gap-4 pb-6">
+        <a href="https://www.patreon.com/aaagamescompany" target="_blank" class="social-icon">
+            <img src="/icons/patreon.svg" alt="Patreon - AAA Games" width="32" height="32">
+        </a>
+        <a href="https://www.facebook.com/aaagamescompany" target="_blank" class="social-icon">
+            <img src="/icons/facebook.svg" alt="Facebook - AAA Games" width="32" height="32">
+        </a>
+        <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" class="social-icon">
+            <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" width="32" height="32">
+        </a>
+        <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" class="social-icon">
+            <img src="/icons/youtube.svg" alt="YouTube - AAA Games" width="32" height="32">
+        </a>
+        <a href="https://kick.com/aaagamescompany" target="_blank" class="social-icon">
+            <img src="/icons/kick.svg" alt="Kick - AAA Games" width="32" height="32">
+        </a>
+        <a href="https://www.instagram.com/aaagamescompany/" target="_blank" class="social-icon">
+            <img src="/icons/instagram.svg" alt="Instagram - AAA Games" width="32" height="32">
+        </a>
+        <a href="https://x.com/aaagamescompany" target="_blank" class="social-icon">
+            <img src="/icons/x.svg" alt="X - AAA Games" width="32" height="32">
+        </a>
     </div>
+</footer>
 
-    <div class="container mx-auto px-6 py-4 flex justify-center gap-4 flex-wrap">
-      <!-- Social Icons -->
-      <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="hover:scale-110 transition-transform">
-        <img src="/icons/patreon.svg" alt="Patreon - AAA Games" class="w-8 h-8">
-      </a>
-      <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener" class="hover:scale-110 transition-transform">
-        <img src="/icons/facebook.svg" alt="Facebook - AAA Games" class="w-8 h-8">
-      </a>
-      <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener" class="hover:scale-110 transition-transform">
-        <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" class="w-8 h-8">
-      </a>
-      <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener" class="hover:scale-110 transition-transform">
-        <img src="/icons/youtube.svg" alt="YouTube - AAA Games" class="w-8 h-8">
-      </a>
-      <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener" class="hover:scale-110 transition-transform">
-        <img src="/icons/kick.svg" alt="Kick - AAA Games" class="w-8 h-8">
-      </a>
-      <a href="https://www.instagram.com/aaagamescompany/" target="_blank" rel="noopener" class="hover:scale-110 transition-transform">
-        <img src="/icons/instagram.svg" alt="Instagram - AAA Games" class="w-8 h-8">
-      </a>
-      <a href="https://x.com/aaagamescompany" target="_blank" rel="noopener" class="hover:scale-110 transition-transform">
-        <img src="/icons/x.svg" alt="X - AAA Games" class="w-8 h-8">
-      </a>
-    </div>
-  </footer>
-
-  <!-- Footer Script -->
-  <script>
-    const companyText = document.getElementById('companyText');
-    const newName = 'Aardvark Anteater Acoustics Games';
-    companyText.addEventListener('mouseenter', () => {
-      companyText.classList.add('fade-out');
-      setTimeout(() => {
-        companyText.textContent = newName;
-        companyText.classList.remove('fade-out');
-        companyText.classList.add('fade-in');
-      }, 400);
+<script>
+const accButtons = document.querySelectorAll('.accordion-button');
+accButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 'px';
     });
-  </script>
+});
+</script>
 
 </body>
 </html>

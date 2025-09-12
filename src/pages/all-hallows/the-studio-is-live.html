@@ -3,190 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aardvark Anteater Acoustics: The Studio is Live! | All Hallows</title>
-
-<!-- Favicon -->
-<link rel="icon" href="/icons/all-hallows.png" type="image/png">
-
-<!-- Tailwind & Fonts -->
+<title>The Studio is Live! | All Hallows</title>
+<link rel="icon" type="image/png" href="/icons/all-hallows.png">
+<link rel="shortcut icon" href="/icons/all-hallows.png" type="image/png">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
 
-<!-- Custom Styles -->
 <style>
-  .font-creepster { font-family: 'Creepster', cursive; }
-  .text-glow-cyan { text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff; }
-  .text-glow-magenta { text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff; }
-
-  /* Fade-in scroll */
-  .fade-section { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
-  .fade-in { opacity: 1; transform: translateY(0); }
-
-  /* CTA pulse */
-  @keyframes pulse-once { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-  .pulse { animation: pulse-once 0.8s ease-in-out; }
-
-  footer {
-    padding: 1.5em 1em 2em;
-    background: #fff;
-    color: #222;
-    box-shadow: var(--box-shadow);
-  }
-  .footer-top { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.25em; font-size: 0.95em; margin-bottom: 0.8em; align-items: center; }
-  .footer-link { text-decoration: none; color: #222; transition: color 0.25s ease; }
-  .footer-link:hover { color: var(--accent); }
-  .footer-copy { cursor: pointer; transition: opacity 0.6s; display: inline-block; }
-
-  .social-links { display: flex; justify-content: center; gap: 0.8em; flex-wrap: wrap; }
-  .social-icon img { width: 32px; height: 32px; transition: transform 0.18s ease, filter 0.18s ease; }
-  .social-icon:hover img { transform: scale(1.12); filter: drop-shadow(0 0 4px var(--accent)); }
-
-  /* Parallax Hero */
-  .hero-container { position: relative; overflow: hidden; }
-  .hero-image { width: 100%; height: auto; transform: translateY(0); transition: transform 0.2s ease-out; }
+.text-glow-cyan { text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff; }
+.text-glow-magenta { text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff; }
+.text-glow-magenta-md { text-shadow: 0 0 4px #ff33ff, 0 0 10px #ff33ff; }
+.btn-epic { display: inline-flex; align-items: center; justify-content: center; background-color: #00ffff; color: black; font-weight: bold; padding: 1rem 2.5rem; border-radius: 0.75rem; font-size: 1.25rem; transition: transform 0.2s, background-color 0.2s; }
+.btn-epic:hover { background-color: #00e0e0; transform: scale(1.05); }
 </style>
 </head>
 
-<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+<body class="bg-gray-900 text-gray-100 overflow-x-hidden">
 
-<!-- HEADER -->
 <header class="bg-black bg-opacity-60 backdrop-blur-md sticky top-0 z-50">
-  <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/all-hallows/index.html" class="flex items-center space-x-3">
-      <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
-      <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
-    </a>
-    <div class="flex items-center space-x-6">
-      <a href="/all-hallows/index.html" class="text-lg hover:text-cyan-400 transition-colors">Home</a>
-      <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
-      <a href="/all-hallows/#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
-      <a href="/all-hallows/#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
-      <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
-    </div>
-  </nav>
+    <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/all-hallows/index.html" class="flex items-center space-x-3">
+            <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
+            <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
+        </a>
+        <div class="flex items-center space-x-6">
+            <a href="/all-hallows/index.html" class="text-lg hover:text-cyan-400 transition-colors">Home</a>
+            <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
+            <a href="/all-hallows/#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
+            <a href="/all-hallows/#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
+            <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
+        </div>
+    </nav>
 </header>
 
-<!-- MAIN CONTENT -->
-<main class="flex-grow container mx-auto px-6 py-16 max-w-5xl">
+<main class="container mx-auto px-6 py-16 max-w-5xl space-y-12">
 
-  <!-- Hero Section -->
-  <section class="mb-12 text-center fade-section hero-container">
-    <img src="/icons/studio_image.png" alt="Studio announcement image" class="w-full h-auto rounded-xl shadow-lg hero-image mb-6">
-    <h1 class="text-5xl md:text-6xl font-creepster text-glow-cyan mb-4">Aardvark Anteater Acoustics: The Studio is Live!</h1>
-    <p class="text-gray-400 text-sm">February 14, 2025</p>
-  </section>
+    <!-- Hero Section -->
+    <section class="text-center">
+        <img src="/icons/studio_image.png" alt="Studio announcement image" class="w-full h-auto rounded-xl shadow-lg mb-6">
+        <h1 class="font-creepster text-5xl md:text-6xl text-cyan-400 mb-4 text-glow-cyan">
+            Aardvark Anteater Acoustics: The Studio is Live!
+        </h1>
+        <p class="text-gray-400 text-sm">February 14, 2025</p>
+    </section>
 
-  <!-- Blog Content -->
-  <section class="space-y-8 text-lg leading-relaxed">
-    <p class="fade-section">
-      We’re thrilled to announce the launch of <strong>Aardvark Anteater Acoustics</strong>, a modern take on what a studio can be. Our mission is to merge cutting-edge audio technology, creativity, and storytelling to redefine game development for the modern age.
-    </p>
-    <p class="fade-section">
-      From our immersive sound design to our carefully curated atmospheres, every element reflects a commitment to innovation. The studio itself is designed to foster creativity and experimentation, ensuring that every project is not only engaging but also unforgettable.
-    </p>
-    <p class="fade-section">
-      This new studio isn’t just a workspace—it’s a hub of inspiration. The tools we’ve integrated, combined with our passion for audio-driven gameplay, allow us to craft experiences like <strong>All Hallows</strong> that resonate deeply with players. Every corner of our studio is built to spark ideas that elevate gaming beyond visuals and mechanics.
-    </p>
-    <p class="fade-section">
-      Launching the studio is also a promise to our community: that we are dedicated to creating games that are immersive, innovative, and full of personality. This is only the beginning, and we can’t wait to share our vision with the world.
-    </p>
-  </section>
+    <!-- Content Section -->
+    <section class="space-y-8 text-lg leading-relaxed text-gray-200">
+        <p>We’re thrilled to announce the launch of <strong>Aardvark Anteater Acoustics</strong>, a studio built to merge cutting-edge audio technology, creativity, and immersive game storytelling.</p>
+        <p>From sound design to atmospheres, every corner reflects innovation. The studio fosters experimentation, ensuring projects are engaging, unique, and unforgettable.</p>
+        <p>This isn’t just a workspace—it’s a hub of inspiration. Our tools and passion for audio-driven gameplay allow us to craft experiences like <strong>All Hallows</strong> that resonate deeply with players.</p>
+        <p>Launching the studio also signals our promise: to deliver immersive, innovative, and character-filled games. This is just the beginning, and we can’t wait to share our vision with the world.</p>
+    </section>
 
-  <!-- Call-to-Action -->
-  <section class="mt-12 text-center fade-section">
-    <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer"
-      class="cta-btn inline-flex items-center justify-center bg-cyan-500 text-black font-bold py-4 px-12 rounded-lg text-xl hover:bg-cyan-400 hover:scale-105 transition-all shadow-lg">
-      <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="w-6 h-auto mr-3">
-      Wishlist All Hallows on Epic Games Store
-    </a>
-  </section>
+    <!-- Call-to-Action -->
+    <section class="text-center mt-12">
+        <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="btn-epic">
+            <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="w-6 h-auto mr-3">
+            Wishlist All Hallows on Epic Games Store
+        </a>
+    </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <a href="/all-hallows/terms.html" class="footer-link">Terms of Service</a>
-    <a href="/all-hallows/cookies.html" class="footer-link">Cookies Policy</a>
-    <span class="footer-copy" id="companyName">&copy; <span id="companyText">Aardvark Anteater Acoustics Games</span></span>
-    <a href="/all-hallows/privacy.html" class="footer-link">Privacy Policy</a>
-    <a href="/all-hallows/disclaimer.html" class="footer-link">Disclaimer</a>
-  </div>
-
-  <div class="social-links" id="footerSocialLinks">
-    <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <img src="/icons/patreon.svg" alt="Patreon - AAA Games" />
-    </a>
-    <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <img src="/icons/facebook.svg" alt="Facebook - AAA Games" />
-    </a>
-    <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" />
-    </a>
-    <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener" class="social-icon">
-      <img src="/icons/youtube.svg" alt="YouTube - AAA Games" />
-    </a>
-    <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <img src="/icons/kick.svg" alt="Kick - AAA Games" />
-    </a>
-    <a href="https://www.instagram.com/aaagamescompany/" target="_blank" rel="noopener" class="social-icon">
-      <img src="/icons/instagram.svg" alt="Instagram - AAA Games" />
-    </a>
-    <a href="https://x.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <img src="/icons/x.svg" alt="X - AAA Games" />
-    </a>
-  </div>
-
-  <script>
-    // Footer company name hover update
-    const companyText = document.getElementById("companyText");
-    const footerSocialLinks = document.getElementById("footerSocialLinks");
-    const newName = "Aardvark Anteater Acoustics Games";
-
-    if(companyText){
-      companyText.addEventListener("mouseenter", () => {
-        companyText.classList.add("fade-out");
-        companyText.addEventListener("transitionend", () => {
-          companyText.textContent = newName;
-          if(footerSocialLinks){
-            footerSocialLinks.querySelectorAll("img").forEach(img => {
-              if(img.alt.includes("AAA Games")) img.alt = img.alt.replace("AAA Games", newName);
-            });
-          }
-          companyText.classList.remove("fade-out");
-          companyText.classList.add("fade-in");
-        }, { once:true });
-      }, { once:true });
-    }
-
-    // Scroll fade-in
-    const fadeSections = document.querySelectorAll('.fade-section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('fade-in');
-          entry.target.classList.remove('opacity-0');
-          if(entry.target.querySelector('.cta-btn')){
-            entry.target.querySelector('.cta-btn').classList.add('pulse');
-          }
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    fadeSections.forEach(el => observer.observe(el));
-
-    // Parallax hero effect
-    const hero = document.querySelector('.hero-image');
-    window.addEventListener('scroll', () => {
-      if(hero){
-        const offset = window.scrollY * 0.2;
-        hero.style.transform = `translateY(${offset}px)`;
-      }
-    });
-  </script>
+<footer class="bg-white text-gray-800 mt-12">
+    <div class="footer-top flex justify-center flex-wrap gap-6 py-6">
+        <a href="/all-hallows/terms.html" class="footer-link">Terms of Service</a>
+        <a href="/all-hallows/cookies.html" class="footer-link">Cookies Policy</a>
+        <span class="footer-copy cursor-pointer">&copy; Aardvark Anteater Acoustics Games</span>
+        <a href="/all-hallows/privacy.html" class="footer-link">Privacy Policy</a>
+        <a href="/all-hallows/disclaimer.html" class="footer-link">Disclaimer</a>
+    </div>
+    <div class="social-links flex justify-center flex-wrap gap-4 pb-6">
+        <a href="https://www.patreon.com/aaagamescompany" target="_blank" class="social-icon"><img src="/icons/patreon.svg" alt="Patreon - AAA Games" width="32" height="32"></a>
+        <a href="https://www.facebook.com/aaagamescompany" target="_blank" class="social-icon"><img src="/icons/facebook.svg" alt="Facebook - AAA Games" width="32" height="32"></a>
+        <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" class="social-icon"><img src="/icons/tiktok.svg" alt="TikTok - AAA Games" width="32" height="32"></a>
+        <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" class="social-icon"><img src="/icons/youtube.svg" alt="YouTube - AAA Games" width="32" height="32"></a>
+        <a href="https://kick.com/aaagamescompany" target="_blank" class="social-icon"><img src="/icons/kick.svg" alt="Kick - AAA Games" width="32" height="32"></a>
+        <a href="https://www.instagram.com/aaagamescompany/" target="_blank" class="social-icon"><img src="/icons/instagram.svg" alt="Instagram - AAA Games" width="32" height="32"></a>
+        <a href="https://x.com/aaagamescompany" target="_blank" class="social-icon"><img src="/icons/x.svg" alt="X - AAA Games" width="32" height="32"></a>
+    </div>
 </footer>
 
 </body>
