@@ -1,108 +1,234 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epic Games Store Exclusive | All Hallows</title>
-<link rel="icon" type="image/png" href="/icons/all-hallows.png">
-<link rel="shortcut icon" href="/icons/all-hallows.png" type="image/png">
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
-
-<style>
-.text-glow-cyan { text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff; }
-.text-glow-magenta { text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff; }
-a { color: #00ffff; transition: color 0.3s; }
-a:hover { color: #ffffff; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Hallows | Epic Games Store Exclusive</title>
+    <link rel="icon" type="image/png" href="/icons/all-hallows.png">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-900 text-gray-200">
 
-<body class="overflow-x-hidden bg-gray-900 text-gray-100">
-
-<header class="bg-black bg-opacity-60 backdrop-blur-md sticky top-0 z-50">
+<!-- Header -->
+<header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 z-50">
     <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/all-hallows/index.html" class="flex items-center space-x-3">
+        <a href="/all-hallows.html" class="flex items-center space-x-3">
             <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
-            <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
+            <span class="font-creepster text-3xl text-white tracking-widest">All Hallows</span>
         </a>
         <div class="flex items-center space-x-6">
-            <a href="/all-hallows/index.html" class="text-lg hover:text-cyan-400 transition-colors">Home</a>
-            <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
-            <a href="/all-hallows/#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
-            <a href="/all-hallows/#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
-            <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
+            <a href="/all-hallows.html" class="hover:text-cyan-400">Home</a>
+            <a href="/all-hallows/#features" class="hover:text-cyan-400">Features</a>
+            <a href="/all-hallows/#trailer" class="hover:text-cyan-400">Trailer</a>
+            <a href="/all-hallows/#posts" class="hover:text-cyan-400">News</a>
+            <a href="/all-hallows/press-kit.html" class="hover:text-cyan-400">Press Kit</a>
         </div>
     </nav>
 </header>
 
-<main class="container mx-auto px-6 py-16 max-w-5xl space-y-16">
+<!-- Hero Section with Epic Games Store Imagery -->
+<section class="relative h-screen flex items-center justify-center text-center bg-black">
+    <img src="/icons/all-hallows4x.png" alt="All Hallows" class="object-cover w-full h-full opacity-70">
 
-    <!-- Hero Section -->
-    <section class="text-center">
-        <h1 class="font-creepster text-5xl md:text-6xl text-cyan-400 mb-4 text-glow-cyan">All Hallows Exclusive on Epic Games Store!</h1>
-        <p class="text-gray-400 text-sm">March 13, 2025</p>
-        <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-cyan-500 text-black font-bold py-4 px-12 rounded-lg text-xl mt-6 hover:bg-cyan-400 hover:scale-105 transition-all shadow-lg">
-            Wishlist Now
-            <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="w-6 h-auto ml-3">
-        </a>
-    </section>
+    <!-- Clickable Epic Games Store logo fixed in top-right -->
+    <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer">
+        <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" 
+             class="fixed top-16 right-6 w-32 h-auto z-50 cursor-pointer">
+    </a>
 
-    <!-- Press Release Section -->
-    <section class="space-y-8 text-lg leading-relaxed bg-gray-800 p-8 rounded-xl shadow-lg">
-        <p><strong>Aardvark Anteater Acoustics Games</strong> is excited to announce that <strong>All Hallows</strong> will launch exclusively on the Epic Games Store for the first six months! This decision allows our team to deliver the most polished, immersive experience possible while connecting directly with our players.</p>
-
-        <p>The exclusivity period ensures that All Hallows will receive focused support, updates, and community events that maximize engagement. Players who wishlist the game on Epic Games Store will be the first to receive news, updates, and launch day notifications.</p>
-
-        <p>We are committed to delivering a horror-musical adventure that blends innovative audio-driven gameplay, rich storytelling, and terrifyingly beautiful visuals. With this exclusivity, our community can fully experience All Hallows as intended by the developers.</p>
-
-        <p>All Hallows will become available on Steam six months after launch, giving our wider audience the opportunity to experience the game while ensuring a smooth, high-quality Epic Games launch.</p>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="text-center">
-        <h2 class="font-creepster text-4xl md:text-5xl text-cyan-400 mb-6 text-glow-cyan">Don’t Miss Out!</h2>
-        <p class="text-gray-200 mb-6">Wishlist All Hallows on Epic Games Store to secure your spot in this thrilling audio-driven horror adventure.</p>
-        <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white text-black font-bold py-4 px-12 rounded-lg text-xl hover:bg-gray-200 transition-colors shadow-lg">
-            Wishlist All Hallows
-            <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="w-6 h-auto ml-3">
-        </a>
-    </section>
-</main>
-
-<footer class="bg-white text-gray-800 mt-12">
-    <div class="footer-top flex justify-center flex-wrap gap-6 py-6">
-        <a href="/all-hallows/terms.html" class="footer-link">Terms of Service</a>
-        <a href="/all-hallows/cookies.html" class="footer-link">Cookies Policy</a>
-        <span class="footer-copy cursor-pointer">&copy; Aardvark Anteater Acoustics Games</span>
-        <a href="/all-hallows/privacy.html" class="footer-link">Privacy Policy</a>
-        <a href="/all-hallows/disclaimer.html" class="footer-link">Disclaimer</a>
-    </div>
-    <div class="social-links flex justify-center flex-wrap gap-4 pb-6">
-        <a href="https://www.patreon.com/aaagamescompany" target="_blank" class="social-icon">
-            <img src="/icons/patreon.svg" alt="Patreon - AAA Games" width="32" height="32">
-        </a>
-        <a href="https://www.facebook.com/aaagamescompany" target="_blank" class="social-icon">
-            <img src="/icons/facebook.svg" alt="Facebook - AAA Games" width="32" height="32">
-        </a>
-        <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" class="social-icon">
-            <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" width="32" height="32">
-        </a>
-        <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" class="social-icon">
-            <img src="/icons/youtube.svg" alt="YouTube - AAA Games" width="32" height="32">
-        </a>
-        <a href="https://kick.com/aaagamescompany" target="_blank" class="social-icon">
-            <img src="/icons/kick.svg" alt="Kick - AAA Games" width="32" height="32">
-        </a>
-        <a href="https://www.instagram.com/aaagamescompany/" target="_blank" class="social-icon">
-            <img src="/icons/instagram.svg" alt="Instagram - AAA Games" width="32" height="32">
-        </a>
-        <a href="https://x.com/aaagamescompany" target="_blank" class="social-icon">
-            <img src="/icons/x.svg" alt="X - AAA Games" width="32" height="32">
+    <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center px-6 z-10">
+        <h1 class="font-creepster text-6xl md:text-8xl text-cyan-400 mb-4">Epic Games Store Exclusive!</h1>
+        <p class="text-xl md:text-2xl text-gray-200 max-w-2xl mb-6">
+            All Hallows is launching exclusively on the Epic Games Store. Prepare for a spine-chilling adventure starting March 17, 2025!
+        </p>
+        <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer"
+           class="group relative inline-flex items-center bg-cyan-500 text-black font-bold py-4 px-10 rounded-lg text-xl 
+                  hover:bg-cyan-400 transition-colors overflow-hidden">
+            <!-- Left icon further left -->
+            <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" 
+                 class="w-6 h-auto absolute left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="relative z-10">Wishlist Now!</span>
+            <!-- Right icon further right -->
+            <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" 
+                 class="w-6 h-auto absolute right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         </a>
     </div>
+</section>
+
+
+<!-- Press Release Content -->
+<section class="py-20 bg-gray-800/80 backdrop-blur-sm">
+    <div class="container mx-auto px-6 max-w-4xl">
+        <h2 class="font-creepster text-5xl text-cyan-400 mb-8 text-center">Press Release</h2>
+
+        <p class="mb-6"><strong>March 13, 2025</strong> — <strong>All Hallows</strong>, the highly anticipated horror-musical adventure from Aardvark Anteater Acoustics, is thrilled to announce its <strong>exclusive launch on the Epic Games Store</strong>. Players will explore haunted musical worlds, solve audio-driven puzzles, and uncover the mysteries of the All Hallows festival starting <strong>March 17, 2025</strong>.</p>
+
+        <img src="/icons/all-hallows4x.png" alt="All Hallows Game Artwork" class="w-full h-auto rounded-xl mb-6 shadow-lg">
+
+        <p class="mb-6">This exclusivity deal with Epic Games Store allows the developers to focus on delivering a rich, immersive experience with enhanced support for high-quality audio and visuals. "We are excited to partner with Epic Games to bring All Hallows to an audience that appreciates unique storytelling and innovative sound design," said the lead designer at Aardvark Anteater Acoustics.</p>
+
+        <p class="mb-6">The game will feature:</p>
+        <ul class="list-disc list-inside mb-6">
+            <li>Audio-driven gameplay and puzzles</li>
+            <li>Musically-themed zones from jazz to drum & bass</li>
+            <li>A mysterious and engaging narrative tied to the All Hallows festival</li>
+        </ul>
+
+        <p class="mb-6">Fans are encouraged to <a href="https://store.epicgames.com/all-hallows" target="_blank" class="text-cyan-400 hover:text-cyan-200 font-bold">wishlist the game on Epic Games Store</a> to receive updates and launch notifications. All Hallows promises a uniquely immersive experience that combines music, horror, and adventure like never before.</p>
+
+        <p class="mb-6">For press inquiries, please contact: <br>
+        <strong>Email:</strong> <a href="mailto:press@aaagamescompany.com" class="text-cyan-400 hover:text-cyan-200">press@aaagamescompany.com</a><br>
+        <strong>Website:</strong> <a href="/all-hallows.html" class="text-cyan-400 hover:text-cyan-200">www.aaagamescompany.com/all-hallows</a>
+        </p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <a href="/all-hallows/terms.html" class="footer-link">Terms of Service</a>
+    <a href="/all-hallows/cookies.html" class="footer-link">Cookies Policy</a>
+
+    <span class="footer-copy" id="companyName">&copy; <span id="companyText">Aardvark Anteater Acoustics Games</span></span>
+
+    <a href="/all-hallows/privacy.html" class="footer-link">Privacy Policy</a>
+    <a href="/all-hallows/disclaimer.html" class="footer-link">Disclaimer</a>
+  </div>
+
+  <div class="social-links" id="footerSocialLinks">
+    <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Support AAA Games on Patreon</span>
+      <img src="/icons/patreon.svg" alt="Patreon - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on Facebook</span>
+      <img src="/icons/facebook.svg" alt="Facebook - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on TikTok</span>
+      <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Subscribe to AAA Games on YouTube</span>
+      <img src="/icons/youtube.svg" alt="YouTube - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on Kick</span>
+      <img src="/icons/kick.svg" alt="Kick - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.instagram.com/aaagamescompany/" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on Instagram</span>
+      <img src="/icons/instagram.svg" alt="Instagram - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://x.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on X</span>
+      <img src="/icons/x.svg" alt="X - AAA Games" width="32" height="32" />
+    </a>
+  </div>
+
+  <script>
+    (function () {
+      const companyText = document.getElementById("companyText");
+      const footerSocialLinks = document.getElementById("footerSocialLinks");
+      const newName = "Aardvark Anteater Acoustics Games";
+
+      if (!companyText) return;
+
+      companyText.addEventListener("mouseenter", () => {
+        companyText.classList.add("fade-out");
+
+        companyText.addEventListener("transitionend", () => {
+          companyText.textContent = newName;
+
+          if (footerSocialLinks) {
+            const srOnlySpans = footerSocialLinks.querySelectorAll(".sr-only");
+            const images = footerSocialLinks.querySelectorAll("img");
+
+            srOnlySpans.forEach(span => {
+              span.textContent = span.textContent.replace(/AAA Games/g, newName);
+            });
+
+            images.forEach(img => {
+              if (img.alt && img.alt.includes("AAA Games")) {
+                img.alt = img.alt.replace(/AAA Games/g, newName);
+              }
+            });
+          }
+
+          companyText.classList.remove("fade-out");
+          companyText.classList.add("fade-in");
+        }, { once: true });
+      }, { once: true });
+    })();
+  </script>
+
+  <style>
+    footer {
+      padding: 1.5em 1em 2em;
+      background: #fff;
+      color: #222;
+      box-shadow: var(--box-shadow);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25em;
+      flex-wrap: wrap;
+      font-size: 0.95em;
+      margin-bottom: 0.8em;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: #222;
+      transition: color 0.25s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      color: #222;
+      cursor: pointer;
+    }
+
+    #companyText {
+      transition: opacity 0.6s ease;
+      display: inline-block;
+    }
+    .fade-out { opacity: 0; }
+    .fade-in  { opacity: 1; }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8em;
+      flex-wrap: wrap;
+    }
+
+    .social-icon img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .social-icon:hover img {
+      transform: scale(1.12);
+      filter: drop-shadow(0 0 4px var(--accent));
+    }
+
+    .text-glow-cyan {
+      text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+    }
+
+    .text-glow-magenta {
+      text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff;
+    }
+  </style>
 </footer>
 
 </body>

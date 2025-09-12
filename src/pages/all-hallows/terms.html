@@ -18,6 +18,7 @@
 .accordion-button { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #1f2937; border-radius: 0.5rem; font-weight: 700; transition: background 0.3s; }
 .accordion-button:hover { background: #374151; }
 .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #111827; padding: 0 1rem; border-radius: 0 0 0.5rem 0.5rem; margin-bottom: 1rem; }
+.accordion-content p { margin-top: 0.5rem; } /* small gap after heading */
 </style>
 </head>
 
@@ -43,7 +44,7 @@
 
     <!-- Hero Section -->
     <section class="text-center">
-        <h1 class="font-creepster text-5xl md:text-6xl text-cyan-400 mb-4 text-glow-cyan">Terms of Service</h1>
+        <h1 class="font-creepster text-5xl md:text-6xl text-cyan-400 mb-4 text-cyan">Terms of Service</h1>
         <p class="text-gray-400 text-sm">Read the terms governing your use of <strong>All Hallows</strong> and our services.</p>
     </section>
 
@@ -52,36 +53,42 @@
         <div>
             <button class="accordion-button w-full text-left">Acceptance of Terms</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>By accessing or using our services, you agree to comply with these Terms of Service. If you do not agree, you must not use the site or game.</p>
             </div>
         </div>
         <div>
             <button class="accordion-button w-full text-left">Use of Services</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>You may use our services only for lawful purposes. You are responsible for your account, and any activity conducted under it.</p>
             </div>
         </div>
         <div>
             <button class="accordion-button w-full text-left">Content Ownership</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>All content, including game assets, graphics, and code, is the intellectual property of Aardvark Anteater Acoustics Games unless otherwise stated. Unauthorized use is prohibited.</p>
             </div>
         </div>
         <div>
             <button class="accordion-button w-full text-left">User Conduct</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>Users are expected to behave respectfully and legally. Harassment, cheating, hacking, or any illegal activity will result in termination of access.</p>
             </div>
         </div>
         <div>
             <button class="accordion-button w-full text-left">Limitation of Liability</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>We provide services “as is” and are not responsible for any damages, losses, or interruptions related to use of our site or games.</p>
             </div>
         </div>
         <div>
             <button class="accordion-button w-full text-left">Changes to Terms</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>We may update these Terms periodically. Continued use of the service after changes constitutes acceptance of the updated Terms.</p>
             </div>
         </div>

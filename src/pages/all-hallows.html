@@ -1,226 +1,283 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Hallows — AAA Games Studio Launch</title>
+<script id="Cookiebot"
+      src="https://consent.cookiebot.com/uc.js"
+      data-cbid="f8906613-166a-4534-a5e5-5e83c7a6270a"
+      type="text/javascript"
+      async>
+</script>
+
 <link rel="icon" type="image/png" href="/icons/all-hallows.png">
 <link rel="shortcut icon" href="/icons/all-hallows.png" type="image/png">
-<script src="https://cdn.tailwindcss.com" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Hallows | Aardvark Anteater Acoustics</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
-
-<style>
-/* Global Glows */
-.text-glow-cyan { text-shadow: 0 0 8px #00ffff, 0 0 16px #00ffff; }
-.text-glow-magenta { text-shadow: 0 0 8px #ff33ff, 0 0 16px #ff33ff; }
-a { color: #00ffff; transition: color 0.3s; }
-a:hover { color: #ffffff; }
-img { display: block; max-width: 100%; height: auto; }
-button { cursor: pointer; transition: transform 0.25s; }
-button:hover { transform: scale(1.05); }
-
-/* Hero */
-.hero-bg { background: url('/icons/all-hallows4x.png') center/cover no-repeat; background-attachment: fixed; }
-
-/* Carousel */
-.carousel-container { position: relative; overflow: hidden; border-radius: 16px; box-shadow: 0 0 32px rgba(0,255,255,0.3); max-width: 100%; margin: auto; }
-.carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
-.carousel-slide { flex: 0 0 100%; margin: 0 0.5rem; border-radius: 12px; overflow: hidden; box-shadow: 0 0 16px rgba(0,255,255,0.25); }
-.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,255,255,0.3); color: black; border: none; font-size: 2rem; padding: 0.25rem 0.5rem; cursor: pointer; border-radius: 6px; z-index: 10; }
-.carousel-btn:hover { background: rgba(0,255,255,0.6); }
-.carousel-prev { left: 1rem; }
-.carousel-next { right: 1rem; }
-
-/* Asset previews */
-.asset-preview { width: 100%; height: auto; display: block; border-radius: 12px; box-shadow: 0 0 12px rgba(0,255,255,0.3); transition: transform 0.3s; }
-.asset-preview:hover { transform: scale(1.05); }
-
-/* Trailer hover */
-.trailer-container { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 0 16px rgba(0,255,255,0.3); }
-.trailer-container:hover::after { content: ""; position: absolute; inset: 0; background: rgba(0,255,255,0.08); pointer-events: none; }
-
-/* Features hover */
-.feature-card { transition: transform 0.3s, box-shadow 0.3s; }
-.feature-card:hover { transform: translateY(-5px); box-shadow: 0 0 24px rgba(0,255,255,0.3); }
-
-/* News hover */
-.news-card { transition: transform 0.3s, box-shadow 0.3s; }
-.news-card:hover { transform: scale(1.02); box-shadow: 0 0 24px rgba(0,255,255,0.3); }
-
-/* Footer icons hover */
-.social-links img { transition: transform 0.3s, filter 0.3s; }
-.social-links img:hover { transform: scale(1.2); filter: drop-shadow(0 0 6px #00ffff); }
-
-</style>
 </head>
 
-<body class="overflow-x-hidden bg-gray-900 text-gray-100">
+<body class="overflow-x-hidden">
 
-<header class="bg-black bg-opacity-60 backdrop-blur-md sticky top-0 z-50">
+<header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 left-0 right-0 z-50">
     <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
         <a href="/all-hallows/index.html" class="flex items-center space-x-3">
             <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
             <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
         </a>
-        <div class="flex items-center space-x-6">
-            <a href="#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
-            <a href="#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
-            <a href="#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
+        <div class="flex items-center space-x-6 ml-4 md:ml-0">
+            <a href="/all-hallows/index.html" class="text-lg hover:text-cyan-400 transition-colors">Home</a> 
+            <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
+            <a href="/all-hallows/#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
+            <a href="/all-hallows/#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
             <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
         </div>
     </nav>
 </header>
 
-<main class="container mx-auto px-6 py-16 max-w-6xl space-y-16">
-
-  <!-- Hero -->
-  <section class="hero-bg relative h-screen flex flex-col items-center justify-center text-center text-white">
-    <div class="bg-black bg-opacity-50 p-6 rounded-xl animate-fade-in">
-      <h1 class="font-creepster text-5xl md:text-6xl mb-4 text-glow-cyan animate-pulse">All Hallows</h1>
-      <p class="text-gray-300 text-lg mb-6">Launch of our AAA studio and game — wishlist now!</p>
-      <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white text-black font-bold py-4 px-12 rounded-lg hover:bg-gray-200 shadow-lg transition-transform transform hover:scale-105">
-        Wishlist Now
-        <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="w-6 h-auto ml-3">
-      </a>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="grid md:grid-cols-3 gap-8 text-center">
-    <div class="feature-card bg-gray-800 p-6 rounded-xl shadow-lg">
-      <h2 class="font-creepster text-2xl mb-2 text-glow-cyan">Immersive Horror</h2>
-      <p class="text-gray-300">Experience chilling AAA-quality environments.</p>
-    </div>
-    <div class="feature-card bg-gray-800 p-6 rounded-xl shadow-lg">
-      <h2 class="font-creepster text-2xl mb-2 text-glow-cyan">Next-Gen Graphics</h2>
-      <p class="text-gray-300">Unreal Engine 5.3 cinematic visuals.</p>
-    </div>
-    <div class="feature-card bg-gray-800 p-6 rounded-xl shadow-lg">
-      <h2 class="font-creepster text-2xl mb-2 text-glow-cyan">Dynamic Gameplay</h2>
-      <p class="text-gray-300">Evolving challenges and emergent AI.</p>
-    </div>
-  </section>
-
-  <!-- Screenshots & Artwork Carousel -->
-  <section class="text-center">
-    <h2 class="font-creepster text-4xl mb-6 text-glow-cyan">Screenshots & Artwork</h2>
-    <div class="carousel-container mb-4 max-w-5xl mx-auto">
-      <div class="carousel-track">
-        <div class="carousel-slide"><img src="/icons/all-hallows4x.png" alt="Screenshot 1" class="asset-preview"></div>
-        <div class="carousel-slide"><img src="/icons/studio_image.png" alt="Screenshot 2" class="asset-preview"></div>
-        <div class="carousel-slide"><img src="/icons/all-hallows4x.png" alt="Screenshot 3" class="asset-preview"></div>
-      </div>
-      <button class="carousel-btn carousel-prev">&#10094;</button>
-      <button class="carousel-btn carousel-next">&#10095;</button>
-    </div>
-    <a href="/assets/screenshots.zip" target="_blank" rel="noopener noreferrer" class="inline-block bg-cyan-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-cyan-400 shadow-lg">
-      Download Images
+<main>
+<section class="h-screen flex flex-col items-center justify-center text-center bg-cover bg-center bg-fixed" 
+         style="background-image: url('/icons/all-hallows4x.png');">
+    <h1 class="font-creepster text-6xl md:text-8xl text-white tracking-widest text-glow-magenta">All Hallows</h1>
+    
+    <a href="https://store.epicgames.com/all-hallows" class="btn-primary mt-8 inline-block bg-cyan-500 text-black font-bold py-4 px-10 rounded-lg text-xl" target="_blank" rel="noopener noreferrer">
+        Wishlist March 17 on Epic Games Store!
     </a>
-  </section>
+</section>
 
-  <!-- Trailer -->
-  <section id="trailer" class="text-center">
-    <h2 class="font-creepster text-4xl mb-6 text-glow-cyan">Official Trailer</h2>
-    <div class="trailer-container relative pb-[56.25%] h-0 overflow-hidden rounded-xl mb-4">
-      <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/kvySeAu9L5E?si=xE375D-R-liefXC7" frameborder="0" allowfullscreen></iframe>
+<section id="features" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-6">
+        <h2 class="font-creepster text-5xl text-cyan-400 mb-8 text-center">Key Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <span class="text-6xl mb-4 block">🎧</span>
+                <h3 class="text-2xl font-bold mb-2">Audio-Driven Gameplay</h3>
+                <p class="text-gray-400">Navigate a world where sound is your guide and your greatest threat. Solve puzzles by manipulating the sonic landscape.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <span class="text-6xl mb-4 block">🎵</span>
+                <h3 class="text-2xl font-bold mb-2">Musically-Themed Zones</h3>
+                <p class="text-gray-400">Explore distinct areas, each with its own musical genre and unique atmosphere, from haunting jazz to vibrant drum & bass.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <span class="text-6xl mb-4 block">📜</span>
+                <h3 class="text-2xl font-bold mb-2">Engaging Story</h3>
+                <p class="text-gray-400">Uncover the dark history of the All Hallows festival and piece together the secrets of your own past.</p>
+            </div>
+        </div>
     </div>
-    <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 shadow-lg">
-      Wishlist on Epic Games Store
-      <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="w-6 h-auto ml-3">
+</section>
+
+<section id="trailer" class="py-20 bg-black/60 backdrop-blur-sm">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="font-creepster text-5xl text-cyan-400 mb-8">Official Trailer</h2>
+        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
+            <iframe class="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/kvySeAu9L5E?si=xE375D-R-liefXC7" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p class="text-sm text-gray-400 mt-4">Dare to watch… enter the world of All Hallows!</p>
+    </div>
+</section>
+
+<section id="posts" class="py-20 bg-gray-900/70 backdrop-blur-sm">
+    <div class="container mx-auto px-6">
+        <h2 class="font-creepster text-5xl text-cyan-400 mb-8 text-center">Latest News</h2>
+        <ul class="post-list">
+            <li>
+                <a href="/all-hallows/epic-games-store-exclusive.html" target="_blank" rel="noopener noreferrer">
+                    <img width="720" height="360" src="/icons/all-hallows.png" alt="Latest news image" class="w-full h-auto rounded-xl">
+                    <h4 class="title text-3xl font-bold mt-2">All Hallows Announces Epic Games Store Exclusivity</h4>
+                    <p class="date text-gray-400 text-sm">March 13, 2025</p>
+                </a>
+            </li>
+            <li>
+                <a href="/all-hallows/dev-blog-didgeridoo.html" target="_blank" rel="noopener noreferrer">
+                    <img width="720" height="360" src="/icons/didgeridoo.jpg" alt="Dev blog image" class="w-full h-auto rounded-xl">
+                    <h4 class="title text-xl font-bold mt-2">Dev Blog: The Sound Design Behind Our Scary Didgeridoo</h4>
+                    <p class="date text-gray-400 text-sm">February 28, 2025</p>
+                </a>
+            </li>
+            <li>
+                <a href="/all-hallows/the-studio-is-live.html">
+                    <img width="720" height="360" src="/icons/studio_image.png" alt="Studio announcement image" class="w-full h-auto rounded-xl">
+                    <h4 class="title text-xl font-bold mt-2">Aardvark Anteater Acoustics: The Studio is Live!</h4>
+                    <p class="date text-gray-400 text-sm">February 14, 2025</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="py-16 bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600">
+  <div class="container mx-auto px-6 text-center">
+    <h2 class="font-creepster text-4xl md:text-5xl text-white text-glow-cyan mb-6">All Hallows is Exclusive on Epic Games Store!</h2>
+    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+      Check out the full press release and wishlist the game to get notified on launch day! Experience the horror-musical adventure first on Epic Games Store.
+    </p>
+    <a href="/all-hallows/epic-games-store-exclusive.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white text-black font-bold py-4 px-10 rounded-lg text-xl hover:bg-gray-200 transition-colors shadow-lg">
+      View Press Release
+      <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="ml-4 w-8 h-auto">
     </a>
-  </section>
-
-  <!-- News / Posts -->
-  <section id="posts" class="space-y-8">
-    <h2 class="font-creepster text-4xl text-center mb-6 text-glow-cyan">Latest News</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <article class="news-card bg-gray-800 p-6 rounded-xl shadow-lg">
-        <h3 class="text-2xl font-bold text-cyan-400 mb-2">Studio Launch Announced</h3>
-        <p class="text-gray-300 text-sm">AAA Games Studio is live with the first title All Hallows.</p>
-      </article>
-      <article class="news-card bg-gray-800 p-6 rounded-xl shadow-lg">
-        <h3 class="text-2xl font-bold text-cyan-400 mb-2">Trailer Released</h3>
-        <p class="text-gray-300 text-sm">Watch the cinematic trailer on YouTube now.</p>
-      </article>
-    </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
-<footer class="bg-white text-gray-800 mt-12">
-  <div class="footer-top flex justify-center flex-wrap gap-6 py-6">
+<a href="https://store.epicgames.com/all-hallows" class="md:hidden fixed bottom-4 right-4 bg-cyan-500 text-black font-bold py-3 px-6 rounded-full text-lg shadow-lg z-50 text-center" target="_blank" rel="noopener noreferrer">
+    Wishlist Now!
+</a>
+
+<footer>
+  <div class="footer-top">
     <a href="/all-hallows/terms.html" class="footer-link">Terms of Service</a>
     <a href="/all-hallows/cookies.html" class="footer-link">Cookies Policy</a>
-    <span class="footer-copy cursor-pointer">&copy; Aardvark Anteater Acoustics Games</span>
+
+    <span class="footer-copy" id="companyName">&copy; <span id="companyText">Aardvark Anteater Acoustics Games</span></span>
+
     <a href="/all-hallows/privacy.html" class="footer-link">Privacy Policy</a>
     <a href="/all-hallows/disclaimer.html" class="footer-link">Disclaimer</a>
   </div>
-  <div class="social-links flex justify-center flex-wrap gap-4 pb-6">
-    <a href="https://www.patreon.com/aaagamescompany" target="_blank"><img src="/icons/patreon.svg" alt="Patreon" width="32"></a>
-    <a href="https://www.facebook.com/aaagamescompany" target="_blank"><img src="/icons/facebook.svg" alt="Facebook" width="32"></a>
-    <a href="https://www.tiktok.com/@aaagamescompany" target="_blank"><img src="/icons/tiktok.svg" alt="TikTok" width="32"></a>
-    <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank"><img src="/icons/youtube.svg" alt="YouTube" width="32"></a>
-    <a href="https://kick.com/aaagamescompany" target="_blank"><img src="/icons/kick.svg" alt="Kick" width="32"></a>
-    <a href="https://www.instagram.com/aaagamescompany/" target="_blank"><img src="/icons/instagram.svg" alt="Instagram" width="32"></a>
-    <a href="https://x.com/aaagamescompany" target="_blank"><img src="/icons/x.svg" alt="X" width="32"></a>
+
+  <div class="social-links" id="footerSocialLinks">
+    <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Support AAA Games on Patreon</span>
+      <img src="/icons/patreon.svg" alt="Patreon - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on Facebook</span>
+      <img src="/icons/facebook.svg" alt="Facebook - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on TikTok</span>
+      <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Subscribe to AAA Games on YouTube</span>
+      <img src="/icons/youtube.svg" alt="YouTube - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on Kick</span>
+      <img src="/icons/kick.svg" alt="Kick - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://www.instagram.com/aaagamescompany/" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on Instagram</span>
+      <img src="/icons/instagram.svg" alt="Instagram - AAA Games" width="32" height="32" />
+    </a>
+    <a href="https://x.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+      <span class="sr-only">Follow AAA Games on X</span>
+      <img src="/icons/x.svg" alt="X - AAA Games" width="32" height="32" />
+    </a>
   </div>
+
+  <script>
+    (function () {
+      const companyText = document.getElementById("companyText");
+      const footerSocialLinks = document.getElementById("footerSocialLinks");
+      const newName = "Aardvark Anteater Acoustics Games";
+
+      if (!companyText) return;
+
+      companyText.addEventListener("mouseenter", () => {
+        companyText.classList.add("fade-out");
+
+        companyText.addEventListener("transitionend", () => {
+          companyText.textContent = newName;
+
+          if (footerSocialLinks) {
+            const srOnlySpans = footerSocialLinks.querySelectorAll(".sr-only");
+            const images = footerSocialLinks.querySelectorAll("img");
+
+            srOnlySpans.forEach(span => {
+              span.textContent = span.textContent.replace(/AAA Games/g, newName);
+            });
+
+            images.forEach(img => {
+              if (img.alt && img.alt.includes("AAA Games")) {
+                img.alt = img.alt.replace(/AAA Games/g, newName);
+              }
+            });
+          }
+
+          companyText.classList.remove("fade-out");
+          companyText.classList.add("fade-in");
+        }, { once: true });
+      }, { once: true });
+    })();
+  </script>
+
+  <style>
+    footer {
+      padding: 1.5em 1em 2em;
+      background: #fff;
+      color: #222;
+      box-shadow: var(--box-shadow);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25em;
+      flex-wrap: wrap;
+      font-size: 0.95em;
+      margin-bottom: 0.8em;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: #222;
+      transition: color 0.25s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      color: #222;
+      cursor: pointer;
+    }
+
+    #companyText {
+      transition: opacity 0.6s ease;
+      display: inline-block;
+    }
+    .fade-out { opacity: 0; }
+    .fade-in  { opacity: 1; }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8em;
+      flex-wrap: wrap;
+    }
+
+    .social-icon img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .social-icon:hover img {
+      transform: scale(1.12);
+      filter: drop-shadow(0 0 4px var(--accent));
+    }
+
+    .text-glow-cyan {
+      text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+    }
+
+    .text-glow-magenta {
+      text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff;
+    }
+  </style>
 </footer>
-
-<script>
-// Multi-slide infinite-loop carousel
-const track = document.querySelector('.carousel-track');
-const slides = Array.from(track.children);
-const prevBtn = document.querySelector('.carousel-prev');
-const nextBtn = document.querySelector('.carousel-next');
-
-const slideWidth = slides[0].getBoundingClientRect().width + 16; // 16px margin total
-let currentIndex = 0;
-let autoPlayInterval = null;
-
-// Clone for infinite-loop
-const firstClone = slides[0].cloneNode(true);
-const lastClone = slides[slides.length-1].cloneNode(true);
-track.appendChild(firstClone);
-track.prepend(lastClone);
-const allSlides = Array.from(track.children);
-track.style.transform = `translateX(-${slideWidth}px)`;
-currentIndex = 1;
-
-function updateCarousel() {
-    track.style.transition = 'transform 0.5s ease-in-out';
-    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-}
-
-track.addEventListener('transitionend', () => {
-    if (allSlides[currentIndex] === firstClone) {
-        track.style.transition = 'none';
-        currentIndex = 1;
-        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    }
-    if (allSlides[currentIndex] === lastClone) {
-        track.style.transition = 'none';
-        currentIndex = allSlides.length - 2;
-        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    }
-});
-
-prevBtn.addEventListener('click', () => { currentIndex--; updateCarousel(); });
-nextBtn.addEventListener('click', () => { currentIndex++; updateCarousel(); });
-
-function startAutoPlay() { autoPlayInterval = setInterval(() => { currentIndex++; updateCarousel(); }, 5000); }
-function stopAutoPlay() { clearInterval(autoPlayInterval); }
-startAutoPlay();
-
-document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoPlay);
-document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoPlay);
-
-let startX = 0;
-track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; stopAutoPlay(); });
-track.addEventListener('touchend', e => { const endX = e.changedTouches[0].clientX; if (endX - startX > 50) currentIndex--; else if (startX - endX > 50) currentIndex++; updateCarousel(); startAutoPlay(); });
-</script>
-
 </body>
 </html>

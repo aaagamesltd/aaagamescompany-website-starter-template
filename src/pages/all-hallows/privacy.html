@@ -18,6 +18,7 @@
 .accordion-button { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #1f2937; border-radius: 0.5rem; font-weight: 700; transition: background 0.3s; }
 .accordion-button:hover { background: #374151; }
 .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #111827; padding: 0 1rem; border-radius: 0 0 0.5rem 0.5rem; margin-bottom: 1rem; }
+.accordion-content p { margin-top: 0.5rem; } /* small gap after heading */
 </style>
 </head>
 
@@ -43,7 +44,7 @@
 
     <!-- Hero Section -->
     <section class="text-center">
-        <h1 class="font-creepster text-5xl md:text-6xl text-cyan-400 mb-4 text-glow-cyan">Privacy Policy</h1>
+        <h1 class="font-creepster text-5xl md:text-6xl text-cyan-400 mb-4 text-cyan">Privacy Policy</h1>
         <p class="text-gray-400 text-sm">Your privacy matters. Learn how <strong>Aardvark Anteater Acoustics Games</strong> collects and handles your data.</p>
     </section>
 
@@ -52,30 +53,35 @@
         <div>
             <button class="accordion-button w-full text-left">Information We Collect</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>We collect only the necessary information to provide our services, including email addresses for newsletters and usage data for analytics.</p>
             </div>
         </div>
         <div>
             <button class="accordion-button w-full text-left">How We Use Data</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>Your data is used solely to improve user experience, provide updates about our games, and comply with legal obligations. We do not sell your data to third parties.</p>
             </div>
         </div>
         <div>
             <button class="accordion-button w-full text-left">Cookies & Tracking</button>
             <div class="accordion-content text-gray-300">
-                <p>We use cookies only to enhance site functionality and gather anonymized analytics. You can manage your cookie preferences using the Cookiebot banner.</p>
+                <br>
+                <p>We use cookies only to enhance site functionality and gather anonymised analytics. You can manage your cookie preferences using the Cookiebot banner.</p>
             </div>
         </div>
         <div>
             <button class="accordion-button w-full text-left">Third-Party Services</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>Our site may include links or integrations with third-party platforms such as Epic Games Store, YouTube, and social media channels. We recommend reviewing their privacy policies.</p>
             </div>
         </div>
         <div>
             <button class="accordion-button w-full text-left">Your Rights</button>
             <div class="accordion-content text-gray-300">
+                <br>
                 <p>You may request access to your data or ask for deletion by contacting us via our official channels. We will respond promptly in compliance with applicable laws.</p>
             </div>
         </div>
