@@ -13,10 +13,34 @@
 <link rel="stylesheet" href="/style.css">
 
 <style>
+/* Glow text */
 .text-glow-cyan { text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff; }
 .text-glow-magenta { text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff; }
+
+/* Links */
 a { color: #00ffff; transition: color 0.3s; }
 a:hover { color: #ffffff; }
+
+/* Section headings */
+section h2 { text-shadow: 0 0 4px #00ffff; }
+
+/* Asset previews */
+.asset-preview { max-width: 100%; height: auto; border-radius: 12px; margin-bottom: 1rem; box-shadow: 0 0 12px rgba(0,255,255,0.3); }
+.download-btn { transition: all 0.25s; }
+.download-btn:hover { transform: scale(1.05); }
+
+/* Carousel */
+.carousel-container { position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 0 16px rgba(0,255,255,0.3); }
+.carousel-track { display: flex; transition: transform 0.4s ease-in-out; }
+.carousel-slide { min-width: 100%; flex-shrink: 0; }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,255,255,0.3); color: black; border: none; font-size: 2rem; padding: 0.25rem 0.5rem; cursor: pointer; border-radius: 6px; z-index: 10; }
+.carousel-btn:hover { background: rgba(0,255,255,0.6); }
+.carousel-prev { left: 1rem; }
+.carousel-next { right: 1rem; }
+
+/* Trailer hover effect */
+.trailer-container { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 0 12px rgba(0,255,255,0.3); }
+.trailer-container:hover::after { content: ""; position: absolute; inset: 0; background: rgba(0,255,255,0.1); pointer-events: none; }
 </style>
 </head>
 
@@ -38,39 +62,65 @@ a:hover { color: #ffffff; }
     </nav>
 </header>
 
-<main class="container mx-auto px-6 py-16 max-w-5xl space-y-16">
+<main class="container mx-auto px-6 py-16 max-w-6xl space-y-16">
 
     <!-- Hero Section -->
     <section class="text-center">
-        <h1 class="font-creepster text-5xl md:text-6xl text-cyan-400 mb-4 text-glow-cyan">Press Kit</h1>
-        <p class="text-gray-400 text-sm">Everything media needs to cover <strong>All Hallows</strong></p>
+        <h1 class="font-creepster text-5xl md:text-6xl text-cyan-400 mb-4 text-glow-cyan">All Hallows Press Kit</h1>
+        <p class="text-gray-400 text-sm">Everything media needs to cover <strong>All Hallows</strong> by <strong>Aardvark Anteater Acoustics Games</strong></p>
     </section>
 
     <!-- Introduction -->
     <section class="space-y-6 text-lg leading-relaxed bg-gray-800 p-8 rounded-xl shadow-lg">
-        <p>Welcome to the official <strong>All Hallows</strong> press kit. Here you’ll find high-resolution assets, logos, screenshots, concept art, and promotional materials for editorial use.</p>
-        <p>We encourage journalists, streamers, and content creators to use these assets when covering <strong>All Hallows</strong>. Please respect copyright and usage guidelines as indicated in each file description.</p>
+        <p>Welcome to the official <strong>All Hallows</strong> press kit. Here you’ll find high-resolution assets, logos, screenshots, concept art, and promotional materials ready for editorial and media use.</p>
+        <p>We encourage journalists, streamers, and content creators to use these assets responsibly. Please respect copyright and usage guidelines as indicated for each file. For any special requests, interviews, or press inquiries, contact our team directly.</p>
     </section>
 
-    <!-- Assets Section -->
-    <section class="space-y-12">
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-gray-800 p-6 rounded-xl shadow-lg text-center">
-                <h2 class="font-creepster text-3xl text-cyan-400 mb-4 text-glow-cyan">Logos & Icons</h2>
-                <p class="text-gray-300 mb-4">Download high-resolution logos for use in articles or social media posts.</p>
-                <a href="/assets/logos.zip" target="_blank" rel="noopener noreferrer" class="inline-block bg-cyan-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-cyan-400 transition-colors shadow-lg">Download Logos</a>
-            </div>
-            <div class="bg-gray-800 p-6 rounded-xl shadow-lg text-center">
-                <h2 class="font-creepster text-3xl text-cyan-400 mb-4 text-glow-cyan">Screenshots & Artwork</h2>
-                <p class="text-gray-300 mb-4">High-quality images for editorial use, including screenshots, artwork, and character concepts.</p>
-                <a href="/assets/screenshots.zip" target="_blank" rel="noopener noreferrer" class="inline-block bg-cyan-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-cyan-400 transition-colors shadow-lg">Download Images</a>
-            </div>
-        </div>
+    <!-- Logos Section -->
+    <section class="bg-gray-800 p-6 rounded-xl shadow-lg text-center">
+        <h2 class="font-creepster text-3xl text-cyan-400 mb-4 text-glow-cyan">Logos & Icons</h2>
+        <p class="text-gray-300 mb-4">High-resolution logos for articles, social media, or promotional material.</p>
+        <img src="/icons/all-hallows.png" alt="All Hallows Logo Preview" class="asset-preview">
+        <a href="/assets/logos.zip" target="_blank" rel="noopener noreferrer" class="download-btn inline-block bg-cyan-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-cyan-400 shadow-lg">Download Logos</a>
+    </section>
 
-        <div class="bg-gray-800 p-6 rounded-xl shadow-lg text-center">
-            <h2 class="font-creepster text-3xl text-cyan-400 mb-4 text-glow-cyan">Usage Guidelines</h2>
-            <p class="text-gray-300">All assets may be used for editorial coverage only. Please credit <strong>Aardvark Anteater Acoustics Games</strong> where appropriate. Contact our team for any special permissions or interviews.</p>
+    <!-- Screenshots & Artwork Carousel -->
+    <section class="bg-gray-800 p-6 rounded-xl shadow-lg text-center">
+        <h2 class="font-creepster text-3xl text-cyan-400 mb-4 text-glow-cyan">Screenshots & Artwork</h2>
+        <p class="text-gray-300 mb-4">High-quality screenshots, character concepts, and artwork for editorial coverage.</p>
+        <div class="carousel-container mb-4">
+            <div class="carousel-track">
+                <div class="carousel-slide"><img src="/icons/all-hallows4x.png" alt="All Hallows Screenshot 1" class="asset-preview"></div>
+                <div class="carousel-slide"><img src="/icons/studio_image.png" alt="Studio Screenshot" class="asset-preview"></div>
+            </div>
+            <button class="carousel-btn carousel-prev">&#10094;</button>
+            <button class="carousel-btn carousel-next">&#10095;</button>
         </div>
+        <a href="/assets/screenshots.zip" target="_blank" rel="noopener noreferrer" class="download-btn inline-block bg-cyan-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-cyan-400 shadow-lg">Download Images</a>
+    </section>
+
+    <!-- Trailer -->
+    <section class="bg-gray-800 p-6 rounded-xl shadow-lg text-center">
+        <h2 class="font-creepster text-3xl text-cyan-400 mb-4 text-glow-cyan">Official Trailer</h2>
+        <p class="text-gray-300 mb-4">Watch the cinematic trailer for <strong>All Hallows</strong>.</p>
+        <div class="trailer-container relative pb-[56.25%] h-0 overflow-hidden rounded-xl mb-4">
+            <iframe class="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/kvySeAu9L5E?si=xE375D-R-liefXC7"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+        </div>
+        <a href="https://store.epicgames.com/all-hallows" target="_blank" rel="noopener noreferrer" class="download-btn inline-flex items-center justify-center bg-white text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 shadow-lg">
+            Wishlist on Epic Games Store
+            <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="w-6 h-auto ml-3">
+        </a>
+    </section>
+
+    <!-- Usage Guidelines -->
+    <section class="bg-gray-800 p-6 rounded-xl shadow-lg text-center">
+        <h2 class="font-creepster text-3xl text-cyan-400 mb-4 text-glow-cyan">Usage Guidelines</h2>
+        <p class="text-gray-300">All assets may be used for editorial coverage only. Please credit <strong>Aardvark Anteater Acoustics Games</strong> appropriately. Contact us for interviews or special permissions. Do not use assets for commercial purposes without prior approval.</p>
     </section>
 
     <!-- CTA Section -->
@@ -117,6 +167,29 @@ a:hover { color: #ffffff; }
         </a>
     </div>
 </footer>
+
+<script>
+// Simple Carousel JS
+const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+const prevBtn = document.querySelector('.carousel-prev');
+const nextBtn = document.querySelector('.carousel-next');
+let currentIndex = 0;
+
+function updateCarousel() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+    updateCarousel();
+});
+
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+    updateCarousel();
+});
+</script>
 
 </body>
 </html>
