@@ -30,6 +30,8 @@
   font-display: swap;
 }
 
+/* New font-face for Creepster -- REMOVED AS IT IS ALREADY IN STYLE.CSS */
+
 /* ---------- Body & Typography ---------- */
 body {
   font-family: "Atkinson", sans-serif;
@@ -121,19 +123,10 @@ header nav {
 header .header-left { flex:1; }
 header .site-logo a { color:white; font-size:1.5rem; font-weight:bold; text-decoration:none; }
 
-/* REVISED: Update the header-right to use the new list structure */
 header .header-right {
-  display: flex;
-  align-items: center;
-}
-
-header .header-right ul {
-  list-style: none; /* Removes bullets */
-  padding: 0;      /* Removes default indentation */
-  margin: 0;
-  display: flex;   /* Makes the list items behave like your current flexbox layout */
-  gap: 1rem;       /* Retains the spacing between icons */
-  align-items: center;
+  display:flex;
+  gap:1rem;
+  align-items:center;
 }
 
 /* Social icons general */
@@ -174,14 +167,14 @@ header .header-right a:hover::after {
 }
 
 /* ---------- Site Title ---------- */
-.site-title {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:0.4em;
-  white-space:nowrap;
-  font-size:clamp(1.5rem,5vw,2.5rem);
-  margin:2.5rem 0;
+.site-title { 
+  display:flex; 
+  justify-content:center; 
+  align-items:center; 
+  gap:0.4em; 
+  white-space:nowrap; 
+  font-size:clamp(1.5rem,5vw,2.5rem); 
+  margin:2.5rem 0; 
 }
 .site-title img { height:1em; transform:translateY(-0.05em); }
 
@@ -207,44 +200,12 @@ header .header-right a:hover::after {
 }
 
 /* ---------- Footer ---------- */
-footer {
-  margin-top: 5rem;
-  text-align:center;
-  color: rgb(var(--gray));
-  padding-bottom: 2rem;
+footer { 
+  margin-top: 5rem; 
+  text-align:center; 
+  color: rgb(var(--gray)); 
+  padding-bottom: 2rem; 
 }
-
-/* NEW: Style the new lists within the footer */
-.footer-top ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1.25em;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-/* REVISED: Update the social-links to use the new list structure */
-.social-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.social-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 0.8em;
-  flex-wrap: wrap;
-}
-
-
-.social-icon img { width: 32px; height: 32px; transition: transform 0.18s ease, filter 0.18s ease; }
-.social-icon:hover img { transform: scale(1.12); filter: drop-shadow(0 0 4px var(--accent)); }
 
 /* ---------- Linktree Attract Mode (Organic + Spin on Hover) ---------- */
 header .header-right a[href*="linktr.ee"] img {
