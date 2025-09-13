@@ -1,2 +1,19 @@
-This is a placeholder text file for the All Hallows press kit.
-Replace this file with your real content when ready.
+Game: All Hallows
+Developer: Aardvark Anteater Acoustics Games OÜ
+Genre: Action-Adventure / Horror
+Platforms: PC, Mac
+Epic Games Store Wishlist Date: 17 March 2026
+Epic Games Store Release Date: 19 May 2026
+
+Overview:
+All Hallows is an atmospheric action-adventure horror game set in a haunted town, blending narrative-driven exploration with strategic combat and puzzle-solving.
+
+Key Features:
+- Immersive story-driven gameplay with branching paths
+- Dynamic AI-driven horror encounters
+- Stunning hand-crafted environments
+- Original soundtrack composed by AAA Audio Team
+- Multi-platform support
+
+Official Website: https://aaagamescompany.com/all-hallows
+Press Contact: press@aaagamescompany.com
