@@ -38,6 +38,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
+
+<style>
+  @keyframes sway {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-2%, 0, 0); }
+  }
+  .swaying-background {
+    animation: sway 30s ease-in-out infinite alternate;
+  }
+</style>
+
 </head>
 
 <body class="overflow-x-hidden">
@@ -59,7 +70,7 @@
 </header>
 
 <main>
-<section class="h-screen flex flex-col items-center justify-center text-center bg-cover bg-center bg-fixed" 
+<section class="h-screen flex flex-col items-center justify-center text-center bg-cover bg-center bg-fixed swaying-background" 
          style="background-image: url('/icons/all-hallows4x.png');">
     <h1 class="font-creepster text-6xl md:text-8xl text-white tracking-widest text-glow-magenta">All Hallows</h1>
     
