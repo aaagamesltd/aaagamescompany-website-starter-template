@@ -47,6 +47,11 @@
   .swaying-background {
     animation: sway 30s ease-in-out infinite alternate;
   }
+
+  /* Add this new text glow style */
+  .text-glow-purple {
+    text-shadow: 0 0 8px #a78bfa, 0 0 16px #c084fc; /* Using Tailwind's purple-400 and purple-600 */
+  }
 </style>
 
 </head>
@@ -70,7 +75,7 @@
 </header>
 
 <main>
-<section class="h-screen flex flex-col items-center justify-center text-center bg-cover bg-center bg-fixed swaying-background" 
+<section class="sticky top-0 z-1 h-screen flex flex-col items-center justify-center text-center bg-cover bg-center bg-fixed swaying-background" 
          style="background-image: url('/icons/all-hallows4x.png');">
     <h1 class="font-creepster text-6xl md:text-8xl text-white tracking-widest text-glow-magenta">All Hallows</h1>
     
@@ -156,9 +161,9 @@
 </section>
 
 <section class="py-16 bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600">
-  <div class="container mx-auto px-6 text-center">
-    <h2 class="font-creepster text-4xl md:text-5xl text-white mb-6">All Hallows is Exclusive on Epic Games Store!</h2>
-    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+  <div class="container relative z-10 mx-auto px-6 text-center">
+    <h2 class="relative z-20 font-creepster text-4xl md:text-5xl text-white mb-6 text-glow-purple">All Hallows is Exclusive on Epic Games Store!</h2>
+    <p class="relative z-20 text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto text-glow-purple">
       Check out the full press release and wishlist the game to get notified on launch day! Experience the horror-musical adventure first on Epic Games Store.
     </p>
     <a href="/all-hallows/epic-games-store-exclusive.html" target="_blank" rel="noopener noreferrer"
