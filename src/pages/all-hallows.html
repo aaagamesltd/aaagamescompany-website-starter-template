@@ -1,325 +1,268 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import "../styles/global.css";
+---
 
-  <script id="Cookiebot"
-      src="https://consent.cookiebot.com/uc.js"
-      data-cbid="f8906613-166a-4534-a5e5-5e83c7a6270a"
-      type="text/javascript"
-      async>
+<!doctype html>
+<html lang="en">
+	<head>
+
+<script id="Cookiebot"
+			src="https://consent.cookiebot.com/uc.js"
+			data-cbid="f8906613-166a-4534-a5e5-5e83c7a6270a"
+			type="text/javascript"
+			async>
 </script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
 
-  // Google Consent Mode
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied',
-    'analytics_storage': 'denied',
-    'personalization_storage': 'denied',
-    'security_storage': 'granted',
-    'functionality_storage': 'denied'
-  });
+	// Google Consent Mode
+	gtag('consent', 'default', {
+		'ad_storage': 'denied',
+		'ad_user_data': 'denied',
+		'ad_personalization': 'denied',
+		'analytics_storage': 'denied',
+		'personalization_storage': 'denied',
+		'security_storage': 'granted',
+		'functionality_storage': 'denied'
+	});
 
-  gtag('config', 'G-MVZ3YM60WQ');
+	gtag('config', 'G-MVZ3YM60WQ');
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MVZ3YM60WQ"></script>
+<script async src="https://www.googagmanager.com/gtag/js?id=G-MVZ3YM60WQ"></script>
 
-<link rel="icon" type="image/png" href="/icons/all-hallows.png">
-<link rel="shortcut icon" href="/icons/all-hallows.png" type="image/png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Hallows | Aardvark Anteater Acoustics</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
+		<style>
+			html, body {
+				height: 100%;
+				margin: 0;
+				font-family: sans-serif;
+				overflow-x: hidden; /* Prevent horizontal scrollbars from animations */
+			}
 
-<style>
-  @keyframes sway {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-2%, 0, 0); }
-  }
-  .swaying-background {
-    animation: sway 30s ease-in-out infinite alternate;
-  }
-</style>
+			body {
+				display: flex;
+				flex-direction: column;
+				/* Animation removed from here to prevent conflicts */
+			}
 
-</head>
+			/* FIXED: A dedicated, animated background layer placed behind everything else */
+			body::before {
+				content: '';
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: -2; /* Sits behind the watermark video */
+				animation: body-background-sync 10s infinite ease-in-out;
+			}
+			
+			main.homepage-content {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+				text-align: center;
+				width: 90%;
+				max-width: 900px;
+				margin-left: auto;
+				margin-right: auto;
+				gap: 1em;
+				margin-top: -3em;
+				position: relative;
+				z-index: 10;
+				background: transparent; /* Ensures the main content area has no unwanted background color. */
+			}
 
-<body class="overflow-x-hidden">
+			.site-title {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5em;
+				flex-wrap: wrap;
+			}
 
-<header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 left-0 right-0 z-50">
-    <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/all-hallows/index.html" class="flex items-center space-x-3">
-            <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
-            <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
-        </a>
-        <div class="flex items-center space-x-6 ml-4 md:ml-0">
-            <a href="/all-hallows/index.html" class="text-lg hover:text-cyan-400 transition-colors">Home</a> 
-            <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
-            <a href="/all-hallows/#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
-            <a href="/all-hallows/#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
-            <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
-        </div>
-    </nav>
-</header>
+			.site-title img { height: 64px; }
+			.site-title span { font-size: 2em; font-weight: bold; }
 
-<main>
-<section class="h-screen flex flex-col items-center justify-center text-center bg-cover bg-center bg-fixed swaying-background" 
-         style="background-image: url('/icons/all-hallows4x.png');">
-    <h1 class="font-creepster text-6xl md:text-8xl text-white tracking-widest text-glow-magenta">All Hallows</h1>
-    
-    <a href="https://store.epicgames.com/all-hallows" class="btn-primary mt-8 inline-block bg-cyan-500 text-black font-bold py-4 px-10 rounded-lg text-xl" target="_blank" rel="noopener noreferrer">
-        Wishlist March 17 on Epic Games Store!
-    </a>
-</section>
+			.homepage-intro {
+				margin-top: 0.75em;
+				font-size: 1.1em;
+				line-height: 1.5;
+			}
+			
+			.spooky-logo-container {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				z-index: 500;
+				pointer-events: none;
+				perspective: 1000px;
+			}
 
-<section id="features" class="py-20 bg-gray-900">
-  <div class="container mx-auto px-6">
-    <h2 class="font-creepster text-5xl text-cyan-400 mb-8 text-center">Key Features</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-      
-      <div class="bg-gray-800 p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
-        <h3 class="text-2xl font-bold mb-2 text-white">Audio-Driven Gameplay</h3>
-        <p class="text-gray-400 leading-relaxed">
-          Navigate a world where sound is your guide and your greatest threat. Solve puzzles by manipulating the sonic landscape.
-        </p>
-      </div>
-      
-      <div class="bg-gray-800 p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
-        <h3 class="text-2xl font-bold mb-2 text-white">Musically-Themed Zones</h3>
-        <p class="text-gray-400 leading-relaxed">
-          Explore distinct areas, each with its own musical genre and unique atmosphere, from haunting jazz to vibrant drum & bass.
-        </p>
-      </div>
-      
-      <div class="bg-gray-800 p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
-        <h3 class="text-2xl font-bold mb-2 text-white">Engaging Story</h3>
-        <p class="text-gray-400 leading-relaxed">
-          Uncover the dark history of the All Hallows festival and piece together the secrets of your own past.
-        </p>
-      </div>
+			.spooky-logo-container a {
+				position: absolute;
+				top: 50%; /* Centered */
+				left: 50%; /* Centered */
+				display: block;
+				pointer-events: auto;
+				transform-style: preserve-3d;
+				will-change: transform;
+				animation: ghostly-drift 25s infinite ease-in-out;
+			}
 
-    </div>
-  </div>
-</section>
+			.spooky-logo {
+				display: block;
+				max-width: 400px;
+				width: 80%;
+				border-radius: 15px;
+				cursor: pointer;
+				transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1), filter 0.5s ease-in-out;
+				position: relative;
+				z-index: 2;
+				will-change: filter, transform;
+				animation: 
+					arcane-glow 10s infinite ease-in-out,
+					glitch-effect 12s infinite step-end;
+			}
 
+			/* --- INNOVATIVE INTERACTION --- */
+			.spooky-logo-container a:hover {
+				animation-play-state: paused;
+			}
+			.spooky-logo-container a:hover .spooky-logo {
+				transform: translateZ(60px) scale(1.1);
+				animation: none;
+				filter: drop-shadow(0 0 15px rgba(255, 100, 0, 1)) 
+								drop-shadow(0 0 40px rgba(255, 69, 0, 0.8)) 
+								brightness(1.3);
+			}
 
+			.spooky-logo-container a::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				border-radius: 15px;
+				border: 2px solid rgba(255, 255, 255, 0.8);
+				opacity: 0;
+				transform: scale(0.9);
+				will-change: transform, opacity;
+			}
+			.spooky-logo-container a:hover::before {
+				animation: shockwave 0.7s ease-out;
+			}
 
-<section id="trailer" class="py-20 bg-black/60 backdrop-blur-sm">
-    <div class="container mx-auto px-6 text-center">
-        <h2 class="font-creepster text-5xl text-cyan-400 mb-8">Official Trailer</h2>
-        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
-            <iframe class="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/RuaEMofL8OE?si=uKYQNS4r3bV3wN8V" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-        </div>
-        <p class="text-sm text-gray-400 mt-4">Dare to watch… enter the world of All Hallows!</p>
-    </div>
-</section>
-
-<section id="posts" class="py-20 bg-gray-900/70 backdrop-blur-sm">
-    <div class="container mx-auto px-6">
-        <h2 class="font-creepster text-5xl text-cyan-400 mb-8 text-center">Latest News</h2>
-        <ul class="post-list">
-            <li>
-                <a href="/all-hallows/epic-games-store-exclusive.html" target="_blank" rel="noopener noreferrer">
-                    <img width="720" height="360" src="/icons/all-hallows.png" alt="Latest news image" class="w-full h-auto rounded-xl">
-                    <h4 class="title text-3xl font-bold mt-2">All Hallows Announces Epic Games Store Exclusivity</h4>
-                    <p class="date text-gray-400 text-sm">March 13, 2026</p>
-                </a>
-            </li>
-            <li>
-                <a href="/all-hallows/dev-blog-didgeridoo.html" target="_blank" rel="noopener noreferrer">
-                    <img width="720" height="360" src="/icons/didgeridoo.jpg" alt="Dev blog image" class="w-full h-auto rounded-xl">
-                    <h4 class="title text-xl font-bold mt-2">Dev Blog: The Sound Design Behind Our Scary Didgeridoo</h4>
-                    <p class="date text-gray-400 text-sm">February 28, 2026</p>
-                </a>
-            </li>
-            <li>
-                <a href="/all-hallows/the-studio-is-live.html">
-                    <img width="720" height="360" src="/icons/studio_image.png" alt="Studio announcement image" class="w-full h-auto rounded-xl">
-                    <h4 class="title text-xl font-bold mt-2">Aardvark Anteater Acoustics: The Studio is Live!</h4>
-                    <p class="date text-gray-400 text-sm">February 14, 2026</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-</section>
-
-<section class="py-16 bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600">
-  <div class="container mx-auto px-6 text-center">
-    <h2 class="font-creepster text-4xl md:text-5xl text-white mb-6">All Hallows is Exclusive on Epic Games Store!</h2>
-    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-      Check out the full press release and wishlist the game to get notified on launch day! Experience the horror-musical adventure first on Epic Games Store.
-    </p>
-    <a href="/all-hallows/epic-games-store-exclusive.html" target="_blank" rel="noopener noreferrer"
-       class="inline-flex items-center justify-center bg-gradient-to-r from-purple-400 via-purple-600 to-purple-500 text-white font-bold py-4 px-10 rounded-lg text-xl shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-xl hover:animate-pulse">
-      View Press Release
-      <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="ml-4 w-8 h-auto">
-    </a>
-  </div>
-</section>
+			@keyframes shockwave {
+				0% { transform: scale(0.9); opacity: 0.8; }
+				100% { transform: scale(2); opacity: 0; }
+			}
+			/* --- END INTERACTION --- */
 
 
-</main>
+			/* --- ANIMATIONS --- */
+			@keyframes body-background-sync {
+				0%, 100% {
+					background: radial-gradient(circle at center, rgba(255, 140, 0, 0.2) 0%, #1a0a00 70%);
+				}
+				50% {
+					background: radial-gradient(circle at center, rgba(170, 0, 255, 0.25) 0%, #10001a 70%);
+				}
+			}
 
-<a href="https://store.epicgames.com/all-hallows" class="md:hidden fixed bottom-4 right-4 bg-cyan-500 text-black font-bold py-3 px-6 rounded-full text-lg shadow-lg z-50 text-center" target="_blank" rel="noopener noreferrer">
-    Wishlist Now!
-</a>
 
-<footer>
-  <div class="footer-top">
-    <a href="/all-hallows/terms.html" class="footer-link">Terms of Service</a>
-    <a href="/all-hallows/cookies.html" class="footer-link">Cookies Policy</a>
+			@keyframes ghostly-drift {
+				0% { transform: translate(-50%, -50%) scale(1.2) rotate(3deg); }
+				25% { transform: translate(-40%, -60%) scale(1.8) rotate(-2deg); }
+				50% { transform: translate(-55%, -45%) scale(1.4) rotate(0deg); }
+				75% { transform: translate(-60%, -55%) scale(2.0) rotate(2deg); }
+				100% { transform: translate(-50%, -50%) scale(1.2) rotate(3deg); }
+			}
 
-    <span class="footer-copy" id="companyName">&copy; <span id="companyText">Aardvark Anteater Acoustics Games</span></span>
+			@keyframes arcane-glow {
+				0%, 100% {
+					filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.7)) 
+									drop-shadow(0 0 16px rgba(255, 140, 0, 0.5)) 
+									brightness(1);
+				}
+				50% {
+					filter: drop-shadow(0 0 12px rgba(170, 0, 255, 0.8)) 
+									drop-shadow(0 0 24px rgba(170, 0, 255, 0.6)) 
+									brightness(1.1);
+				}
+			}
 
-    <a href="/all-hallows/privacy.html" class="footer-link">Privacy Policy</a>
-    <a href="/all-hallows/disclaimer.html" class="footer-link">Disclaimer</a>
-  </div>
+			@keyframes glitch-effect {
+				0%, 100% { clip-path: inset(0 0 0 0); }
+				80% { clip-path: inset(0 0 0 0); }
+				80.1% { clip-path: inset(20% 0 60% 0); }
+				80.2% { clip-path: inset(70% 0 10% 0); }
+				80.3% { clip-path: inset(0 0 0 0); }
+			}
 
-  <div class="social-links" id="footerSocialLinks">
-    <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Support AAA Games on Patreon</span>
-      <img src="/icons/patreon.svg" alt="Patreon - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on Facebook</span>
-      <img src="/icons/facebook.svg" alt="Facebook - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on TikTok</span>
-      <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Subscribe to AAA Games on YouTube</span>
-      <img src="/icons/youtube.svg" alt="YouTube - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on Kick</span>
-      <img src="/icons/kick.svg" alt="Kick - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://www.instagram.com/aaagamescompany/" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on Instagram</span>
-      <img src="/icons/instagram.svg" alt="Instagram - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://x.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on X</span>
-      <img src="/icons/x.svg" alt="X - AAA Games" width="32" height="32" />
-    </a>
-  </div>
 
-  <script>
-    (function () {
-      const companyText = document.getElementById("companyText");
-      const footerSocialLinks = document.getElementById("footerSocialLinks");
-      const newName = "Aardvark Anteater Acoustics Games";
+			@media (max-width: 768px) {
+				.site-title img { height: 48px; }
+				.site-title span { font-size: 1.5em; }
+				.homepage-intro { font-size: 1em; margin-top: 0.5em; }
+				.spooky-logo { max-width: 320px; }
+			}
 
-      if (!companyText) return;
+			@media (max-width: 480px) {
+				.site-title img { height: 40px; }
+				.site-title span { font-size: 1.3em; }
+				.homepage-intro { font-size: 0.95em; margin-top: 0.5em; }
+				.spooky-logo { max-width: 280px; }
+			}
+		</style>
+	</head>
 
-      companyText.addEventListener("mouseenter", () => {
-        companyText.classList.add("fade-out");
+	<body>
+		<!-- Watermark background video -->
+		<div class="watermark-container">
+			<video autoplay muted loop playsinline>
+				<source src="/videos/AAA_Gif_Ident_small.webm" type="video/webm" />
+				<source src="/videos/AAA_Gif_Ident_small.mp4" type="video/mp4" />
+			</video>
+		</div>
 
-        companyText.addEventListener("transitionend", () => {
-          companyText.textContent = newName;
+		<Header />
 
-          if (footerSocialLinks) {
-            const srOnlySpans = footerSocialLinks.querySelectorAll(".sr-only");
-            const images = footerSocialLinks.querySelectorAll("img");
+		<main class="homepage-content">
+			<h1 class="site-title">
+				<img src="/favicon.svg" alt="AAA Games icon" />
+				<span>AAA Games</span>
+				<img src="/icons/unreal.svg" alt="Unreal Engine icon" />
+			}
 
-            srOnlySpans.forEach(span => {
-              span.textContent = span.textContent.replace(/AAA Games/g, newName);
-            });
+			<p class="homepage-intro">
+				Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website.
+				This is the home of AAA Games Company, developing a computer game!
+			</p>
+		</main>
 
-            images.forEach(img => {
-              if (img.alt && img.alt.includes("AAA Games")) {
-                img.alt = img.alt.replace(/AAA Games/g, newName);
-              }
-            });
-          }
+		<!-- The enchanted logo now lives outside the main content flow -->
+		<div class="spooky-logo-container">
+			<a href="/all-hallows/#trailer">
+				<img 
+					src="/press_kit_placeholders/Vertical_Poster.png" 
+					alt="All Hallows Press Kit - Click to Learn More" 
+					class="spooky-logo"
+				/>
+			</a>
+		</div>
 
-          companyText.classList.remove("fade-out");
-          companyText.classList.add("fade-in");
-        }, { once: true });
-      }, { once: true });
-    })();
-  </script>
-
-  <style>
-    footer {
-      padding: 1.5em 1em 2em;
-      background: #fff;
-      color: #222;
-      box-shadow: var(--box-shadow);
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.25em;
-      flex-wrap: wrap;
-      font-size: 0.95em;
-      margin-bottom: 0.8em;
-    }
-
-    .footer-link {
-      text-decoration: none;
-      color: #222;
-      transition: color 0.25s ease;
-    }
-
-    .footer-link:hover {
-      color: var(--accent);
-    }
-
-    .footer-copy {
-      color: #222;
-      cursor: pointer;
-    }
-
-    #companyText {
-      transition: opacity 0.6s ease;
-      display: inline-block;
-    }
-    .fade-out { opacity: 0; }
-    .fade-in  { opacity: 1; }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 0.8em;
-      flex-wrap: wrap;
-    }
-
-    .social-icon img {
-      width: 32px;
-      height: 32px;
-      transition: transform 0.18s ease, filter 0.18s ease;
-    }
-
-    .social-icon:hover img {
-      transform: scale(1.12);
-      filter: drop-shadow(0 0 4px var(--accent));
-    }
-
-    .text-glow-cyan {
-      text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
-    }
-
-    .text-glow-magenta {
-      text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff;
-    }
-  </style>
-</footer>
-</body>
+		<Footer />
+	</body>
 </html>
+
