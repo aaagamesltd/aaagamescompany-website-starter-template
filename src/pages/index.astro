@@ -8,272 +8,198 @@ import "../styles/global.css";
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8">
 
 <script id="Cookiebot"
-			src="https://consent.cookiebot.com/uc.js"
-			data-cbid="f8906613-166a-4534-a5e5-5e83c7a6270a"
-			type="text/javascript"
-			async>
+      src="https://consent.cookiebot.com/uc.js"
+      data-cbid="f8906613-166a-4534-a5e5-5e83c7a6270a"
+      type="text/javascript"
+      async>
 </script>
 <script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-	// Google Consent Mode
-	gtag('consent', 'default', {
-		'ad_storage': 'denied',
-		'ad_user_data': 'denied',
-		'ad_personalization': 'denied',
-		'analytics_storage': 'denied',
-		'personalization_storage': 'denied',
-		'security_storage': 'granted',
-		'functionality_storage': 'denied'
-	});
+  // Google Consent Mode
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'personalization_storage': 'denied',
+    'security_storage': 'granted',
+    'functionality_storage': 'denied'
+  });
 
-	gtag('config', 'G-MVZ3YM60WQ');
+  gtag('config', 'G-MVZ3YM60WQ');
 </script>
-<script async src="https://www.googagmanager.com/gtag/js?id=G-MVZ3YM60WQ"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MVZ3YM60WQ"></script>
 
-		<style>
-			html, body {
-				height: 100%;
-				margin: 0;
-				font-family: sans-serif;
-				overflow-x: hidden; /* Prevent horizontal scrollbars from animations */
-			}
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        font-family: sans-serif;
+      }
 
-			body {
-				display: flex;
-				flex-direction: column;
-				/* Animation removed from here to prevent conflicts */
-			}
+      body {
+        display: flex;
+        flex-direction: column;
+      }
 
-			/* FIXED: A dedicated, animated background layer placed behind everything else */
-			body::before {
-				content: '';
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				z-index: -2; /* Sits behind the watermark video */
-				animation: body-background-sync 10s infinite ease-in-out;
-			}
-			
-			main.homepage-content {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-start;
-				align-items: center;
-				text-align: center;
-				width: 90%;
-				max-width: 900px;
-				margin-left: auto;
-				margin-right: auto;
-				gap: 1em;
-				margin-top: -3em;
-				position: relative;
-				z-index: 10;
-				background: transparent; /* Ensures the main content area has no unwanted background color. */
-			}
+      main.homepage-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+        width: 90%;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 1em;
+        margin-top: -3em;
+        position: relative; /* Ensure content is layered correctly */
+        z-index: 10;
+      }
 
-			.site-title {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 0.5em;
-				flex-wrap: wrap;
-				cursor: pointer; /* Indicate it's interactive */
-			}
-			.site-title span {
-				transition: opacity 0.6s ease;
-      	display: inline-block;
-			}
-			.fade-out { opacity: 0; }
-    	.fade-in  { opacity: 1; }
+      .site-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+        flex-wrap: wrap;
+      }
 
+      .site-title img { height: 64px; }
+      .site-title span { font-size: 2em; font-weight: bold; }
 
-			.site-title img { height: 64px; }
-			.site-title span { font-size: 2em; font-weight: bold; }
+      .homepage-intro {
+        margin-top: 0.75em;
+        font-size: 1.1em;
+        line-height: 1.5;
+      }
 
-			.homepage-intro {
-				margin-top: 0.75em;
-				font-size: 1.1em;
-				line-height: 1.5;
-			}
-			
-			.spooky-logo-container {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100vw;
-				height: 100vh;
-				z-index: 500;
-				pointer-events: none;
-				perspective: 1000px;
-			}
+      /* --- Performance-Optimized Spooky Logo --- */
+      .spooky-logo-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 500;
+        pointer-events: none; /* Let clicks pass through the container */
+      }
 
-			.spooky-logo-container a {
-				position: absolute;
-				top: 50%; /* Centered */
-				left: 50%; /* Centered */
-				display: block;
-				pointer-events: auto;
-				transform-style: preserve-3d;
-				will-change: transform;
-				animation: ghostly-drift 25s infinite ease-in-out;
-			}
+      .spooky-logo-container a {
+        position: absolute;
+        top: 34%;
+        /* THIS IS THE LINE THAT MOVED THE LOGO */
+        left: 11%; 
+        display: block;
+        pointer-events: auto; /* The link itself is clickable */
+        will-change: transform; /* Hint for browser optimization */
+        animation: light-drift 20s infinite ease-in-out;
+      }
 
-			.spooky-logo {
-				display: block;
-				max-width: 400px;
-				width: 80%;
-				border-radius: 15px;
-				cursor: pointer;
-				transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1), filter 0.5s ease-in-out;
-				position: relative;
-				z-index: 2;
-				will-change: filter, transform;
-				animation: 
-					arcane-glow 10s infinite ease-in-out,
-					glitch-effect 12s infinite step-end;
-			}
+      .spooky-logo {
+        display: block;
+        max-width: 350px;
+        width: 70vw;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: filter 0.3s ease-in-out;
+        will-change: filter; /* Hint for browser optimization */
+        animation: light-glow 8s infinite ease-in-out;
+      }
 
-			/* --- INNOVATIVE INTERACTION --- */
-			.spooky-logo-container a:hover {
-				animation-play-state: paused;
-			}
-			.spooky-logo-container a:hover .spooky-logo {
-				transform: translateZ(60px) scale(1.1);
-				animation: none;
-				filter: drop-shadow(0 0 15px rgba(255, 100, 0, 1)) 
-								drop-shadow(0 0 40px rgba(255, 69, 0, 0.8)) 
-								brightness(1.3);
-			}
+      .spooky-logo-container a:hover {
+        animation-play-state: paused; /* Stop drifting on hover */
+      }
 
-			.spooky-logo-container a::before {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				border-radius: 15px;
-				border: 2px solid rgba(255, 255, 255, 0.8);
-				opacity: 0;
-				transform: scale(0.9);
-				will-change: transform, opacity;
-			}
-			.spooky-logo-container a:hover::before {
-				animation: shockwave 0.7s ease-out;
-			}
+      .spooky-logo-container a:hover .spooky-logo {
+        animation-play-state: paused; /* Stop glowing on hover */
+        filter: drop-shadow(0 0 15px rgba(255, 100, 0, 1)) 
+                drop-shadow(0 0 40px rgba(255, 69, 0, 0.8)) 
+                brightness(1.2);
+      }
 
-			@keyframes shockwave {
-				0% { transform: scale(0.9); opacity: 0.8; }
-				100% { transform: scale(2); opacity: 0; }
-			}
-			/* --- END INTERACTION --- */
+      /* Lightweight drifting animation */
+      @keyframes light-drift {
+        0% { transform: translate(-50%, -50%) rotate(2deg) scale(0.9); }
+        50% { transform: translate(-55%, -45%) rotate(-2deg) scale(1); }
+        100% { transform: translate(-50%, -50%) rotate(2deg) scale(0.9); }
+      }
 
+      /* Lightweight color glow animation */
+      @keyframes light-glow {
+        0%, 100% {
+          filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.6)) 
+                  drop-shadow(0 0 16px rgba(255, 140, 0, 0.4));
+        }
+        50% {
+          filter: drop-shadow(0 0 12px rgba(170, 0, 255, 0.7)) 
+                  drop-shadow(0 0 24px rgba(170, 0, 255, 0.5));
+        }
+      }
 
-			/* --- ANIMATIONS --- */
-			@keyframes body-background-sync {
-				0%, 100% {
-					background: radial-gradient(circle at center, rgba(255, 140, 0, 0.2) 0%, #1a0a00 70%);
-				}
-				50% {
-					background: radial-gradient(circle at center, rgba(170, 0, 255, 0.25) 0%, #10001a 70%);
-				}
-			}
+      @media (max-width: 768px) {
+        main.homepage-content { margin-top: -2em; }
+        .site-title img { height: 48px; }
+        .site-title span { font-size: 1.5em; }
+        .homepage-intro { font-size: 1em; margin-top: 0.5em; }
+        .spooky-logo { max-width: 280px; }
+      }
 
+      @media (max-width: 480px) {
+        main.homepage-content { margin-top: -1.5em; }
+        .site-title img { height: 40px; }
+        .site-title span { font-size: 1.3em; }
+        .homepage-intro { font-size: 0.95em; margin-top: 0.5em; }
+        .spooky-logo { max-width: 220px; }
+      }
+    </style>
+  </head>
 
-			@keyframes ghostly-drift {
-				0% { transform: translate(-50%, -50%) scale(1.2) rotate(3deg); }
-				25% { transform: translate(-40%, -60%) scale(1.8) rotate(-2deg); }
-				50% { transform: translate(-55%, -45%) scale(1.4) rotate(0deg); }
-				75% { transform: translate(-60%, -55%) scale(2.0) rotate(2deg); }
-				100% { transform: translate(-50%, -50%) scale(1.2) rotate(3deg); }
-			}
+  <body>
+    <!-- Watermark background video -->
+    <div class="watermark-container">
+      <video autoplay muted loop playsinline>
+        <source src="/videos/AAA_Gif_Ident_small.webm" type="video/webm" />
+        <source src="/videos/AAA_Gif_Ident_small.mp4" type="video/mp4" />
+      </video>
+    </div>
 
-			@keyframes arcane-glow {
-				0%, 100% {
-					filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.7)) 
-									drop-shadow(0 0 16px rgba(255, 140, 0, 0.5)) 
-									brightness(1);
-				}
-				50% {
-					filter: drop-shadow(0 0 12px rgba(170, 0, 255, 0.8)) 
-									drop-shadow(0 0 24px rgba(170, 0, 255, 0.6)) 
-									brightness(1.1);
-				}
-			}
+    <Header />
 
-			@keyframes glitch-effect {
-				0%, 100% { clip-path: inset(0 0 0 0); }
-				80% { clip-path: inset(0 0 0 0); }
-				80.1% { clip-path: inset(20% 0 60% 0); }
-				80.2% { clip-path: inset(70% 0 10% 0); }
-				80.3% { clip-path: inset(0 0 0 0); }
-			}
+    <main class="homepage-content">
+      <h1 class="site-title">
+        <img src="/favicon.svg" alt="AAA Games icon" />
+        <span>AAA Games</span>
+        <img src="/icons/unreal.svg" alt="Unreal Engine icon" />
+      </h1>
 
+      <p class="homepage-intro">
+        Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website.
+        This is the home of AAA Games Company, developing a computer game!
+      </p>
+    </main>
 
-			@media (max-width: 768px) {
-				.site-title img { height: 48px; }
-				.site-title span { font-size: 1.5em; }
-				.homepage-intro { font-size: 1em; margin-top: 0.5em; }
-				.spooky-logo { max-width: 320px; }
-			}
+    <!-- Performance-Optimized Floating Logo -->
+    <div class="spooky-logo-container">
+      <a href="/all-hallows/#trailer">
+        <img 
+          src="/press_kit_placeholders/Vertical_Poster.png" 
+          alt="All Hallows Press Kit - Click to Learn More" 
+          class="spooky-logo"
+        />
+      </a>
+    </div>
 
-			@media (max-width: 480px) {
-				.site-title img { height: 40px; }
-				.site-title span { font-size: 1.3em; }
-				.homepage-intro { font-size: 0.95em; margin-top: 0.5em; }
-				.spooky-logo { max-width: 280px; }
-			}
-		</style>
-	</head>
-
-	<body>
-		<!-- Watermark background video -->
-		<div class="watermark-container">
-			<video autoplay muted loop playsinline>
-				<source src="/videos/AAA_Gif_Ident_small.webm" type="video/webm" />
-				<source src="/videos/AAA_Gif_Ident_small.mp4" type="video/mp4" />
-			</video>
-		</div>
-
-		<Header />
-
-		<main class="homepage-content">
-			<h1 class="site-title">
-				<img src="/favicon.svg" alt="AAA Games icon" />
-				<span id="siteTitleSpan">AAA Games</span>
-				<img src="/icons/unreal.svg" alt="Unreal Engine icon" />
-			</h1>
-
-			<p class="homepage-intro">
-				Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website.
-				This is the home of AAA Games Company, developing a computer game!
-			</p>
-		</main>
-
-		<!-- The enchanted logo now lives outside the main content flow -->
-		<div class="spooky-logo-container">
-			<a href="/all-hallows/#trailer">
-				<img 
-					src="/press_kit_placeholders/Vertical_Poster.png" 
-					alt="All Hallows Press Kit - Click to Learn More" 
-					class="spooky-logo"
-				/>
-			</a>
-		</div>
-
-		<Footer />
-
-		<!-- REMOVED conflicting script -->
-	</body>
+    <Footer />
+  </body>
 </html>
 
