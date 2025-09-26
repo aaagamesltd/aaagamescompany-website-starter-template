@@ -30,8 +30,6 @@
   font-display: swap;
 }
 
-/* New font-face for Creepster -- REMOVED AS IT IS ALREADY IN STYLE.CSS */
-
 /* ---------- Body & Typography ---------- */
 body {
   font-family: "Atkinson", sans-serif;
@@ -133,7 +131,7 @@ header .header-right {
 header .header-right img {
   width:32px; height:32px;
   display:block;
-  filter: invert(1); /* makes icons visible on black */
+  filter: invert(1);
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
@@ -201,7 +199,6 @@ header .header-right a:hover::after {
 
 /* ---------- Footer ---------- */
 footer { 
-  margin-top: 5rem; 
   text-align:center; 
   color: rgb(var(--gray)); 
   padding-bottom: 2rem; 
@@ -209,7 +206,7 @@ footer {
 
 /* ---------- Linktree Attract Mode (Organic + Spin on Hover) ---------- */
 header .header-right a[href*="linktr.ee"] img {
-  width: 32px !important;   /* match size of other icons */
+  width: 32px !important;
   height: 32px !important;
   border-radius: 50%;
   animation: linktreeMagicOrganic 9s infinite ease-in-out;
@@ -218,13 +215,11 @@ header .header-right a[href*="linktr.ee"] img {
   transform-origin: center;
 }
 
-/* On hover: stop attract mode + spin 360 + reset */
 header .header-right a[href*="linktr.ee"]:hover img {
   animation: linktreeSpin 0.6s ease-in-out forwards;
   filter: none;
 }
 
-/* Sparkle overlay */
 header .header-right a[href*="linktr.ee"] img::after {
   content: "";
   position: absolute;
@@ -239,7 +234,6 @@ header .header-right a[href*="linktr.ee"] img::after {
   pointer-events: none;
 }
 
-/* Organic pulsing & drifting rotation */
 @keyframes linktreeMagicOrganic {
   0%   { transform: scale(1) rotate(0deg); filter: none; }
   12%  { transform: scale(0.9) rotate(-3deg); filter: hue-rotate(40deg) drop-shadow(0 0 12px rgba(173,216,230,0.5)); }
@@ -252,32 +246,25 @@ header .header-right a[href*="linktr.ee"] img::after {
   100% { transform: scale(1) rotate(0deg); filter: none; }
 }
 
-/* Quick spin when hovered */
 @keyframes linktreeSpin {
   0%   { transform: scale(1) rotate(0deg); }
   100% { transform: scale(1) rotate(360deg); }
 }
 
-/* Gentle sparkle twinkle */
 @keyframes sparkle {
   0%, 100% { opacity: 0.15; transform: scale(0.9) rotate(0deg); }
   50% { opacity: 0.5; transform: scale(1.1) rotate(25deg); }
 }
 
-/* ---------- Linktree Hover: clear spin override (360°) ---------- */
-/* ensure rotation uses the center */
 header .header-right a[href*="linktr.ee"] img {
   transform-origin: center;
 }
 
-/* On hover: override the ongoing attract animation with a single quick 360° spin.
-   We also clear filter so the icon shows its original colour during the spin. */
 header .header-right a[href*="linktr.ee"]:hover img {
   animation: linktreeHoverSpin 0.6s cubic-bezier(.21,.9,.31,1) 1 both;
   filter: none !important;
 }
 
-/* 360° spin keyframes (includes a tiny overshoot scale for a little snap) */
 @keyframes linktreeHoverSpin {
   0%   { transform: scale(1) rotate(0deg); }
   50%  { transform: scale(1.04) rotate(180deg); }
@@ -287,7 +274,7 @@ header .header-right a[href*="linktr.ee"]:hover img {
 
 /* ---------- All Hallows Logo (Pulsing + Dynamic) ---------- */
 header .header-right a[href*="/all-hallows"] img {
-  width: 100px !important;           /* much bigger than other icons */
+  width: 100px !important;
   height: 100px !important;
   border-radius: 50%;
   animation: allHallowsDynamicPulse 1.6s infinite ease-in-out;
@@ -295,7 +282,6 @@ header .header-right a[href*="/all-hallows"] img {
   cursor: pointer;
 }
 
-/* Dynamic pulsing with slight random rotation */
 @keyframes allHallowsDynamicPulse {
   0%   { transform: scale(1) rotate(0deg); }
   25%  { transform: scale(1.2) rotate(-3deg); }
@@ -304,13 +290,11 @@ header .header-right a[href*="/all-hallows"] img {
   100% { transform: scale(1) rotate(0deg); }
 }
 
-/* Hover effect: pulse + glowing aura */
 header .header-right a[href*="/all-hallows"]:hover img {
   filter: drop-shadow(0 0 12px var(--accent)) drop-shadow(0 0 6px var(--accent));
   animation: allHallowsHoverPulse 0.6s infinite ease-in-out;
 }
 
-/* Slightly faster pulse on hover for urgency */
 @keyframes allHallowsHoverPulse {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.3) rotate(5deg); }
@@ -319,39 +303,49 @@ header .header-right a[href*="/all-hallows"]:hover img {
 
 /* Luminous green glow for hero text */
 .text-glow-green {
-    color: #00ff99; /* bright green */
+    color: #00ff99;
     text-shadow: 0 0 6px #00ff99, 0 0 12px #00ff99, 0 0 18px #00ff99, 0 0 24px #00ff99;
 }
 
 /* ---------- Mobile Portrait Icon Adjustments ---------- */
 @media screen and (max-width: 900px) and (orientation: portrait) {
-  /* Make all header icons bigger in portrait mode */
   header .header-right a img {
     width: 64px !important;
     height: 64px !important;
   }
-
-  /* Keep All Hallows logo at its special size */
   header .header-right a[href*="/all-hallows"] img {
     width: 100px !important;
     height: 100px !important;
   }
-
-  /* Tighter spacing so they fit nicely */
   header .header-right {
     gap: 0.4rem !important;
   }
 }
 
-/* ---------- Mobile Portrait Linktree Fix (Bigger + Animation) ---------- */
 @media screen and (max-width: 900px) and (orientation: portrait) {
   header .header-right a[href*="linktr.ee"] img {
     width: 100px !important;
     height: 100px !important;
     border-radius: 50% !important;
     transform-origin: center !important;
-
-    /* Force the original animation back in portrait */
     animation: linktreeMagicOrganic 9s infinite ease-in-out !important;
   }
+}
+
+/* ---------- Sticky Footer ---------- */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
 }
