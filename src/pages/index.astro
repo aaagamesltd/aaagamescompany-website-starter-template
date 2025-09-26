@@ -37,6 +37,9 @@ import "../styles/global.css";
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVZ3YM60WQ"></script>
 
+    <!-- spooky fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+
     <style>
       html, body {
         height: 100%;
@@ -62,7 +65,7 @@ import "../styles/global.css";
         margin-right: auto;
         gap: 1em;
         margin-top: -3em;
-        position: relative; /* Ensure content is layered correctly */
+        position: relative;
         z-index: 10;
       }
 
@@ -83,7 +86,7 @@ import "../styles/global.css";
         line-height: 1.5;
       }
 
-      /* --- Performance-Optimized Spooky Logo --- */
+      /* Floating spooky logo container */
       .spooky-logo-container {
         position: fixed;
         top: 0;
@@ -91,17 +94,18 @@ import "../styles/global.css";
         width: 100vw;
         height: 100vh;
         z-index: 500;
-        pointer-events: none; /* Let clicks pass through the container */
+        pointer-events: none;
+        filter: url(#gooey-drip);
       }
 
       .spooky-logo-container a {
         position: absolute;
         top: 34%;
-        /* THIS IS THE LINE THAT MOVED THE LOGO */
-        left: 11%; 
-        display: block;
-        pointer-events: auto; /* The link itself is clickable */
-        will-change: transform; /* Hint for browser optimization */
+        left: 11%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: auto;
         animation: light-drift 20s infinite ease-in-out;
       }
 
@@ -109,32 +113,56 @@ import "../styles/global.css";
         display: block;
         max-width: 350px;
         width: 70vw;
-        border-radius: 15px;
         cursor: pointer;
-        transition: filter 0.3s ease-in-out;
-        will-change: filter; /* Hint for browser optimization */
-        animation: light-glow 8s infinite ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        color: #ff3300;
+        text-shadow: 0 0 15px rgba(255, 69, 0, 0.8), 0 0 30px black;
+        filter: drop-shadow(0 4px 6px black);
       }
 
-      .spooky-logo-container a:hover {
-        animation-play-state: paused; /* Stop drifting on hover */
+      .spooky-logo img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
       }
 
-      .spooky-logo-container a:hover .spooky-logo {
-        animation-play-state: paused; /* Stop glowing on hover */
-        filter: drop-shadow(0 0 15px rgba(255, 100, 0, 1)) 
-                drop-shadow(0 0 40px rgba(255, 69, 0, 0.8)) 
-                brightness(1.2);
+      .spooky-logo-text {
+        font-family: "Creepster", "Nosifer", cursive;
+        font-size: 4vw;
+        font-weight: bold;
+        opacity: 0;
       }
 
-      /* Lightweight drifting animation */
-      @keyframes light-drift {
-        0% { transform: translate(-50%, -50%) rotate(2deg) scale(0.9); }
-        50% { transform: translate(-55%, -45%) rotate(-2deg) scale(1); }
-        100% { transform: translate(-50%, -50%) rotate(2deg) scale(0.9); }
+      /* Morph animation between image and text */
+      .spooky-logo-image {
+        animation: morph-out 6s infinite;
+      }
+      .spooky-logo-text {
+        animation: morph-in 6s infinite, shudder 0.3s infinite;
       }
 
-      /* Lightweight color glow animation */
+      @keyframes morph-out {
+        0%, 40%   { opacity: 1; transform: scale(1); }
+        50%, 100% { opacity: 0; transform: scale(0.9); }
+      }
+
+      @keyframes morph-in {
+        0%, 40%   { opacity: 0; transform: scale(1.1); }
+        50%, 100% { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes shudder {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(-1px, 1px) rotate(-1deg); }
+        50% { transform: translate(1px, -1px) rotate(1deg); }
+        75% { transform: translate(-1px, -1px) rotate(0deg); }
+        100% { transform: translate(1px, 1px) rotate(1deg); }
+      }
+
+      /* Glow cycle */
       @keyframes light-glow {
         0%, 100% {
           filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.6)) 
@@ -144,6 +172,13 @@ import "../styles/global.css";
           filter: drop-shadow(0 0 12px rgba(170, 0, 255, 0.7)) 
                   drop-shadow(0 0 24px rgba(170, 0, 255, 0.5));
         }
+      }
+
+      /* Drift movement */
+      @keyframes light-drift {
+        0% { transform: translate(-50%, -50%) rotate(2deg) scale(0.9); }
+        50% { transform: translate(-55%, -45%) rotate(-2deg) scale(1); }
+        100% { transform: translate(-50%, -50%) rotate(2deg) scale(0.9); }
       }
 
       @media (max-width: 768px) {
@@ -165,6 +200,19 @@ import "../styles/global.css";
   </head>
 
   <body>
+    <!-- Gooey filter for dripping morph -->
+    <svg style="display:none;">
+      <filter id="gooey-drip">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 20 -10" result="goo"/>
+        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+    </svg>
+
     <!-- Watermark background video -->
     <div class="watermark-container">
       <video autoplay muted loop playsinline>
@@ -188,18 +236,16 @@ import "../styles/global.css";
       </p>
     </main>
 
-    <!-- Performance-Optimized Floating Logo -->
+    <!-- Floating Spooky Logo with Gooey Morph -->
     <div class="spooky-logo-container">
       <a href="/all-hallows/#trailer">
-        <img 
-          src="/press_kit_placeholders/Vertical_Poster.png" 
-          alt="All Hallows Press Kit - Click to Learn More" 
-          class="spooky-logo"
-        />
+        <div class="spooky-logo spooky-logo-image">
+          <img src="/press_kit_placeholders/Vertical_Poster.png" alt="All Hallows Poster" />
+        </div>
+        <div class="spooky-logo spooky-logo-text">CLICK ME</div>
       </a>
     </div>
 
     <Footer />
   </body>
 </html>
-
