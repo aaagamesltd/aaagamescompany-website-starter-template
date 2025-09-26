@@ -52,8 +52,7 @@ import { SITE_TITLE } from '../consts';
   <script>
     const siteTitle = document.getElementById("siteTitle");
     const socialLinks = document.getElementById("socialLinks");
-    // DEFINITIVE FIX: Using the Unicode escape sequence for Ü to prevent all encoding errors.
-    const newHeaderName = "Aardvark Anteater Acoustics Games O\u00DC";
+    const newHeaderName = "Aardvark Anteater Acoustics Games OÜ";
 
     siteTitle.addEventListener("mouseenter", () => {
       siteTitle.classList.add("fade-out");
@@ -71,9 +70,7 @@ import { SITE_TITLE } from '../consts';
         });
 
         images.forEach(img => {
-          if (img.alt) {
-            img.alt = img.alt.replace("AAA Games", newHeaderName);
-          }
+          img.alt = img.alt.replace("AAA Games", newHeaderName);
         });
       }, { once: true });
     }, { once: true });
@@ -101,7 +98,7 @@ import { SITE_TITLE } from '../consts';
     /* Larger centerpiece All Hallows logo */
     .logo-icon img {
       width: auto;
-      height: 40px;      /* bigger than others */
+      height: 40px;     /* bigger than others */
       max-width: 70px;  /* keep proportions */
     }
 
@@ -111,4 +108,3 @@ import { SITE_TITLE } from '../consts';
     }
   </style>
 </header>
-

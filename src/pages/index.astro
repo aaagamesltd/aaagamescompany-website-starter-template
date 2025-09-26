@@ -10,214 +10,82 @@ import "../styles/global.css";
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-
-<script id="Cookiebot"
-      src="https://consent.cookiebot.com/uc.js"
-      data-cbid="f8906613-166a-4534-a5e5-5e83c7a6270a"
-      type="text/javascript"
-      async>
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  // Google Consent Mode
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied',
-    'analytics_storage': 'denied',
-    'personalization_storage': 'denied',
-    'security_storage': 'granted',
-    'functionality_storage': 'denied'
-  });
-
-  gtag('config', 'G-MVZ3YM60WQ');
-</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MVZ3YM60WQ"></script>
-
-    <!-- spooky fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
 
     <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        font-family: sans-serif;
-      }
-
-      body {
-        display: flex;
-        flex-direction: column;
-      }
+      body { margin:0; display:flex; flex-direction:column; }
 
       main.homepage-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: center;
-        width: 90%;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-        gap: 1em;
-        margin-top: -3em;
-        position: relative;
-        z-index: 10;
+        flex:1; display:flex; flex-direction:column; align-items:center; text-align:center;
+        max-width:900px; margin:-3em auto 0; z-index:10;
       }
 
-      .site-title {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5em;
-        flex-wrap: wrap;
-      }
+      .site-title { display:flex; gap:.5em; align-items:center; flex-wrap:wrap; }
+      .site-title img{height:64px;} .site-title span{font-size:2em;font-weight:bold;}
 
-      .site-title img { height: 64px; }
-      .site-title span { font-size: 2em; font-weight: bold; }
-
-      .homepage-intro {
-        margin-top: 0.75em;
-        font-size: 1.1em;
-        line-height: 1.5;
-      }
-
-      /* Floating spooky logo container */
+      /* Floating logo container */
       .spooky-logo-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: 500;
-        pointer-events: none;
-        filter: url(#gooey-drip);
+        position:fixed; top:0; left:0;
+        width:100vw; height:100vh;
+        z-index:500; pointer-events:none;
+        overflow:hidden;
       }
-
       .spooky-logo-container a {
-        position: absolute;
-        top: 34%;
-        left: 11%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        pointer-events: auto;
-        animation: light-drift 20s infinite ease-in-out;
+        position:absolute; top:34%; left:11%;
+        display:flex; align-items:center; justify-content:center;
+        pointer-events:auto; animation:floaty 20s infinite ease-in-out;
+      }
+      .spooky-logo { position:absolute; max-width:350px; width:70vw; text-align:center; }
+      .spooky-logo img{width:100%; border-radius:15px;}
+
+      /* Poster fades */
+      .spooky-logo-image { animation:fadePoster 6s infinite; }
+      @keyframes fadePoster {
+        0%,40%{opacity:1;} 50%,100%{opacity:0;}
       }
 
-      .spooky-logo {
-        display: block;
-        max-width: 350px;
-        width: 70vw;
-        cursor: pointer;
-        position: absolute;
-        top: 0;
-        left: 0;
-        text-align: center;
-        color: #ff3300;
-        text-shadow: 0 0 15px rgba(255, 69, 0, 0.8), 0 0 30px black;
-        filter: drop-shadow(0 4px 6px black);
-      }
-
-      .spooky-logo img {
-        width: 100%;
-        height: auto;
-        border-radius: 15px;
-      }
-
+      /* CLICK ME text */
       .spooky-logo-text {
-        font-family: "Creepster", "Nosifer", cursive;
-        font-size: 4vw;
-        font-weight: bold;
-        opacity: 0;
+        font-family:"Creepster","Nosifer",cursive;
+        font-size:4vw; font-weight:bold; color:#ff0000;
+        text-shadow:0 0 12px rgba(255,0,0,.9), 0 0 30px black;
+        opacity:0; position:relative;
+        animation:fadeText 6s infinite, shudder .3s infinite, glisten 3s infinite;
+        letter-spacing: 3px; /* <-- spacing between letters */
       }
-
-      /* Morph animation between image and text */
-      .spooky-logo-image {
-        animation: morph-out 6s infinite;
+      @keyframes fadeText {
+        0%,40%{opacity:0; transform:scale(1.1);}
+        50%,100%{opacity:1; transform:scale(1);}
       }
-      .spooky-logo-text {
-        animation: morph-in 6s infinite, shudder 0.3s infinite;
-      }
-
-      @keyframes morph-out {
-        0%, 40%   { opacity: 1; transform: scale(1); }
-        50%, 100% { opacity: 0; transform: scale(0.9); }
-      }
-
-      @keyframes morph-in {
-        0%, 40%   { opacity: 0; transform: scale(1.1); }
-        50%, 100% { opacity: 1; transform: scale(1); }
-      }
-
       @keyframes shudder {
-        0% { transform: translate(0, 0) rotate(0deg); }
-        25% { transform: translate(-1px, 1px) rotate(-1deg); }
-        50% { transform: translate(1px, -1px) rotate(1deg); }
-        75% { transform: translate(-1px, -1px) rotate(0deg); }
-        100% { transform: translate(1px, 1px) rotate(1deg); }
+        0%,100%{transform:translate(0,0);}
+        25%{transform:translate(-2px,1px);}
+        50%{transform:translate(2px,-1px);}
+        75%{transform:translate(-1px,-2px);}
+      }
+      @keyframes glisten {
+        0%{text-shadow:0 0 10px #ff0000,0 0 20px #ff3333;}
+        50%{text-shadow:0 0 25px #ff6666,0 0 50px #ffaaaa;}
+        100%{text-shadow:0 0 10px #ff0000,0 0 20px #ff3333;}
       }
 
-      /* Glow cycle */
-      @keyframes light-glow {
-        0%, 100% {
-          filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.6)) 
-                  drop-shadow(0 0 16px rgba(255, 140, 0, 0.4));
-        }
-        50% {
-          filter: drop-shadow(0 0 12px rgba(170, 0, 255, 0.7)) 
-                  drop-shadow(0 0 24px rgba(170, 0, 255, 0.5));
-        }
+      /* Floating motion */
+      @keyframes floaty {
+        0%,100%{transform:translate(-50%,-50%) rotate(2deg) scale(.95);}
+        50%{transform:translate(-52%,-48%) rotate(-2deg) scale(1);}
       }
 
-      /* Drift movement */
-      @keyframes light-drift {
-        0% { transform: translate(-50%, -50%) rotate(2deg) scale(0.9); }
-        50% { transform: translate(-55%, -45%) rotate(-2deg) scale(1); }
-        100% { transform: translate(-50%, -50%) rotate(2deg) scale(0.9); }
-      }
-
-      @media (max-width: 768px) {
-        main.homepage-content { margin-top: -2em; }
-        .site-title img { height: 48px; }
-        .site-title span { font-size: 1.5em; }
-        .homepage-intro { font-size: 1em; margin-top: 0.5em; }
-        .spooky-logo { max-width: 280px; }
-      }
-
-      @media (max-width: 480px) {
-        main.homepage-content { margin-top: -1.5em; }
-        .site-title img { height: 40px; }
-        .site-title span { font-size: 1.3em; }
-        .homepage-intro { font-size: 0.95em; margin-top: 0.5em; }
-        .spooky-logo { max-width: 220px; }
-      }
+      @media(max-width:768px){.spooky-logo{max-width:280px;}}
+      @media(max-width:480px){.spooky-logo{max-width:220px;}}
     </style>
   </head>
 
   <body>
-    <!-- Gooey filter for dripping morph -->
-    <svg style="display:none;">
-      <filter id="gooey-drip">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
-        <feColorMatrix in="blur" mode="matrix"
-          values="1 0 0 0 0
-                  0 1 0 0 0
-                  0 0 1 0 0
-                  0 0 0 20 -10" result="goo"/>
-        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-      </filter>
-    </svg>
-
-    <!-- Watermark background video -->
+    <!-- Background -->
     <div class="watermark-container">
       <video autoplay muted loop playsinline>
-        <source src="/videos/AAA_Gif_Ident_small.webm" type="video/webm" />
-        <source src="/videos/AAA_Gif_Ident_small.mp4" type="video/mp4" />
+        <source src="/videos/AAA_Gif_Ident_small.webm" type="video/webm"/>
+        <source src="/videos/AAA_Gif_Ident_small.mp4" type="video/mp4"/>
       </video>
     </div>
 
@@ -225,24 +93,25 @@ import "../styles/global.css";
 
     <main class="homepage-content">
       <h1 class="site-title">
-        <img src="/favicon.svg" alt="AAA Games icon" />
+        <img src="/favicon.svg" alt="AAA Games icon"/>
         <span>AAA Games</span>
-        <img src="/icons/unreal.svg" alt="Unreal Engine icon" />
+        <img src="/icons/unreal.svg" alt="Unreal Engine icon"/>
       </h1>
-
       <p class="homepage-intro">
         Welcome to the official <a href="https://www.youtube.com/@aaagamescompany">AAA Games</a> website.
         This is the home of AAA Games Company, developing a computer game!
       </p>
     </main>
 
-    <!-- Floating Spooky Logo with Gooey Morph -->
+    <!-- Floating Spooky Logo -->
     <div class="spooky-logo-container">
       <a href="/all-hallows/#trailer">
         <div class="spooky-logo spooky-logo-image">
-          <img src="/press_kit_placeholders/Vertical_Poster.png" alt="All Hallows Poster" />
+          <img src="/press_kit_placeholders/Vertical_Poster.png" alt="All Hallows Poster"/>
         </div>
-        <div class="spooky-logo spooky-logo-text">CLICK ME</div>
+        <div class="spooky-logo spooky-logo-text">
+          CLICK ME
+        </div>
       </a>
     </div>
 
