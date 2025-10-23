@@ -276,12 +276,19 @@
         const riddleFeedback = document.getElementById('riddle-feedback');
         const riddleNextBtn = document.getElementById('riddle-next-btn');
 
-        function loadRiddle() {
+function loadRiddle() {
             if (currentRiddleIndex >= riddles.length) {
                 riddleText.textContent = "The Garabonciás is pleased. You may pass!";
                 riddleOptions.innerHTML = '';
-                riddleFeedback.textContent = 'Congratulations! All riddles solved.';
+                // Updated text to inform user of the redirect
+                riddleFeedback.textContent = 'Congratulations! All riddles solved. Redirecting to the store in 3 seconds...';
                 riddleNextBtn.classList.add('hidden');
+                
+                // Redirect logic
+                setTimeout(() => {
+                    window.location.href = 'http://store.aaagamescompany.com/';
+                }, 3000); // 3000 milliseconds = 3 seconds delay
+                
                 return;
             }
 
