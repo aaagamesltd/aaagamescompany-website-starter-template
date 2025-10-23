@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legends of the Carpathian Crypt - AAA Games</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Tone.js for Ambient Audio -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    <style>
+        /* Custom Font Setup (Inter is used by default via Tailwind, but adding a spooky fallback) */
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0016; /* Deep violet/black */
+            color: #d1d5db; /* Light gray text */
+            overflow-x: hidden;
+        }
+
+        .spooky-header {
+            font-family: 'Creepster', cursive;
+            color: #ffcc00; /* Gold/Yellow for eerie highlights */
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5), 0 0 20px rgba(255, 100, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .game-card {
+            background-color: #1a012e; /* Darker purple background */
+            border: 2px solid #5b21b6; /* Deep purple border */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(93, 22, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .luderc-flame {
+            cursor: pointer;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.05); opacity: 1; }
+        }
+
+        .riddle-button {
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .riddle-button:hover {
+            transform: scale(1.02);
+        }
+        
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center p-4">
+
+    <!-- Ambient Audio Setup: This overlay ensures audio starts only after user interaction -->
+    <div id="audio-overlay" class="fixed inset-0 z-50 bg-gray-900 bg-opacity-95 flex flex-col justify-center items-center transition-opacity duration-1000">
+        <h2 class="text-4xl spooky-header text-center mb-6 animate-pulse">Enter the Carpathian Crypt</h2>
+        <button id="start-audio-btn" class="px-8 py-3 bg-red-800 text-white font-bold rounded-full shadow-lg hover:bg-red-700 transition transform hover:scale-105">
+            Begin the Ritual
+        </button>
+        <p class="mt-4 text-sm text-gray-400">Audio will start upon entry.</p>
+    </div>
+
+    <!-- Header Section -->
+    <header class="text-center mb-10 w-full max-w-4xl">
+        <h1 class="spooky-header text-6xl md:text-8xl mt-12 mb-4 text-yellow-400">
+            Legends of the Carpathian Crypt
+        </h1>
+        <p class="text-xl text-purple-300 font-light mb-8">Simple Halloween Mini-Games from Hungarian Folklore</p>
+    </header>
+
+    <!-- Games Grid -->
+    <main class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl mb-16">
+
+        <!-- Game 1: Lüdérc's Flame Clicker -->
+        <div class="game-card rounded-xl p-6 md:p-8 text-center">
+            <h2 class="text-3xl spooky-header mb-4 text-pink-400">The Lüdérc's Seduction</h2>
+            <p class="text-sm text-gray-400 mb-6">The Lüdérc, a flame-like spirit, grants wishes but drains its lover's life force. Click the flame to collect its eerie light before it fades!</p>
+
+            <div class="flex flex-col items-center justify-center">
+                <!-- Flame SVG (representing the Lüdérc) -->
+                <svg id="luderc-flame-btn" class="luderc-flame w-24 h-24 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C12 2 8 8 8 13C8 17 10 20 12 22C14 20 16 17 16 13C16 8 12 2 12 2Z" fill="#FF8C00"/>
+                    <path d="M12 4C12 4 9 7 9 12C9 15 10.5 17.5 12 19C13.5 17.5 15 15 15 12C15 7 12 4 12 4Z" fill="#FFA500"/>
+                    <path d="M12 6C12 6 10 8 10 11C10 13 11 14 12 15C13 14 14 13 14 11C14 8 12 6 12 6Z" fill="#FFD700"/>
+                </svg>
+                
+                <p class="text-2xl font-bold mb-2">Light Collected: <span id="luderc-score" class="text-yellow-300">0</span></p>
+                <button id="luderc-reset-btn" class="mt-4 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transform transition">Reset Flame</button>
+            </div>
+        </div>
+
+        <!-- Game 2: Garabonciás's Riddle -->
+        <div class="game-card rounded-xl p-6 md:p-8 text-center">
+            <h2 class="text-3xl spooky-header mb-4 text-teal-400">Garabonciás's Storm Test</h2>
+            <p class="text-sm text-gray-400 mb-6">The Garabonciás (wandering wizard) begs for milk. Answer his riddle correctly to avoid a terrible storm of his making!</p>
+
+            <div id="riddle-container" class="space-y-4">
+                <p id="riddle-text" class="text-lg font-medium text-white min-h-[4rem] flex items-center justify-center">
+                    I am born with teeth, carry a book, and demand milk. Who am I?
+                </p>
+                <div id="riddle-options" class="space-y-2">
+                    <button data-answer="Witch" class="riddle-button w-full py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600">Boszorkány (Witch)</button>
+                    <button data-answer="Dragon" class="riddle-button w-full py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600">Sárkány (Dragon)</button>
+                    <button data-answer="Garabonciás" class="riddle-button w-full py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600">Garabonciás (Wizard)</button>
+                </div>
+                <p id="riddle-feedback" class="text-xl font-bold min-h-[2rem]"></p>
+                <button id="riddle-next-btn" class="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 hidden transition">Next Riddle</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer for context -->
+    <footer class="text-center text-sm text-gray-600 mt-8">
+        A small tribute to the rich mythology that inspires our world, including the opening scene, Ithris Cemetery.
+    </footer>
+
+    <!-- JavaScript for Games and Tone.js Audio -->
+    <script>
+        const audioOverlay = document.getElementById('audio-overlay');
+        const startAudioBtn = document.getElementById('start-audio-btn');
+        const ludercFlameBtn = document.getElementById('luderc-flame-btn');
+        const ludercScoreElement = document.getElementById('luderc-score');
+        const ludercResetBtn = document.getElementById('luderc-reset-btn');
+        
+        // --- TONE.JS AUDIO SETUP ---
+        let mainSynth;
+        let ambientLoop;
+
+        function initializeAudio() {
+            // A simple, spooky atmosphere using a dark sounding synth
+            mainSynth = new Tone.PolySynth(Tone.Synth, {
+                oscillator: { type: "sawtooth" },
+                envelope: {
+                    attack: 2,
+                    decay: 0.1,
+                    sustain: 0.5,
+                    release: 2,
+                },
+                volume: -15 // Keep it subtle
+            }).toDestination();
+
+            // Create a slow, repeating, dissonant drone
+            ambientLoop = new Tone.Loop(time => {
+                // Play two dissonant notes a tritone apart (C2 and F#2)
+                mainSynth.triggerAttackRelease(["C2", "F#2"], "4n", time); 
+            }, "2n").start(0);
+
+            // Set the transport (master clock) to start
+            Tone.Transport.bpm.value = 30; // Very slow
+            Tone.Transport.start();
+            
+            console.log("Tone.js audio initialized and started.");
+        }
+
+        // Handle user interaction to start the AudioContext
+        startAudioBtn.addEventListener('click', async () => {
+            // The first interaction must call Tone.start()
+            await Tone.start(); 
+            
+            // Initialize and start the custom music logic
+            initializeAudio(); 
+
+            // Fade out and remove the overlay
+            audioOverlay.style.opacity = 0;
+            setTimeout(() => {
+                audioOverlay.remove();
+            }, 1000); 
+        });
+
+
+        // --- GAME 1: Lüdérc's Flame Clicker Logic ---
+        let ludercScore = 0;
+        let gameActive = true;
+
+        ludercFlameBtn.addEventListener('click', () => {
+            if (!gameActive) return;
+
+            ludercScore += 1;
+            ludercScoreElement.textContent = ludercScore;
+            
+            // Add a quick visual flash feedback
+            ludercFlameBtn.style.transition = 'transform 0.1s, opacity 0.1s';
+            ludercFlameBtn.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                ludercFlameBtn.style.transform = 'scale(1)';
+            }, 100);
+
+            // Play a short, ethereal sound effect (only if audio is running)
+            if (Tone.Transport.state === 'started') {
+                const clickSynth = new Tone.Synth({
+                    oscillator: { type: 'triangle' },
+                    envelope: { attack: 0.005, decay: 0.1, sustain: 0.01, release: 0.5 }
+                }).toDestination();
+                clickSynth.triggerAttackRelease("A5", "16n");
+            }
+        });
+
+        ludercResetBtn.addEventListener('click', () => {
+            ludercScore = 0;
+            ludercScoreElement.textContent = ludercScore;
+            gameActive = true;
+            ludercFlameBtn.style.opacity = 1;
+        });
+
+
+        // --- GAME 2: Garabonciás's Riddle Logic ---
+        const riddles = [
+            {
+                riddle: "I am born with teeth, carry a book, and demand milk. Who threatens a storm if denied?",
+                options: ["Tündér (Fairy)", "Garabonciás (Wizard)", "Sárkány (Dragon)"],
+                answer: "Garabonciás (Wizard)"
+            },
+            {
+                riddle: "I am a multi-headed serpent that fights in the clouds, bringing thunder and rain. What am I?",
+                options: ["Törpék (Dwarf)", "Lüdérc (Fire Spirit)", "Sárkány (Dragon)"],
+                answer: "Sárkány (Dragon)"
+            },
+            {
+                riddle: "I am a beautiful female spirit, often found dancing or bathing in lakes, and can grant three wishes. Who am I?",
+                options: ["Boszorkány (Witch)", "Tündér (Fairy)", "Szélanya (Wind Mother)"],
+                answer: "Tündér (Fairy)"
+            }
+        ];
+
+        let currentRiddleIndex = 0;
+        const riddleText = document.getElementById('riddle-text');
+        const riddleOptions = document.getElementById('riddle-options');
+        const riddleFeedback = document.getElementById('riddle-feedback');
+        const riddleNextBtn = document.getElementById('riddle-next-btn');
+
+        function loadRiddle() {
+            if (currentRiddleIndex >= riddles.length) {
+                riddleText.textContent = "The Garabonciás is pleased. You may pass!";
+                riddleOptions.innerHTML = '';
+                riddleFeedback.textContent = 'Congratulations! All riddles solved.';
+                riddleNextBtn.classList.add('hidden');
+                return;
+            }
+
+            const riddle = riddles[currentRiddleIndex];
+            riddleText.textContent = riddle.riddle;
+            riddleFeedback.textContent = '';
+            riddleOptions.innerHTML = '';
+            riddleNextBtn.classList.add('hidden');
+
+            riddle.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.setAttribute('data-answer', option);
+                button.className = 'riddle-button w-full py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600';
+                button.addEventListener('click', checkRiddle);
+                riddleOptions.appendChild(button);
+            });
+        }
+
+        function checkRiddle(event) {
+            const selectedAnswer = event.target.getAttribute('data-answer');
+            const correctAnswer = riddles[currentRiddleIndex].answer;
+            const buttons = riddleOptions.querySelectorAll('button');
+
+            // Disable all buttons
+            buttons.forEach(btn => btn.removeEventListener('click', checkRiddle));
+
+            if (selectedAnswer === correctAnswer) {
+                riddleFeedback.textContent = 'Correct! The storm passes.';
+                riddleFeedback.className = 'text-xl font-bold text-green-400 min-h-[2rem]';
+                event.target.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+                event.target.classList.add('bg-green-700');
+                currentRiddleIndex++;
+                riddleNextBtn.classList.remove('hidden');
+            } else {
+                riddleFeedback.textContent = 'Incorrect! Prepare for the tempest.';
+                riddleFeedback.className = 'text-xl font-bold text-red-500 min-h-[2rem]';
+                event.target.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+                event.target.classList.add('bg-red-700');
+                // Highlight the correct answer
+                buttons.forEach(btn => {
+                    if (btn.getAttribute('data-answer') === correctAnswer) {
+                        btn.classList.add('bg-blue-800');
+                    }
+                });
+                riddleNextBtn.classList.remove('hidden');
+            }
+        }
+
+        riddleNextBtn.addEventListener('click', loadRiddle);
+
+        // Initial load
+        window.onload = loadRiddle;
+    </script>
+</body>
+</html>
