@@ -122,19 +122,33 @@
     </footer>
 
     <!-- JavaScript for Games and Tone.js Audio -->
-    <script>
+   <script>
         const audioOverlay = document.getElementById('audio-overlay');
         const startAudioBtn = document.getElementById('start-audio-btn');
         const ludercFlameBtn = document.getElementById('luderc-flame-btn');
         const ludercScoreElement = document.getElementById('luderc-score');
         const ludercResetBtn = document.getElementById('luderc-reset-btn');
         
+        // Game 1 State
+        let ludercScore = 0;
+        let gameActive = true;
+        const MAX_CLICKS = 13;
+        
         // --- TONE.JS AUDIO SETUP ---
         let mainSynth;
         let ambientLoop;
+        let pitchShift;
+        let currentTranspose = 0; // Tracks the total semitone shift
 
         function initializeAudio() {
-            // A simple, spooky atmosphere using a dark sounding synth
+            // 1. Create a PitchShift effect to handle the semitone raising
+            pitchShift = new Tone.PitchShift({
+                pitch: 0, // Start at 0 semitones (no shift)
+                windowSize: 0.1, // Quick window size for responsiveness
+                feedback: 0.1 // Subtle feedback for eerie effect
+            }).toDestination();
+
+            // 2. Create the main synth and connect it to the PitchShift effect
             mainSynth = new Tone.PolySynth(Tone.Synth, {
                 oscillator: { type: "sawtooth" },
                 envelope: {
@@ -143,13 +157,13 @@
                     sustain: 0.5,
                     release: 2,
                 },
-                volume: -15 // Keep it subtle
-            }).toDestination();
+                volume: -15 
+            }).connect(pitchShift); // Connect the synth to the pitch shifter
 
-            // Create a slow, repeating, dissonant drone
+            // 3. Create a slow, repeating, dissonant drone
             ambientLoop = new Tone.Loop(time => {
                 // Play two dissonant notes a tritone apart (C2 and F#2)
-                mainSynth.triggerAttackRelease(["C2", "F#2"], "4n", time); 
+                mainSynth.triggerAttackRelease(["C2", "F#2"], "2n", time); 
             }, "2n").start(0);
 
             // Set the transport (master clock) to start
@@ -161,10 +175,7 @@
 
         // Handle user interaction to start the AudioContext
         startAudioBtn.addEventListener('click', async () => {
-            // The first interaction must call Tone.start()
             await Tone.start(); 
-            
-            // Initialize and start the custom music logic
             initializeAudio(); 
 
             // Fade out and remove the overlay
@@ -176,30 +187,54 @@
 
 
         // --- GAME 1: Lüdérc's Flame Clicker Logic ---
-        let ludercScore = 0;
-        let gameActive = true;
 
         ludercFlameBtn.addEventListener('click', () => {
             if (!gameActive) return;
 
-            ludercScore += 1;
-            ludercScoreElement.textContent = ludercScore;
-            
+            // Check if we are still counting
+            if (ludercScore < MAX_CLICKS) {
+                ludercScore += 1;
+                ludercScoreElement.textContent = ludercScore;
+                
+                // Audio Logic: Raise pitch by 1 semitone
+                if (Tone.Transport.state === 'started' && pitchShift) {
+                    currentTranspose += 1;
+                    // Update the pitch shift amount
+                    pitchShift.pitch = currentTranspose; 
+                    
+                    // Play a short, ethereal sound effect 
+                    const clickSynth = new Tone.Synth({
+                        oscillator: { type: 'triangle' },
+                        envelope: { attack: 0.005, decay: 0.1, sustain: 0.01, release: 0.5 }
+                    }).toDestination();
+                    clickSynth.triggerAttackRelease("A5", "16n");
+                }
+            }
+
+            // Check for the redirect condition (after the 13th click)
+            if (ludercScore === MAX_CLICKS) {
+                gameActive = false; // Stop further clicks
+                ludercFlameBtn.style.opacity = 0.2; // Visually indicate it's done
+                
+                // Final pitch shift (should be 13 semitones)
+                if(pitchShift) pitchShift.pitch = MAX_CLICKS;
+
+                // Display winning message and redirect info
+                ludercScoreElement.textContent = `Ritual Complete! (13 Flames). Redirecting...`;
+                
+                // Redirect logic
+                setTimeout(() => {
+                    // Redirect to the All Hallows trailer page
+                    window.location.href = 'https://aaagamescompany.com/all-hallows/#trailer';
+                }, 1500); // 1.5 second delay for dramatic effect
+            }
+
             // Add a quick visual flash feedback
             ludercFlameBtn.style.transition = 'transform 0.1s, opacity 0.1s';
             ludercFlameBtn.style.transform = 'scale(1.1)';
             setTimeout(() => {
                 ludercFlameBtn.style.transform = 'scale(1)';
             }, 100);
-
-            // Play a short, ethereal sound effect (only if audio is running)
-            if (Tone.Transport.state === 'started') {
-                const clickSynth = new Tone.Synth({
-                    oscillator: { type: 'triangle' },
-                    envelope: { attack: 0.005, decay: 0.1, sustain: 0.01, release: 0.5 }
-                }).toDestination();
-                clickSynth.triggerAttackRelease("A5", "16n");
-            }
         });
 
         ludercResetBtn.addEventListener('click', () => {
@@ -207,10 +242,16 @@
             ludercScoreElement.textContent = ludercScore;
             gameActive = true;
             ludercFlameBtn.style.opacity = 1;
+
+            // Reset pitch shift
+            currentTranspose = 0;
+            if (pitchShift) {
+                pitchShift.pitch = 0;
+            }
         });
 
 
-        // --- GAME 2: Garabonciás's Riddle Logic ---
+        // --- GAME 2: Garabonciás's Riddle Logic (No Redirect) ---
         const riddles = [
             {
                 riddle: "I am born with teeth, carry a book, and demand milk. Who threatens a storm if denied?",
