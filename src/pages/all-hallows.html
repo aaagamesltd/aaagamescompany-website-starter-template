@@ -54,55 +54,78 @@
     text-shadow: 0 0 8px #a78bfa, 0 0 16px #c084fc; /* Using Tailwind's purple-400 and purple-600 */
   }
 
-  /* --- NEW EASTER EGG PARALLAX STYLES (WOBBLE, ZOOM, & REPEL) --- */
+  /* --- EASTER EGG STYLES (WOBBLE, ZOOM, & REPEL) --- */
   
   @keyframes spooky-motion {
-    /* 0% to 5% - Hover and Wobble (Slow and creepy) */
-    0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-    1.25% { transform: translate(5px, -5px) scale(1.05) rotate(3deg); }
-    2.5% { transform: translate(-5px, 5px) scale(0.95) rotate(-3deg); }
-    3.75% { transform: translate(5px, 5px) scale(1.05) rotate(3deg); }
-    5% { transform: translate(0, 0) scale(1); opacity: 0.9; }
+    /* **SLOWER BUT MORE ERRATIC:** 0% to 20% - Hover and Wobble */
+    0% { opacity: 0.9; }
+    5% { transform: scale(1.05) rotate(5deg); } 
+    10% { transform: scale(0.95) rotate(-5deg); }
+    15% { transform: scale(1.05) rotate(5deg); }
+    20% { transform: scale(1); opacity: 1; }
 
-    /* 6% - The Golden Snitch Zoom (Fast and sudden) */
-    6% { transform: translate(200vw, 50vh) scale(0.2); opacity: 0; } 
+    /* 25% - The Golden Snitch Zoom (Fast and sudden) - THIS FADES IT OUT QUICKLY */
+    25% { opacity: 0; } 
     
-    /* 7% to 100% - Stay hidden and reset */
-    100% { transform: translate(200vw, 50vh) scale(0.2); opacity: 0; }
+    /* 26% to 100% - Stay hidden and reset */
+    100% { opacity: 0; }
   }
 
   .parallax-ghost { 
-    position: absolute;
-    top: 50%;
-    left: 10vw; 
+    position: absolute; /* REQUIRED for direct left/top manipulation */
     z-index: 20; 
-    cursor: default; /* Start with default cursor */
-    pointer-events: none; /* Initially unclickable */
+    cursor: pointer; 
+    pointer-events: auto; 
     
-    /* Animation Control */
-    animation: spooky-motion 30s linear infinite 0s; /* Delay set to 0s for immediate start */
-    transition: transform 0.1s ease-out; /* Add transition for smooth repulsion */
+    /* Animation runs continuously, but JS overrides the position during evasion */
+    animation: spooky-motion 30s linear infinite 0s; 
+    
+    /* Smooth transition for position changes */
+    /* **Slightly faster transition for a more "darting" feel** */
+    transition: left 0.05s linear, top 0.05s linear, transform 0.15s ease-out; 
   }
   
   .parallax-ghost:hover {
-    animation-play-state: paused; /* Pause the spooky wobble when the mouse is near */
-  }
-
-  /* This is the class the JavaScript will add when it's time to let the orb be clicked */
-  .allow-click {
-      pointer-events: auto !important; /* Force clickability */
-      cursor: pointer !important;
+    animation-play-state: paused; 
   }
   
   .parallax-ghost img {
     width: 60px;
     height: 60px;
-    filter: drop-shadow(0 0 10px #ff33ff) grayscale(50%) blur(0.5px);
-    transition: transform 0.05s ease-out;
+
+    /* **BRIGHTER & IN-FOCUS GLOW** */
+    filter: 
+        drop-shadow(0 0 25px currentColor) 
+        grayscale(50%);
+    
+    transition: transform 0.05s ease-out; /* Keep this for the hover scale transition */
+    color: #ff33ff; /* Default color for currentColor */
+
+    /* Apply animations */
+    animation: 
+        rgb-glow 5s linear infinite, 
+        pulse-scale 2s ease-in-out infinite alternate; 
   }
 
   .parallax-ghost img:hover {
-    transform: scale(1.2);
+    transform: scale(1.3); /* Slightly more prominent hover scale */
+  }
+
+  /* --- RGB GLOW KEYFRAMES --- */
+  @keyframes rgb-glow {
+      0% { filter: drop-shadow(0 0 25px #FF00FF) grayscale(50%); } 
+      16% { filter: drop-shadow(0 0 25px #00FFFF) grayscale(50%); } 
+      33% { filter: drop-shadow(0 0 25px #00FF00) grayscale(50%); } 
+      50% { filter: drop-shadow(0 0 25px #FFFF00) grayscale(50%); } 
+      66% { filter: drop-shadow(0 0 25px #FF8C00) grayscale(50%); } 
+      83% { filter: drop-shadow(0 0 25px #FF0000) grayscale(50%); } 
+      100% { filter: drop-shadow(0 0 25px #FF00FF) grayscale(50%); }
+  }
+
+  /* --- PULSE SCALE KEYFRAMES --- */
+  @keyframes pulse-scale {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); } 
   }
 </style>
 
@@ -322,82 +345,134 @@
         const orb = document.querySelector('.parallax-ghost');
         if (!orb) return;
 
-        // Repulsion distance settings - ADJUSTED FOR DRAMATIC EFFECT
-        const REPULSION_RADIUS = 400; // Orb starts reacting further away
-        const MAX_PUSH_DISTANCE = 120; // Orb moves more dramatically
+        // --- Physics & Repulsion Settings ---
+        const REPULSION_RADIUS = 500; // Zone where the orb reacts
+        const MIN_DISTANCE = 140;      // Target distance from the mouse
+        const REPULSION_STRENGTH = 0.05; // How quickly the orb accelerates away
+        const DAMPENING_FACTOR = 0.92;   // Friction: closer to 1 is less friction (smoother, longer movement)
+        const BOUNDARY_BOUNCE = -0.8;    // Reverse direction and lose a little speed on bounce
 
-        let interactionCount = 0;
-        const INTERACTIONS_TO_ALLOW_CLICK = 3;
+        const INTERACTION_PHASE_DURATION = 4000; // 4 seconds in milliseconds
+        const orbSize = 60;     // Full size of the orb (60px)
+        const orbHalfSize = 30; // Half size of the orb
 
-        let orbCenterX, orbCenterY;
+        let isDodging = true; // Phase 1: Orb is actively dodging
+        let mouseX = 0;
+        let mouseY = 0;
+        let orbX, orbY;        // Orb's current absolute position (top-left corner)
+        let velX = 0;
+        let velY = 0;          // Orb's current velocity
 
-        // Function to accurately get the orb's initial screen position
-        function calculateOrbPosition() {
-            const orbRect = orb.getBoundingClientRect();
-            orbCenterX = orbRect.left + orbRect.width / 2;
-            orbCenterY = orbRect.top + orbRect.height / 2;
+        // --- Initialize Position ---
+        function setRandomPosition() {
+            const vh = window.innerHeight;
+            const vw = window.innerWidth;
+            
+            // Define safe starting boundaries
+            const minX = vw * 0.05; 
+            const maxX = vw * 0.40; 
+            const minY = vh * 0.30; 
+            const maxY = vh * 0.70; 
+            
+            orbX = Math.random() * (maxX - minX) + minX;
+            orbY = Math.random() * (maxY - minY) + minY;
+            
+            orb.style.left = `${orbX}px`;
+            orb.style.top = `${orbY}px`;
         }
         
-        // Calculate the position on load and recalculate on resize
-        window.addEventListener('load', calculateOrbPosition);
-        window.addEventListener('resize', calculateOrbPosition);
+        setRandomPosition();
 
-        // Calculate the initial position immediately
-        calculateOrbPosition();
+        // Start the 4-second countdown to stop dodging
+        setTimeout(() => {
+            isDodging = false; // Disable dodging
+        }, INTERACTION_PHASE_DURATION);
+
+        // Update mouse coordinates on movement
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
 
 
-        function handleMouseMove(e) {
-            // Safety check: ensure the position has been calculated and orb is visible
-            if (typeof orbCenterX === 'undefined') return;
-            const style = window.getComputedStyle(orb);
-            if (parseFloat(style.opacity) < 0.5) {
-                orb.style.transform = ''; 
-                return;
+        // --- Main Physics/Animation Loop ---
+        function updateOrb() {
+            if (isDodging) {
+                // Orb's center coordinates
+                const orbCenterX = orbX + orbHalfSize;
+                const orbCenterY = orbY + orbHalfSize;
+
+                const dx = mouseX - orbCenterX;
+                const dy = mouseY - orbCenterY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < REPULSION_RADIUS) {
+                    
+                    if (distance < MIN_DISTANCE) {
+                        // --- Apply Repulsion Force (Acceleration) ---
+                        
+                        // Calculate how far inside the MIN_DISTANCE the mouse is
+                        const penetrationDepth = MIN_DISTANCE - distance;
+                        
+                        // Normalize vector (direction from mouse to orb)
+                        const normalizedX = -dx / distance;
+                        const normalizedY = -dy / distance;
+
+                        // Apply a force proportional to the penetration depth
+                        const forceMagnitude = penetrationDepth * REPULSION_STRENGTH;
+                        
+                        // Add force to velocity
+                        velX += normalizedX * forceMagnitude;
+                        velY += normalizedY * forceMagnitude;
+                    }
+                }
             }
 
-            const dx = e.clientX - orbCenterX;
-            const dy = e.clientY - orbCenterY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+            // --- Apply Dampening (Friction) ---
+            velX *= DAMPENING_FACTOR;
+            velY *= DAMPENING_FACTOR;
 
-            if (distance < REPULSION_RADIUS) {
-                // Mouse is within the repulsion zone
-                
-                // Only count the interaction if they move towards it 
-                if (Math.abs(e.movementX) > 0 || Math.abs(e.movementY) > 0) {
-                     interactionCount++;
-                }
+            // --- Update Position based on Velocity ---
+            orbX += velX;
+            orbY += velY;
 
-                // If they have interacted enough, stop repelling and make it clickable
-                if (interactionCount >= INTERACTIONS_TO_ALLOW_CLICK) {
-                    orb.style.transform = `translate(0, 0)`; // Hold position
-                    orb.classList.add('allow-click');
-                    // Remove the mouse listener to prevent further JS interference
-                    document.removeEventListener('mousemove', handleMouseMove);
-                    return;
-                }
-                
-                // Calculate the degree of repulsion (closer mouse = stronger push)
-                const pushStrength = (REPULSION_RADIUS - distance) / REPULSION_RADIUS;
 
-                // Determine the new position for the orb's center
-                const newX = orbCenterX - (dx / distance) * MAX_PUSH_DISTANCE * pushStrength;
-                const newY = orbCenterY - (dy / distance) * MAX_PUSH_DISTANCE * pushStrength;
+            // --- Boundary Collision and Bounce ---
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
 
-                // Calculate the final translation required (relative movement)
-                const translateX = newX - orbCenterX;
-                const translateY = newY - orbCenterY;
-
-                // Apply the transform
-                orb.style.transform = `translate(${translateX}px, ${translateY}px)`; 
-                
-            } else {
-                // Mouse is far away, let the CSS animation take over
-                orb.style.transform = ''; // Clear JS style to use CSS animation (wobble)
+            // X-Axis Boundaries
+            if (orbX < 0) {
+                orbX = 0; // Stick to the left edge
+                velX *= BOUNDARY_BOUNCE; // Reverse velocity (bounce)
+            } else if (orbX + orbSize > vw) {
+                orbX = vw - orbSize; // Stick to the right edge
+                velX *= BOUNDARY_BOUNCE; // Reverse velocity (bounce)
             }
+
+            // Y-Axis Boundaries
+            if (orbY < 0) {
+                orbY = 0; // Stick to the top edge
+                velY *= BOUNDARY_BOUNCE; // Reverse velocity (bounce)
+            } else if (orbY + orbSize > vh) {
+                orbY = vh - orbSize; // Stick to the bottom edge
+                velY *= BOUNDARY_BOUNCE; // Reverse velocity (bounce)
+            }
+
+            // Apply the final calculated position
+            orb.style.left = `${orbX}px`;
+            orb.style.top = `${orbY}px`;
+            
+            // Loop the animation
+            requestAnimationFrame(updateOrb);
         }
 
-        // Add event listener to the entire document
-        document.addEventListener('mousemove', handleMouseMove);
+        // Start the physics simulation
+        requestAnimationFrame(updateOrb);
+
+        // Keep the transition properties (left/top) active during evasion for smoothness
+        orb.style.transition = 'left 0.05s linear, top 0.05s linear';
+
     })();
 </script>
 
