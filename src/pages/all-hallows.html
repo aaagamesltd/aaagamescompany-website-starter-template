@@ -54,51 +54,55 @@
     text-shadow: 0 0 8px #a78bfa, 0 0 16px #c084fc; /* Using Tailwind's purple-400 and purple-600 */
   }
 
-  /* --- NEW EASTER EGG PARALLAX STYLES --- */
-  @keyframes zoom-through {
-    0% {
-      transform: translate3d(-100vw, -50%, 0) scale(0.2);
-      opacity: 0;
-    }
-    5% {
-      transform: translate3d(50vw, -50%, 0) scale(1.5);
-      opacity: 1;
-    }
-    10% {
-      transform: translate3d(105vw, -50%, 0) scale(0.2);
-      opacity: 0;
-    }
-    100% {
-      /* Keep it hidden and off-screen for the rest of the time */
-      transform: translate3d(105vw, -50%, 0) scale(0.2);
-      opacity: 0;
-    }
+  /* --- NEW EASTER EGG PARALLAX STYLES (WOBBLE, ZOOM, & REPEL) --- */
+  
+  @keyframes spooky-motion {
+    /* 0% to 5% - Hover and Wobble (Slow and creepy) */
+    0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+    1.25% { transform: translate(5px, -5px) scale(1.05) rotate(3deg); }
+    2.5% { transform: translate(-5px, 5px) scale(0.95) rotate(-3deg); }
+    3.75% { transform: translate(5px, 5px) scale(1.05) rotate(3deg); }
+    5% { transform: translate(0, 0) scale(1); opacity: 0.9; }
+
+    /* 6% - The Golden Snitch Zoom (Fast and sudden) */
+    6% { transform: translate(200vw, 50vh) scale(0.2); opacity: 0; } 
+    
+    /* 7% to 100% - Stay hidden and reset */
+    100% { transform: translate(200vw, 50vh) scale(0.2); opacity: 0; }
   }
 
-  /* Keyframe animation for a single, fast pass */
-  .parallax-ghost {
+  .parallax-ghost { 
     position: absolute;
     top: 50%;
-    /* Start fully off-screen to the left */
-    left: 0;
-    z-index: 10; /* Make sure it flies over the main content */
-    cursor: pointer;
-    /* Use a very long duration and delay to make it a rare, 'blink' event */
-    animation: zoom-through 40s linear infinite 5s; 
-    /* The 40s duration makes the 10% movement extremely fast */
-    /* The 5s delay makes it wait a bit before the first pass */
-    pointer-events: auto; /* Ensure the link is clickable when visible */
+    left: 10vw; 
+    z-index: 20; 
+    cursor: default; /* Start with default cursor */
+    pointer-events: none; /* Initially unclickable */
+    
+    /* Animation Control */
+    animation: spooky-motion 30s linear infinite 0s; /* Delay set to 0s for immediate start */
+    transition: transform 0.1s ease-out; /* Add transition for smooth repulsion */
+  }
+  
+  .parallax-ghost:hover {
+    animation-play-state: paused; /* Pause the spooky wobble when the mouse is near */
   }
 
+  /* This is the class the JavaScript will add when it's time to let the orb be clicked */
+  .allow-click {
+      pointer-events: auto !important; /* Force clickability */
+      cursor: pointer !important;
+  }
+  
   .parallax-ghost img {
-    width: 60px; /* Adjust size as needed */
+    width: 60px;
     height: 60px;
-    filter: drop-shadow(0 0 10px #ff33ff) grayscale(50%) blur(0.5px); /* Ghostly glow */
+    filter: drop-shadow(0 0 10px #ff33ff) grayscale(50%) blur(0.5px);
     transition: transform 0.05s ease-out;
   }
 
   .parallax-ghost img:hover {
-    transform: scale(1.2); /* Slight hover for the quick click */
+    transform: scale(1.2);
   }
 </style>
 
@@ -312,6 +316,90 @@
       }, { once: true });
     })();
   </script>
+  
+  <script>
+    (function() {
+        const orb = document.querySelector('.parallax-ghost');
+        if (!orb) return;
+
+        // Repulsion distance settings - ADJUSTED FOR DRAMATIC EFFECT
+        const REPULSION_RADIUS = 400; // Orb starts reacting further away
+        const MAX_PUSH_DISTANCE = 120; // Orb moves more dramatically
+
+        let interactionCount = 0;
+        const INTERACTIONS_TO_ALLOW_CLICK = 3;
+
+        let orbCenterX, orbCenterY;
+
+        // Function to accurately get the orb's initial screen position
+        function calculateOrbPosition() {
+            const orbRect = orb.getBoundingClientRect();
+            orbCenterX = orbRect.left + orbRect.width / 2;
+            orbCenterY = orbRect.top + orbRect.height / 2;
+        }
+        
+        // Calculate the position on load and recalculate on resize
+        window.addEventListener('load', calculateOrbPosition);
+        window.addEventListener('resize', calculateOrbPosition);
+
+        // Calculate the initial position immediately
+        calculateOrbPosition();
+
+
+        function handleMouseMove(e) {
+            // Safety check: ensure the position has been calculated and orb is visible
+            if (typeof orbCenterX === 'undefined') return;
+            const style = window.getComputedStyle(orb);
+            if (parseFloat(style.opacity) < 0.5) {
+                orb.style.transform = ''; 
+                return;
+            }
+
+            const dx = e.clientX - orbCenterX;
+            const dy = e.clientY - orbCenterY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < REPULSION_RADIUS) {
+                // Mouse is within the repulsion zone
+                
+                // Only count the interaction if they move towards it 
+                if (Math.abs(e.movementX) > 0 || Math.abs(e.movementY) > 0) {
+                     interactionCount++;
+                }
+
+                // If they have interacted enough, stop repelling and make it clickable
+                if (interactionCount >= INTERACTIONS_TO_ALLOW_CLICK) {
+                    orb.style.transform = `translate(0, 0)`; // Hold position
+                    orb.classList.add('allow-click');
+                    // Remove the mouse listener to prevent further JS interference
+                    document.removeEventListener('mousemove', handleMouseMove);
+                    return;
+                }
+                
+                // Calculate the degree of repulsion (closer mouse = stronger push)
+                const pushStrength = (REPULSION_RADIUS - distance) / REPULSION_RADIUS;
+
+                // Determine the new position for the orb's center
+                const newX = orbCenterX - (dx / distance) * MAX_PUSH_DISTANCE * pushStrength;
+                const newY = orbCenterY - (dy / distance) * MAX_PUSH_DISTANCE * pushStrength;
+
+                // Calculate the final translation required (relative movement)
+                const translateX = newX - orbCenterX;
+                const translateY = newY - orbCenterY;
+
+                // Apply the transform
+                orb.style.transform = `translate(${translateX}px, ${translateY}px)`; 
+                
+            } else {
+                // Mouse is far away, let the CSS animation take over
+                orb.style.transform = ''; // Clear JS style to use CSS animation (wobble)
+            }
+        }
+
+        // Add event listener to the entire document
+        document.addEventListener('mousemove', handleMouseMove);
+    })();
+</script>
 
   <style>
     footer {
