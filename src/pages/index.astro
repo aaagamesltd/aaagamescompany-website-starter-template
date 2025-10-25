@@ -8,75 +8,114 @@ import "../styles/global.css";
 
 <!doctype html>
 <html lang="en">
-  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} /> ⬅️ **NEW: This imports your scripts/meta tags**
-  
   <head>
+
+
+
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+
+    <!-- ✅ Favicons for browser tab -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AAA Games</title>
+
+<script id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="f8906613-166a-4534-a5e5-5e83c7a6270a"
+    type="text/javascript"
+    async>
+</script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    // Google Consent Mode Default Settings (Sets initial state to 'denied' for compliance)
+    gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'personalization_storage': 'denied',
+        'security_storage': 'granted',
+        'functionality_storage': 'denied'
+    });
+
+    // The gtag 'config' command for your Measurement ID
+    gtag('config', 'G-XCTPMMLNM3');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XCTPMMLNM3"></script>
+
     <style>
-      body { margin:0; display:flex; flex-direction:column; }
+      body { margin:0; display:flex; flex-direction:column; }
 
-      main.homepage-content {
-        display:flex; flex-direction:column; align-items:center; text-align:center;
-        max-width:900px; margin:-3em auto 0; z-index:10;
-      }
+      main.homepage-content {
+        display:flex; flex-direction:column; align-items:center; text-align:center;
+        max-width:900px; margin:-3em auto 0; z-index:10;
+      }
 
-      .site-title { display:flex; gap:.5em; align-items:center; flex-wrap:wrap; }
-      .site-title img{height:64px;} .site-title span{font-size:2em;font-weight:bold;}
+      .site-title { display:flex; gap:.5em; align-items:center; flex-wrap:wrap; }
+      .site-title img{height:64px;} .site-title span{font-size:2em;font-weight:bold;}
 
-      /* Floating logo container */
-      .spooky-logo-container {
-        position:fixed; top:0; left:0;
-        width:100vw; height:100vh;
-        z-index:500; pointer-events:none;
-        overflow:hidden;
-      }
-      .spooky-logo-container a {
-        position:absolute; top:34%; left:11%;
-        display:flex; align-items:center; justify-content:center;
-        pointer-events:auto; animation:floaty 20s infinite ease-in-out;
-      }
-      .spooky-logo { position:absolute; max-width:350px; width:70vw; text-align:center; }
-      .spooky-logo img{width:100%; border-radius:15px;}
+      /* Floating logo container */
+      .spooky-logo-container {
+        position:fixed; top:0; left:0;
+        width:100vw; height:100vh;
+        z-index:500; pointer-events:none;
+        overflow:hidden;
+      }
+      .spooky-logo-container a {
+        position:absolute; top:34%; left:11%;
+        display:flex; align-items:center; justify-content:center;
+        pointer-events:auto; animation:floaty 20s infinite ease-in-out;
+      }
+      .spooky-logo { position:absolute; max-width:350px; width:70vw; text-align:center; }
+      .spooky-logo img{width:100%; border-radius:15px;}
 
-      /* Poster fades */
-      .spooky-logo-image { animation:fadePoster 6s infinite; }
-      @keyframes fadePoster {
-        0%,40%{opacity:1;} 50%,100%{opacity:0;}
-      }
+      /* Poster fades */
+      .spooky-logo-image { animation:fadePoster 6s infinite; }
+      @keyframes fadePoster {
+        0%,40%{opacity:1;} 50%,100%{opacity:0;}
+      }
 
-      /* CLICK ME text */
-      .spooky-logo-text {
-        font-family:"Creepster","Nosifer",cursive;
-        font-size:4vw; font-weight:bold; color:#ff0000;
-        text-shadow:0 0 12px rgba(255,0,0,.9), 0 0 30px black;
-        opacity:0; position:relative;
-        animation:fadeText 6s infinite, shudder .3s infinite, glisten 3s infinite;
-        letter-spacing: 3px; /* spacing between letters */
-      }
-      @keyframes fadeText {
-        0%,40%{opacity:0; transform:scale(1.1);}
-        50%,100%{opacity:1; transform:scale(1);}
-      }
-      @keyframes shudder {
-        0%,100%{transform:translate(0,0);}
-        25%{transform:translate(-2px,1px);}
-        50%{transform:translate(2px,-1px);}
-        75%{transform:translate(-1px,-2px);}
-      }
-      @keyframes glisten {
-        0%{text-shadow:0 0 10px #ff0000,0 0 20px #ff3333;}
-        50%{text-shadow:0 0 25px #ff6666,0 0 50px #ffaaaa;}
-        100%{text-shadow:0 0 10px #ff0000,0 0 20px #ff3333;}
-      }
+      /* CLICK ME text */
+      .spooky-logo-text {
+        font-family:"Creepster","Nosifer",cursive;
+        font-size:4vw; font-weight:bold; color:#ff0000;
+        text-shadow:0 0 12px rgba(255,0,0,.9), 0 0 30px black;
+        opacity:0; position:relative;
+        animation:fadeText 6s infinite, shudder .3s infinite, glisten 3s infinite;
+        letter-spacing: 3px; /* spacing between letters */
+      }
+      @keyframes fadeText {
+        0%,40%{opacity:0; transform:scale(1.1);}
+        50%,100%{opacity:1; transform:scale(1);}
+      }
+      @keyframes shudder {
+        0%,100%{transform:translate(0,0);}
+        25%{transform:translate(-2px,1px);}
+        50%{transform:translate(2px,-1px);}
+        75%{transform:translate(-1px,-2px);}
+      }
+      @keyframes glisten {
+        0%{text-shadow:0 0 10px #ff0000,0 0 20px #ff3333;}
+        50%{text-shadow:0 0 25px #ff6666,0 0 50px #ffaaaa;}
+        100%{text-shadow:0 0 10px #ff0000,0 0 20px #ff3333;}
+      }
 
-      /* Floating motion */
-      @keyframes floaty {
-        0%,100%{transform:translate(-50%,-50%) rotate(2deg) scale(.95);}
-        50%{transform:translate(-52%,-48%) rotate(-2deg) scale(1);}
-      }
+      /* Floating motion */
+      @keyframes floaty {
+        0%,100%{transform:translate(-50%,-50%) rotate(2deg) scale(.95);}
+        50%{transform:translate(-52%,-48%) rotate(-2deg) scale(1);}
+      }
 
-      @media(max-width:768px){.spooky-logo{max-width:280px;}}
-      @media(max-width:480px){.spooky-logo{max-width:220px;}}
-    </style>
+      @media(max-width:768px){.spooky-logo{max-width:280px;}}
+      @media(max-width:480px){.spooky-logo{max-width:220px;}}
+    </style>
   </head>
 
   <body>
