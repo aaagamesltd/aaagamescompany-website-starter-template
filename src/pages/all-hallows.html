@@ -43,6 +43,14 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCTPMMLNM3"></script>
 
 <style>
+  /* Base styles */
+  :root {
+      --cyan-glow: #00FFFF;
+      --magenta-glow: #FF33FF;
+      --purple-glow: #c084fc; /* Tailwind purple-500/600 */
+  }
+  
+  /* Existing sway animation - KEEP */
   @keyframes sway {
     0% { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-2%, 0, 0); }
@@ -51,39 +59,247 @@
     animation: sway 30s ease-in-out infinite alternate;
   }
 
-  /* Add this new text glow style */
-  .text-glow-purple {
-    text-shadow: 0 0 8px #a78bfa, 0 0 16px #c084fc; /* Using Tailwind's purple-400 and purple-600 */
+  /* NEW: Header on scroll effect */
+  .header-scrolled {
+      border-bottom: 2px solid;
+      border-image: linear-gradient(to right, transparent, var(--cyan-glow) 5%, var(--magenta-glow) 95%, transparent) 1;
+      box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2);
   }
 
+  /* NEW: 3D HERO CONTAINER - Perspective is key for 3D tilt */
+  .hero-3d-container {
+      perspective: 1000px; /* Essential for 3D effect */
+  }
+
+  /* NEW: 3D Hero Elements */
+  #hero-background {
+      transition: transform 0.1s ease-out; /* Smooth movement */
+      background-size: 110%; /* Slightly larger to allow for movement */
+  }
+  #hero-title-group {
+      transition: transform 0.1s ease-out; /* Smooth movement */
+      /* Give it a slight Z-axis lift compared to the background */
+      transform: translateZ(20px); 
+  }
+
+  /* GLOW UTILITIES (Kept only for H1 and section headers) */
+  .text-glow-magenta {
+    text-shadow: 0 0 6px var(--magenta-glow), 0 0 12px var(--magenta-glow), 0 0 20px rgba(255, 51, 255, 0.4);
+  }
+  .text-glow-cyan {
+    text-shadow: 0 0 6px var(--cyan-glow), 0 0 12px var(--cyan-glow), 0 0 20px rgba(0, 255, 255, 0.4);
+  }
+  .text-glow-purple {
+    text-shadow: 0 0 8px #a78bfa, 0 0 16px #c084fc; 
+  }
+
+  /* NEW: Stylized Section Divider */
+  .section-divider {
+    height: 10px;
+    background: linear-gradient(to right, 
+        transparent 0%, 
+        var(--cyan-glow) 10%, 
+        var(--magenta-glow) 50%, 
+        var(--cyan-glow) 90%, 
+        transparent 100%);
+    box-shadow: 0 0 10px var(--cyan-glow);
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); /* Jagged/Cyber look */
+    margin: 4rem 0;
+  }
+
+  /* ---------------------------------------------------- */
+  /* --- READABLE ANIMATED (GLITCH) TEXT STYLE (TITLES) --- */
+  /* ---------------------------------------------------- */
+
+  /* Animation keyframes for the digital glitch/shimmer */
+  @keyframes glitch-shimmer {
+    0%, 100% { clip-path: inset(0 0 0 0); }
+    5% { clip-path: inset(0 0 80% 0); } 
+    10% { clip-path: inset(0 0 0 0); }
+    15% { clip-path: inset(80% 0 0 0); } 
+    20% { clip-path: inset(0 0 0 0); }
+  }
+
+  @keyframes text-shift {
+    0%, 100% { transform: translate(-1px, 0); }
+    50% { transform: translate(1px, 0); }
+  }
+
+  /* Base class for feature titles and hero subtitle */
+  .readable-animated-title {
+      position: relative;
+      color: white; /* Base color is sharp white for readability */
+      font-weight: 700;
+      text-shadow: 0 0 2px rgba(255, 255, 255, 0.6); /* Subtle white halo */
+      overflow: hidden;
+  }
+
+  /* Pseudo-elements for the animated layers */
+  .readable-animated-title::before, .readable-animated-title::after {
+      content: attr(data-text); 
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      pointer-events: none;
+  }
+
+  .readable-animated-title::before {
+      color: var(--cyan-glow);
+      text-shadow: 2px 0 0 var(--cyan-glow);
+      clip-path: inset(0 0 100% 0); 
+      animation: glitch-shimmer 8s linear infinite, text-shift 1s linear infinite;
+  }
+
+  .readable-animated-title::after {
+      color: var(--magenta-glow);
+      text-shadow: -2px 0 0 var(--magenta-glow);
+      clip-path: inset(100% 0 0 0); 
+      animation: glitch-shimmer 8s linear infinite reverse, text-shift 1s linear infinite reverse;
+  }
+  
+  /* ----------------------------------------------------------- */
+  /* --- UNSTABLE TAGLINE STYLE (Flickering Outline) --- */
+  /* ----------------------------------------------------------- */
+  @keyframes outline-flicker {
+    0%, 100% { text-shadow: -0.5px 0 0 var(--cyan-glow); }
+    50% { text-shadow: 0.5px 0 0 var(--magenta-glow); }
+  }
+
+  .unstable-tagline {
+      font-size: 1.25rem;
+      color: transparent; /* Text body is transparent for outline effect */
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9); /* Thin white outline */
+      text-stroke: 1px rgba(255, 255, 255, 0.9);
+      
+      position: relative;
+      /* Initial flicker effect */
+      animation: outline-flicker 1.5s linear infinite alternate; 
+      cursor: pointer; /* Indicate it's clickable/interactive */
+      
+      /* Resetting the problematic styles from the previous attempt */
+      transition: none; 
+      clip-path: none; 
+      overflow: visible;
+  }
+  
+  /* Pseudo-elements for the color shifting and displacement */
+  .unstable-tagline::before,
+  .unstable-tagline::after {
+      content: attr(data-text); 
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      
+      -webkit-text-stroke: 0; /* Remove stroke on pseudo-elements */
+      text-stroke: 0; 
+      
+      transition: transform 0.05s ease;
+      pointer-events: none;
+  }
+
+  /* Cyan Glitch Layer (Slight negative shift) */
+  .unstable-tagline::before {
+      color: var(--cyan-glow);
+      text-shadow: 0 0 5px var(--cyan-glow);
+      opacity: 0.35;
+      transform: translate(-1px, 0);
+      animation: text-shift 0.8s linear infinite reverse;
+  }
+
+  /* Magenta Glitch Layer (Slight positive shift) */
+  .unstable-tagline::after {
+      color: var(--magenta-glow);
+      text-shadow: 0 0 5px var(--magenta-glow);
+      opacity: 0.35;
+      transform: translate(1px, 0);
+      animation: text-shift 0.8s linear infinite;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* --- CORRECTED: WOBBLY SOCIAL GLOW STYLE --- */
+  /* ------------------------------------------------------------------ */
+
+  /* Wobbly animation (now only affects box-shadow on hover for pulsing) */
+  @keyframes wobbly-glow {
+    0% { 
+        box-shadow: 0 0 15px var(--purple-glow);
+    }
+    50% { 
+        box-shadow: 0 0 30px var(--purple-glow);
+    }
+    100% { 
+        box-shadow: 0 0 15px var(--purple-glow);
+    }
+  }
+
+  #social-glow-container {
+      position: relative;
+      padding: 1.5rem 0;
+  }
+
+  /* Pseudo-element acts as the background */
+  #social-glow-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 90%;
+      max-width: 500px;
+      height: 100%;
+      
+      /* KEY FIX: Transform is STATIC and centered for the cyan state */
+      transform: translateX(-50%); 
+      
+      background-color: rgba(0, 255, 255, 0.1); 
+      border-radius: 1rem;
+      z-index: 0;
+      pointer-events: none;
+      
+      transition: all 0.5s ease-in-out;
+      /* Initial state: Static Cyan Glow */
+      box-shadow: 0 0 15px var(--cyan-glow); 
+      animation: none; /* Crucial: No animation in initial state */
+  }
+
+  /* Hover effect: Switches to stable Purple Glow and applies a subtle scale/rotate */
+  #social-glow-container:hover::before {
+      background-color: rgba(192, 132, 252, 0.15); 
+      
+      /* Static hover transform (maintains center, adds subtle scale/rotate) */
+      transform: translateX(-50%) scale(1.03) rotate(0.5deg); 
+      
+      /* Apply the pulsing animation for the purple glow's box-shadow */
+      animation: wobbly-glow 3s ease-in-out infinite alternate;
+  }
+  
   /* --- EASTER EGG STYLES (WOBBLE, ZOOM, & REPEL) --- */
   
+  /* The spooky-motion animation controls the overall timing and visibility */
   @keyframes spooky-motion {
-    /* **SLOWER BUT MORE ERRATIC:** 0% to 20% - Hover and Wobble */
+    /* Visible phase (5% to 20%) - This is when physics should be active */
     0% { opacity: 0.9; }
-    5% { transform: scale(1.05) rotate(5deg); } 
-    10% { transform: scale(0.95) rotate(-5deg); }
-    15% { transform: scale(1.05) rotate(5deg); }
-    20% { transform: scale(1); opacity: 1; }
+    5% { transform: translateZ(50px) scale(1.05) rotate(5deg); } 
+    10% { transform: translateZ(10px) scale(0.95) rotate(-5deg); }
+    15% { transform: translateZ(50px) scale(1.05) rotate(5deg); }
+    20% { transform: translateZ(0px) scale(1); opacity: 1; }
 
-    /* 25% - The Golden Snitch Zoom (Fast and sudden) - THIS FADES IT OUT QUICKLY */
+    /* Hidden phase (25% to 100%) */
     25% { opacity: 0; } 
-    
-    /* 26% to 100% - Stay hidden and reset */
     100% { opacity: 0; }
   }
 
   .parallax-ghost { 
-    position: absolute; /* REQUIRED for direct left/top manipulation */
+    position: absolute; 
     z-index: 20; 
     cursor: pointer; 
     pointer-events: auto; 
     
-    /* Animation runs continuously, but JS overrides the position during evasion */
-    animation: spooky-motion 30s linear infinite 0s; 
+    animation: spooky-motion 30s linear infinite 0s; /* 30s cycle for appearance/disappearance */
     
-    /* Smooth transition for position changes */
-    /* **Slightly faster transition for a more "darting" feel** */
+    /* Transition is necessary for the JavaScript physics to look smooth */
     transition: left 0.05s linear, top 0.05s linear, transform 0.15s ease-out; 
   }
   
@@ -95,25 +311,23 @@
     width: 60px;
     height: 60px;
 
-    /* **BRIGHTER & IN-FOCUS GLOW** */
     filter: 
         drop-shadow(0 0 25px currentColor) 
         grayscale(50%);
     
-    transition: transform 0.05s ease-out; /* Keep this for the hover scale transition */
-    color: #ff33ff; /* Default color for currentColor */
+    transition: transform 0.05s ease-out; 
+    color: var(--magenta-glow);
 
-    /* Apply animations */
     animation: 
         rgb-glow 5s linear infinite, 
         pulse-scale 2s ease-in-out infinite alternate; 
   }
 
   .parallax-ghost img:hover {
-    transform: scale(1.3); /* Slightly more prominent hover scale */
+    transform: scale(1.3); 
   }
 
-  /* --- RGB GLOW KEYFRAMES --- */
+  /* --- RGB GLOW KEYFRAMES (KEEP) --- */
   @keyframes rgb-glow {
       0% { filter: drop-shadow(0 0 25px #FF00FF) grayscale(50%); } 
       16% { filter: drop-shadow(0 0 25px #00FFFF) grayscale(50%); } 
@@ -124,7 +338,7 @@
       100% { filter: drop-shadow(0 0 25px #FF00FF) grayscale(50%); }
   }
 
-  /* --- PULSE SCALE KEYFRAMES --- */
+  /* --- PULSE SCALE KEYFRAMES (KEEP) --- */
   @keyframes pulse-scale {
       0% { transform: scale(1); }
       100% { transform: scale(1.1); } 
@@ -133,62 +347,86 @@
 
 </head>
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden bg-gray-950 text-white">
 
-<header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 left-0 right-0 z-50">
+<header id="main-header" class="bg-black/50 backdrop-blur-md sticky top-0 left-0 right-0 z-50 transition-all duration-300">
     <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/all-hallows/" class="flex items-center space-x-3">            <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
-            <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
+        <a href="/all-hallows/" class="flex items-center space-x-3 group">            
+            <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain group-hover:rotate-12 transition-transform duration-300">
+            <span class="font-creepster text-3xl text-magenta-400 tracking-widest text-glow-magenta group-hover:text-cyan-400 group-hover:text-glow-cyan transition-colors duration-300">All Hallows</span>
         </a>
         <div class="flex items-center space-x-6 ml-4 md:ml-0">
-            <a href="/all-hallows/" class="text-lg hover:text-cyan-400 transition-colors">Home</a> 
-            <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
-            <a href="/all-hallows/#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
-            <a href="/all-hallows/#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
-            <a href="/all-hallows/press-kit" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
+            <a href="/all-hallows/" class="text-lg hover:text-cyan-400 text-glow-cyan transition-colors">Home</a> 
+            <a href="/all-hallows/#features" class="text-lg hover:text-cyan-400 text-glow-cyan transition-colors">Features</a>
+            <a href="/all-hallows/#trailer" class="text-lg hover:text-cyan-400 text-glow-cyan transition-colors">Trailer</a>
+            <a href="/all-hallows/#posts" class="text-lg hover:text-cyan-400 text-glow-cyan transition-colors">News</a>
+            <a href="/all-hallows/press-kit" class="text-lg hover:text-cyan-400 text-glow-cyan transition-colors">Press Kit</a>
         </div>
     </nav>
 </header>
 
 <main>
-<section class="sticky top-0 z-1 h-screen flex flex-col items-center justify-center text-center bg-cover bg-center bg-fixed swaying-background" 
-         style="background-image: url('/icons/all-hallows4x.png');">
+<section id="hero-section" class="hero-3d-container sticky top-0 z-1 h-screen flex flex-col items-center justify-center text-center overflow-hidden">
 
-<a href="http://aaagamescompany.com/easter-egg" target="_blank" rel="noopener noreferrer" 
+    <div id="hero-background" class="absolute inset-0 bg-cover bg-center swaying-background" 
+         style="background-image: url('/icons/all-hallows4x.png'); background-position: center;">
+         <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+
+    <a href="http://aaagamescompany.com/easter-egg" target="_blank" rel="noopener noreferrer" 
        class="parallax-ghost" 
        aria-label="Find the hidden ghoulish orb">
         <img src="/icons/all-hallows.png" alt="Ghostly Orb">
     </a>
 
-         <h1 class="font-creepster text-6xl md:text-8xl text-white tracking-widest text-glow-magenta">All Hallows</h1>
-    
-    <a href="https://store.epicgames.com/p/all-hallows-0999cb" class="btn-primary mt-8 inline-block bg-cyan-500 text-black font-bold py-4 px-10 rounded-lg text-xl" target="_blank" rel="noopener noreferrer">
-        Wishlist March 17 on Epic Games Store!
-    </a>
+    <div id="hero-title-group" class="relative z-10 flex flex-col items-center justify-center">
+         <h1 class="font-creepster text-6xl md:text-8xl text-white tracking-widest text-glow-magenta mb-4">All Hallows</h1>
+         
+         <p class="text-xl md:text-2xl text-cyan-400 mb-8 font-inter font-bold uppercase tracking-widest readable-animated-title"
+             data-text="The Horror-Musical Adventure">
+             The Horror-Musical Adventure
+         </p>
+         
+         <a href="https://store.epicgames.com/p/all-hallows-0999cb" 
+            class="btn-primary inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-black font-extrabold py-4 px-12 rounded-full text-xl uppercase shadow-2xl transition-all duration-300 transform hover:scale-110 hover:shadow-cyan-500/50" 
+            target="_blank" rel="noopener noreferrer">
+            Wishlist March 17 on Epic Games Store!
+         </a>
+    </div>
 </section>
 
-<section id="features" class="py-20 bg-gray-900">
+<div class="section-divider"></div>
+
+<section id="features" class="py-20 bg-gray-950/90 backdrop-blur-sm">
   <div class="container mx-auto px-6">
-    <h2 class="font-creepster text-5xl text-cyan-400 mb-8 text-center">Key Features</h2>
+    <h2 class="font-creepster text-5xl text-magenta-400 mb-12 text-center text-glow-magenta transition-colors duration-300 hover:text-cyan-400 hover:text-glow-cyan cursor-default">
+        Key Features
+    </h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       
-      <div class="bg-gray-800 p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
-        <h3 class="text-2xl font-bold mb-2 text-white">Audio-Driven Gameplay</h3>
-        <p class="text-gray-400 leading-relaxed">
+      <div class="bg-gray-800/70 p-8 rounded-xl border border-gray-700/50 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,51,255,0.4)]">
+        <h3 class="text-2xl font-bold mb-3 readable-animated-title" data-text="Audio-Driven Gameplay">
+          Audio-Driven Gameplay
+        </h3>
+        <p class="text-gray-300 leading-relaxed font-inter">
           Navigate a world where sound is your guide and your greatest threat. Solve puzzles by manipulating the sonic landscape.
         </p>
       </div>
       
-      <div class="bg-gray-800 p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
-        <h3 class="text-2xl font-bold mb-2 text-white">Musically-Themed Zones</h3>
-        <p class="text-gray-400 leading-relaxed">
+      <div class="bg-gray-800/70 p-8 rounded-xl border border-gray-700/50 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(0,255,255,0.4)]">
+        <h3 class="text-2xl font-bold mb-3 readable-animated-title" data-text="Musically-Themed Zones">
+          Musically-Themed Zones
+        </h3>
+        <p class="text-gray-300 leading-relaxed font-inter">
           Explore distinct areas, each with its own musical genre and unique atmosphere, from haunting jazz to vibrant drum & bass.
         </p>
       </div>
       
-      <div class="bg-gray-800 p-6 rounded-lg transform transition-transform duration-300 hover:scale-105">
-        <h3 class="text-2xl font-bold mb-2 text-white">Engaging Story</h3>
-        <p class="text-gray-400 leading-relaxed">
+      <div class="bg-gray-800/70 p-8 rounded-xl border border-gray-700/50 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,51,255,0.4)]">
+        <h3 class="text-2xl font-bold mb-3 readable-animated-title" data-text="Engaging Story">
+          Engaging Story
+        </h3>
+        <p class="text-gray-300 leading-relaxed font-inter">
           Uncover the dark history of the All Hallows festival and piece together the secrets of your own past.
         </p>
       </div>
@@ -197,12 +435,15 @@
   </div>
 </section>
 
+<div class="section-divider"></div>
 
 
-<section id="trailer" class="py-20 bg-black/60 backdrop-blur-sm">
+<section id="trailer" class="py-20 bg-gray-950/70 backdrop-blur-sm">
     <div class="container mx-auto px-6 text-center">
-        <h2 class="font-creepster text-5xl text-cyan-400 mb-8">Official Trailer</h2>
-        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
+        <h2 class="font-creepster text-5xl text-magenta-400 mb-8 text-glow-magenta transition-colors duration-300 hover:text-cyan-400 hover:text-glow-cyan cursor-default">
+            Official Trailer
+        </h2>
+        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-2xl shadow-cyan-500/40 border-4 border-cyan-400/50">
             <iframe class="absolute top-0 left-0 w-full h-full"
                 src="https://www.youtube.com/embed/RuaEMofL8OE?si=uKYQNS4r3bV3wN8V" 
                 frameborder="0" 
@@ -210,49 +451,70 @@
                 allowfullscreen>
             </iframe>
         </div>
-        <p class="text-sm text-gray-400 mt-4">Dare to watch… enter the world of All Hallows!</p>
+        
+        <p class="unstable-tagline mt-6 font-inter uppercase tracking-wider" 
+           data-text="◆ Initialise terror: All Hallows awaits. ◆">
+           ◆ **Initialise terror**: **All Hallows** awaits. ◆
+        </p>
     </div>
 </section>
 
-<section id="posts" class="py-20 bg-gray-900/70 backdrop-blur-sm">
+<div class="section-divider"></div>
+
+
+<section id="posts" class="py-20 bg-gray-950/90 backdrop-blur-sm">
     <div class="container mx-auto px-6">
-        <h2 class="font-creepster text-5xl text-cyan-400 mb-8 text-center">Latest News</h2>
-        <ul class="post-list">
-            <li>
-                <a href="/all-hallows/epic-games-store-exclusive" target="_blank" rel="noopener noreferrer">
-                    <img width="720" height="360" src="/icons/all-hallows.png" alt="Latest news image" class="w-full h-auto rounded-xl">
-                    <h4 class="title text-3xl font-bold mt-2">All Hallows Announces Epic Games Store Exclusivity</h4>
-                    <p class="date text-gray-400 text-sm">March 13, 2026</p>
+        <h2 class="font-creepster text-5xl text-magenta-400 mb-12 text-center text-glow-magenta transition-colors duration-300 hover:text-cyan-400 hover:text-glow-cyan cursor-default">
+            Latest News
+        </h2>
+        <ul class="post-list space-y-12">
+            <li class="group block bg-gray-900/50 rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,51,255,0.6)]">
+                <a href="/all-hallows/epic-games-store-exclusive" target="_blank" rel="noopener noreferrer" class="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
+                    <img width="720" height="360" src="/icons/all-hallows.png" alt="Latest news image" class="w-full md:w-1/3 h-auto rounded-lg object-cover border border-cyan-400/50 group-hover:border-magenta-400/80 transition-colors duration-300">
+                    <div class="text-left w-full md:w-2/3">
+                        <h4 class="title text-3xl font-bold mt-2 text-white group-hover:text-magenta-400 transition-colors duration-300">All Hallows Announces Epic Games Store Exclusivity</h4>
+                        <p class="date text-gray-400 text-sm mt-1">March 13, 2026</p>
+                        <p class="text-gray-300 mt-4 hidden sm:block">Read the full announcement about our exclusive partnership with Epic Games Store and the launch date reveal.</p>
+                    </div>
                 </a>
             </li>
-            <li>
-                <a href="/all-hallows/dev-blog-didgeridoo" target="_blank" rel="noopener noreferrer">
-                    <img width="720" height="360" src="/icons/didgeridoo.jpg" alt="Dev blog image" class="w-full h-auto rounded-xl">
-                    <h4 class="title text-xl font-bold mt-2">Dev Blog: The Sound Design Behind Our Scary Didgeridoo</h4>
-                    <p class="date text-gray-400 text-sm">February 28, 2026</p>
+            <li class="group block bg-gray-900/50 rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,255,255,0.6)]">
+                <a href="/all-hallows/dev-blog-didgeridoo" target="_blank" rel="noopener noreferrer" class="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
+                    <img width="720" height="360" src="/icons/didgeridoo.jpg" alt="Dev blog image" class="w-full md:w-1/3 h-auto rounded-lg object-cover border border-cyan-400/50 group-hover:border-cyan-400/80 transition-colors duration-300">
+                    <div class="text-left w-full md:w-2/3">
+                        <h4 class="title text-xl font-bold mt-2 text-white group-hover:text-cyan-400 transition-colors duration-300">Dev Blog: The Sound Design Behind Our Scary Didgeridoo</h4>
+                        <p class="date text-gray-400 text-sm mt-1">February 28, 2026</p>
+                        <p class="text-gray-300 mt-4 hidden sm:block">An in-depth look at how we created the terrifying soundscape for the game's most unique instrument.</p>
+                    </div>
                 </a>
             </li>
-            <li>
-                <a href="/all-hallows/the-studio-is-live">
-                    <img width="720" height="360" src="/icons/studio_image.png" alt="Studio announcement image" class="w-full h-auto rounded-xl">
-                    <h4 class="title text-xl font-bold mt-2">Aardvark Anteater Acoustics: The Studio is Live!</h4>
-                    <p class="date text-gray-400 text-sm">February 14, 2026</p>
+            <li class="group block bg-gray-900/50 rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,51,255,0.6)]">
+                <a href="/all-hallows/the-studio-is-live" class="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
+                    <img width="720" height="360" src="/icons/studio_image.png" alt="Studio announcement image" class="w-full md:w-1/3 h-auto rounded-lg object-cover border border-cyan-400/50 group-hover:border-magenta-400/80 transition-colors duration-300">
+                    <div class="text-left w-full md:w-2/3">
+                        <h4 class="title text-xl font-bold mt-2 text-white group-hover:text-magenta-400 transition-colors duration-300">Aardvark Anteater Acoustics: The Studio is Live!</h4>
+                        <p class="date text-gray-400 text-sm mt-1">February 14, 2026</p>
+                        <p class="text-gray-300 mt-4 hidden sm:block">The official announcement of the studio's formation and a look at our core mission.</p>
+                    </div>
                 </a>
             </li>
         </ul>
     </div>
 </section>
 
-<section class="py-16 bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600">
+<div class="section-divider"></div>
+
+
+<section class="py-16 bg-gradient-to-r from-gray-900 via-gray-950 to-gray-900 border-t border-b border-cyan-400/50">
   <div class="container relative z-10 mx-auto px-6 text-center">
     <h2 class="relative z-20 font-creepster text-4xl md:text-5xl text-white mb-6 text-glow-purple">All Hallows is Exclusive on Epic Games Store!</h2>
     <p class="relative z-20 text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto text-glow-purple">
       Check out the full press release and wishlist the game to get notified on launch day! Experience the horror-musical adventure first on Epic Games Store.
     </p>
     <a href="/all-hallows/epic-games-store-exclusive" target="_blank" rel="noopener noreferrer"
-       class="inline-flex items-center justify-center bg-gradient-to-r from-purple-400 via-purple-600 to-purple-500 text-white font-bold py-4 px-10 rounded-lg text-xl shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-xl hover:animate-pulse">
+       class="inline-flex items-center justify-center bg-gradient-to-r from-purple-400 via-purple-600 to-purple-500 text-white font-bold py-4 px-10 rounded-lg text-xl shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-xl hover:animate-pulse hover:bg-gradient-to-l">
       View Press Release
-      <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="ml-4 w-8 h-auto">
+      <img src="/icons/epic-games-store-white.svg" alt="Epic Games Store" class="ml-4 w-8 h-auto filter drop-shadow(0 0 4px #fff)">
     </a>
   </div>
 </section>
@@ -260,7 +522,7 @@
 
 </main>
 
-<a href="https://store.epicgames.com/p/all-hallows-0999cb" class="md:hidden fixed bottom-4 right-4 bg-cyan-500 text-black font-bold py-3 px-6 rounded-full text-lg shadow-lg z-50 text-center" target="_blank" rel="noopener noreferrer">
+<a href="https://store.epicgames.com/p/all-hallows-0999cb" class="md:hidden fixed bottom-4 right-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-black font-extrabold py-3 px-6 rounded-full text-lg shadow-xl z-50 text-center transition-transform hover:scale-110" target="_blank" rel="noopener noreferrer">
     Wishlist Now!
 </a>
 
@@ -275,38 +537,41 @@
     <a href="/all-hallows/disclaimer" class="footer-link">Disclaimer</a>
   </div>
 
-  <div class="social-links" id="footerSocialLinks">
-    <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Support AAA Games on Patreon</span>
-      <img src="/icons/patreon.svg" alt="Patreon - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on Facebook</span>
-      <img src="/icons/facebook.svg" alt="Facebook - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on TikTok</span>
-      <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Subscribe to AAA Games on YouTube</span>
-      <img src="/icons/youtube.svg" alt="YouTube - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on Kick</span>
-      <img src="/icons/kick.svg" alt="Kick - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://www.instagram.com/aaagamescompany/" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on Instagram</span>
-      <img src="/icons/instagram.svg" alt="Instagram - AAA Games" width="32" height="32" />
-    </a>
-    <a href="https://x.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
-      <span class="sr-only">Follow AAA Games on X</span>
-      <img src="/icons/x.svg" alt="X - AAA Games" width="32" height="32" />
-    </a>
+  <div id="social-glow-container">
+      <div class="social-links" id="footerSocialLinks">
+        <a href="https://www.patreon.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+          <span class="sr-only">Support AAA Games on Patreon</span>
+          <img src="/icons/patreon.svg" alt="Patreon - AAA Games" width="32" height="32" />
+        </a>
+        <a href="https://www.facebook.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+          <span class="sr-only">Follow AAA Games on Facebook</span>
+          <img src="/icons/facebook.svg" alt="Facebook - AAA Games" width="32" height="32" />
+        </a>
+        <a href="https://www.tiktok.com/@aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+          <span class="sr-only">Follow AAA Games on TikTok</span>
+          <img src="/icons/tiktok.svg" alt="TikTok - AAA Games" width="32" height="32" />
+        </a>
+        <a href="https://www.youtube.com/@aaagamescompany?sub_confirmation=1" target="_blank" rel="noopener" class="social-icon">
+          <span class="sr-only">Subscribe to AAA Games on YouTube</span>
+          <img src="/icons/youtube.svg" alt="YouTube - AAA Games" width="32" height="32" />
+        </a>
+        <a href="https://kick.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+          <span class="sr-only">Follow AAA Games on Kick</span>
+          <img src="/icons/kick.svg" alt="Kick - AAA Games" width="32" height="32" />
+        </a>
+        <a href="https://www.instagram.com/aaagamescompany/" target="_blank" rel="noopener" class="social-icon">
+          <span class="sr-only">Follow AAA Games on Instagram</span>
+          <img src="/icons/instagram.svg" alt="Instagram - AAA Games" width="32" height="32" />
+        </a>
+        <a href="https://x.com/aaagamescompany" target="_blank" rel="noopener" class="social-icon">
+          <span class="sr-only">Follow AAA Games on X</span>
+          <img src="/icons/x.svg" alt="X - AAA Games" width="32" height="32" />
+        </a>
+      </div>
   </div>
 
   <script>
+    // Existing script for company name change - KEEP
     (function () {
       const companyText = document.getElementById("companyText");
       const footerSocialLinks = document.getElementById("footerSocialLinks");
@@ -343,29 +608,30 @@
   </script>
   
   <script>
+    // Ghost/Orb physics (ENHANCED to restart dodging on appearance)
     (function() {
         const orb = document.querySelector('.parallax-ghost');
         if (!orb) return;
 
         // --- Physics & Repulsion Settings ---
-        const REPULSION_RADIUS = 500; // Zone where the orb reacts
-        const MIN_DISTANCE = 140;      // Target distance from the mouse
-        const REPULSION_STRENGTH = 0.05; // How quickly the orb accelerates away
-        const DAMPENING_FACTOR = 0.92;   // Friction: closer to 1 is less friction (smoother, longer movement)
-        const BOUNDARY_BOUNCE = -0.8;    // Reverse direction and lose a little speed on bounce
+        const REPULSION_RADIUS = 500; 
+        const MIN_DISTANCE = 140;      
+        const REPULSION_STRENGTH = 0.05; 
+        const DAMPENING_FACTOR = 0.92;   
+        const BOUNDARY_BOUNCE = -0.8;    
 
-        const INTERACTION_PHASE_DURATION = 4000; // 4 seconds in milliseconds
-        const orbSize = 60;     // Full size of the orb (60px)
-        const orbHalfSize = 30; // Half size of the orb
+        const INTERACTION_PHASE_DURATION = 4000; 
+        const orbSize = 60;     
+        const orbHalfSize = 30; 
 
-        let isDodging = true; // Phase 1: Orb is actively dodging
+        let isDodging = true; 
         let mouseX = 0;
         let mouseY = 0;
-        let orbX, orbY;        // Orb's current absolute position (top-left corner)
+        let orbX, orbY;        
         let velX = 0;
-        let velY = 0;          // Orb's current velocity
+        let velY = 0;          
 
-        // --- Initialize Position ---
+        // --- Initialize/Reset Position & Dodging State ---
         function setRandomPosition() {
             const vh = window.innerHeight;
             const vw = window.innerWidth;
@@ -381,16 +647,18 @@
             
             orb.style.left = `${orbX}px`;
             orb.style.top = `${orbY}px`;
+            
+            // *** RE-ENABLE DODGING ***
+            isDodging = true; 
+
+            // Disable dodging after the interaction phase duration
+            setTimeout(() => {
+                isDodging = false; 
+            }, INTERACTION_PHASE_DURATION);
         }
         
-        setRandomPosition();
+        setRandomPosition(); // Initial call
 
-        // Start the 4-second countdown to stop dodging
-        setTimeout(() => {
-            isDodging = false; // Disable dodging
-        }, INTERACTION_PHASE_DURATION);
-
-        // Update mouse coordinates on movement
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
@@ -400,7 +668,6 @@
         // --- Main Physics/Animation Loop ---
         function updateOrb() {
             if (isDodging) {
-                // Orb's center coordinates
                 const orbCenterX = orbX + orbHalfSize;
                 const orbCenterY = orbY + orbHalfSize;
 
@@ -411,79 +678,147 @@
                 if (distance < REPULSION_RADIUS) {
                     
                     if (distance < MIN_DISTANCE) {
-                        // --- Apply Repulsion Force (Acceleration) ---
-                        
-                        // Calculate how far inside the MIN_DISTANCE the mouse is
                         const penetrationDepth = MIN_DISTANCE - distance;
-                        
-                        // Normalize vector (direction from mouse to orb)
                         const normalizedX = -dx / distance;
                         const normalizedY = -dy / distance;
 
-                        // Apply a force proportional to the penetration depth
                         const forceMagnitude = penetrationDepth * REPULSION_STRENGTH;
                         
-                        // Add force to velocity
                         velX += normalizedX * forceMagnitude;
                         velY += normalizedY * forceMagnitude;
                     }
                 }
             }
 
-            // --- Apply Dampening (Friction) ---
             velX *= DAMPENING_FACTOR;
             velY *= DAMPENING_FACTOR;
 
-            // --- Update Position based on Velocity ---
             orbX += velX;
             orbY += velY;
 
-
-            // --- Boundary Collision and Bounce ---
             const vw = window.innerWidth;
             const vh = window.innerHeight;
 
-            // X-Axis Boundaries
             if (orbX < 0) {
-                orbX = 0; // Stick to the left edge
-                velX *= BOUNDARY_BOUNCE; // Reverse velocity (bounce)
+                orbX = 0; 
+                velX *= BOUNDARY_BOUNCE; 
             } else if (orbX + orbSize > vw) {
-                orbX = vw - orbSize; // Stick to the right edge
-                velX *= BOUNDARY_BOUNCE; // Reverse velocity (bounce)
+                orbX = vw - orbSize; 
+                velX *= BOUNDARY_BOUNCE; 
             }
 
-            // Y-Axis Boundaries
             if (orbY < 0) {
-                orbY = 0; // Stick to the top edge
-                velY *= BOUNDARY_BOUNCE; // Reverse velocity (bounce)
+                orbY = 0; 
+                velY *= BOUNDARY_BOUNCE; 
             } else if (orbY + orbSize > vh) {
-                orbY = vh - orbSize; // Stick to the bottom edge
-                velY *= BOUNDARY_BOUNCE; // Reverse velocity (bounce)
+                orbY = vh - orbSize; 
+                velY *= BOUNDARY_BOUNCE; 
             }
 
-            // Apply the final calculated position
             orb.style.left = `${orbX}px`;
             orb.style.top = `${orbY}px`;
             
-            // Loop the animation
             requestAnimationFrame(updateOrb);
         }
 
-        // Start the physics simulation
         requestAnimationFrame(updateOrb);
 
-        // Keep the transition properties (left/top) active during evasion for smoothness
-        orb.style.transition = 'left 0.05s linear, top 0.05s linear';
+        orb.style.transition = 'left 0.05s linear, top 0.05s linear, transform 0.15s ease-out';
+
+        // *** NEW: LISTEN FOR THE RE-APPEARANCE OF THE ORB ***
+        orb.addEventListener('animationiteration', (e) => {
+            if (e.animationName === 'spooky-motion') {
+                // The orb is visible for a small part of the 30s cycle.
+                // We restart the position and dodging state at the start of the cycle.
+                if (e.elapsedTime % 30 < 2) { 
+                     setRandomPosition();
+                }
+            }
+        });
+        
+    })();
+  </script>
+
+
+  <script>
+    // Header Class Toggle and 3D Tilt Effect (unchanged)
+    (function() {
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        const heroSection = document.getElementById('hero-section');
+        const background = document.getElementById('hero-background');
+        const titleGroup = document.getElementById('hero-title-group');
+        const ghost = document.querySelector('.parallax-ghost'); 
+
+        if (!heroSection || !background || !titleGroup || !ghost) return;
+
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            const mouseX = (e.clientX - centerX) / (rect.width / 2);
+            const mouseY = (e.clientY - centerY) / (rect.height / 2);
+
+            const rotateX = mouseY * -4; 
+            const rotateY = mouseX * 4;  
+
+            const transX_bg = mouseX * -5;
+            const transY_bg = mouseY * -5;
+            const transX_title = mouseX * 10;
+            const transY_title = mouseY * 10;
+            const transX_ghost = mouseX * 25; 
+            const transY_ghost = mouseY * 25;
+
+
+            background.style.transform = `
+                rotateX(${rotateX * 0.5}deg) 
+                rotateY(${rotateY * 0.5}deg) 
+                translateX(${transX_bg}px) 
+                translateY(${transY_bg}px)
+            `;
+            
+            titleGroup.style.transform = `
+                rotateX(${rotateX * 1.0}deg) 
+                rotateY(${rotateY * 1.0}deg) 
+                translateX(${transX_title}px) 
+                translateY(${transY_title}px) 
+                translateZ(40px) 
+            `;
+            
+            ghost.style.transform = `
+                rotateX(${rotateX * 1.5}deg) 
+                rotateY(${rotateY * 1.5}deg) 
+                translateX(${transX_ghost}px) 
+                translateY(${transY_ghost}px) 
+                translateZ(80px) 
+            `;
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            background.style.transform = 'none';
+            titleGroup.style.transform = 'translateZ(40px)'; 
+            ghost.style.transform = 'translateZ(80px)'; 
+        });
 
     })();
-</script>
+  </script>
+
 
   <style>
+    /* Footer styles (kept clean) */
     footer {
       padding: 1.5em 1em 2em;
-      background: #fff;
-      color: #222;
-      box-shadow: var(--box-shadow);
+      background: #111;
+      color: #ccc;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
     }
 
     .footer-top {
@@ -498,16 +833,16 @@
 
     .footer-link {
       text-decoration: none;
-      color: #222;
+      color: #ccc;
       transition: color 0.25s ease;
     }
 
     .footer-link:hover {
-      color: var(--accent);
+      color: var(--cyan-glow);
     }
 
     .footer-copy {
-      color: #222;
+      color: #ccc;
       cursor: pointer;
     }
 
@@ -523,25 +858,21 @@
       justify-content: center;
       gap: 0.8em;
       flex-wrap: wrap;
+      position: relative; 
+      z-index: 10; 
     }
 
     .social-icon img {
       width: 32px;
       height: 32px;
       transition: transform 0.18s ease, filter 0.18s ease;
+      /* Enhanced filter for visibility against the dark background AND the glow bar */
+      filter: grayscale(100%) brightness(1.5) drop-shadow(0 0 2px rgba(255,255,255,0.7)); 
     }
 
     .social-icon:hover img {
       transform: scale(1.12);
-      filter: drop-shadow(0 0 4px var(--accent));
-    }
-
-    .text-glow-cyan {
-      text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
-    }
-
-    .text-glow-magenta {
-      text-shadow: 0 0 6px #ff33ff, 0 0 12px #ff33ff;
+      filter: drop-shadow(0 0 8px var(--magenta-glow));
     }
   </style>
 </footer>

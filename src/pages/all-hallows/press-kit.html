@@ -44,21 +44,128 @@
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCTPMMLNM3"></script>
 
-</head>
-<body class="bg-gray-900 text-gray-200 overflow-x-hidden font-inter">
+<style>
+  /* Base styles */
+  :root {
+      --cyan-glow: #00FFFF;
+      --magenta-glow: #FF33FF;
+      --purple-glow: #c084fc; 
+  }
 
-<!-- Header -->
-<header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 z-50">
+  /* --- GLOW UTILITIES --- */
+  .text-glow-magenta {
+    text-shadow: 0 0 6px var(--magenta-glow), 0 0 12px var(--magenta-glow), 0 0 20px rgba(255, 51, 255, 0.4);
+  }
+  .text-glow-cyan {
+    text-shadow: 0 0 6px var(--cyan-glow), 0 0 12px var(--cyan-glow), 0 0 20px rgba(0, 255, 255, 0.4);
+  }
+
+  /* ---------------------------------------------------- */
+  /* --- GLITCH BORDER CONTAINER (Box Styling) --- */
+  /* ---------------------------------------------------- */
+  @keyframes border-pulse {
+    0% { border-color: rgba(0, 255, 255, 0.6); box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+    50% { border-color: rgba(255, 51, 255, 0.8); box-shadow: 0 0 20px rgba(255, 51, 255, 0.6); }
+    100% { border-color: rgba(0, 255, 255, 0.6); box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+  }
+
+  .glitch-border-container {
+      background-color: #1a1a2e; /* Darker than body to stand out */
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      position: relative;
+      border: 2px solid rgba(0, 255, 255, 0.6);
+      transition: all 0.3s ease-in-out;
+      overflow: hidden; /* For containing image/video borders */
+  }
+
+  .glitch-border-container:hover {
+      transform: translateY(-2px);
+      animation: border-pulse 4s linear infinite alternate;
+  }
+
+  /* Stylize file preview/download elements inside the container */
+  .glitch-border-container object,
+  .glitch-border-container iframe,
+  .glitch-border-container video,
+  .glitch-border-container img {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.25rem;
+      transition: border-color 0.3s ease;
+  }
+  
+  .glitch-border-container video {
+      max-width: 100%;
+      height: auto;
+  }
+
+  /* Stylize the download buttons */
+  .download-button {
+      background-color: #2c2c44;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 700;
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  }
+
+  .download-button:hover {
+      background-color: var(--magenta-glow);
+      color: #111;
+      box-shadow: 0 0 15px var(--magenta-glow);
+  }
+
+  /* Style for image links (logos, screenshots, key art) */
+  .image-link-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      border: 1px solid #4a4a68;
+  }
+
+  .image-link-container:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+      border-color: var(--cyan-glow);
+  }
+
+  .image-link-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: opacity 0.3s;
+  }
+
+  /* Footer style update for theme consistency */
+  footer {
+    background: #111;
+    color: #ccc;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+    border-top: 2px solid var(--magenta-glow);
+  }
+
+  footer a:hover {
+    color: var(--cyan-glow);
+    text-shadow: 0 0 5px var(--cyan-glow);
+  }
+
+</style>
+
+</head>
+<body class="bg-gray-950 text-gray-200 overflow-x-hidden font-inter">
+
+<header class="bg-black/50 backdrop-blur-md sticky top-0 z-50">
   <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/all-hallows.html" class="flex items-center space-x-3">
-      <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain">
-      <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta">All Hallows</span>
+    <a href="/all-hallows.html" class="flex items-center space-x-3 group">
+      <img src="/icons/all-hallows.png" alt="All Hallows Logo" class="w-12 h-12 object-contain group-hover:rotate-12 transition-transform duration-300">
+      <span class="font-creepster text-3xl text-white tracking-widest text-glow-magenta group-hover:text-cyan-400 group-hover:text-glow-cyan transition-colors duration-300">All Hallows</span>
     </a>
     <div class="flex items-center space-x-6">
-      <a href="/all-hallows.html" class="text-lg hover:text-cyan-400 transition-colors">Home</a>
-      <a href="/all-hallows.html#features" class="text-lg hover:text-cyan-400 transition-colors">Features</a>
-      <a href="/all-hollows.html#trailer" class="text-lg hover:text-cyan-400 transition-colors">Trailer</a>
-      <a href="/all-hallows.html#posts" class="text-lg hover:text-cyan-400 transition-colors">News</a>
+      <a href="/all-hallows.html" class="text-lg hover:text-cyan-400 text-glow-cyan transition-colors">Home</a>
+      <a href="/all-hallows.html#features" class="text-lg hover:text-cyan-400 text-glow-cyan transition-colors">Features</a>
+      <a href="/all-hollows.html#trailer" class="text-lg hover:text-cyan-400 text-glow-cyan transition-colors">Trailer</a>
+      <a href="/all-hallows.html#posts" class="text-lg hover:text-cyan-400 text-glow-cyan transition-colors">News</a>
       <a href="/all-hallows/press-kit.html" class="text-lg hover:text-cyan-400 transition-colors">Press Kit</a>
     </div>
   </nav>
@@ -66,160 +173,160 @@
 
 <main class="container mx-auto px-6 py-12 space-y-16">
 
-  <!-- Fact Sheet -->
   <section id="fact-sheet">
-    <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">1. Fact Sheet</h2>
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg space-y-4">
+    <h2 class="font-creepster text-4xl text-white tracking-widest text-glow-magenta mb-6">1. Fact Sheet</h2>
+    <div class="glitch-border-container space-y-4">
       <div class="mb-4">
         <object data="/press_kit_placeholders/Fact_Sheet.pdf?v=3" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-700" title="Fact Sheet Preview">
-          <p>Your browser does not support PDFs. <a href="/press_kit_placeholders/Fact_Sheet.pdf?v=3" download>Download Fact_Sheet.pdf</a>.</p>
+          <p>Your browser does not support PDFs. <a href="/press_kit_placeholders/Fact_Sheet.pdf?v=3" download class="text-cyan-400 hover:text-magenta-400 transition-colors">Download Fact_Sheet.pdf</a>.</p>
         </object>
       </div>
-      <a href="/press_kit_placeholders/Fact_Sheet.pdf?v=3" download="Fact_Sheet.pdf" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold">
+      <a href="/press_kit_placeholders/Fact_Sheet.pdf?v=3" download="Fact_Sheet.pdf" class="block text-center download-button">
         Download Fact_Sheet.pdf
       </a>
       <div class="mb-4">
         <iframe src="/press_kit_placeholders/Fact_Sheet.txt?v=3" class="w-full h-64 rounded-lg border border-gray-700 p-2" title="Fact Sheet TXT Preview"></iframe>
       </div>
-      <a href="/press_kit_placeholders/Fact_Sheet.txt?v=3" download="Fact_Sheet.txt" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold">
+      <a href="/press_kit_placeholders/Fact_Sheet.txt?v=3" download="Fact_Sheet.txt" class="block text-center download-button">
         Download Fact_Sheet.txt
       </a>
     </div>
   </section>
 
-  <!-- Press Releases -->
   <section id="press-releases">
-    <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">2. Press Releases</h2>
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg space-y-4">
-      <div class="mb-4">
-        <object data="/press_kit_placeholders/PR_Announce_Game.pdf?v=3" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-700" title="PR Announce Game Preview">
-          <p>Cannot preview. <a href="/press_kit_placeholders/PR_Announce_Game.pdf?v=3" download>Download PR_Announce_Game.pdf</a>.</p>
-        </object>
+    <h2 class="font-creepster text-4xl text-white tracking-widest text-glow-magenta mb-6">2. Press Releases</h2>
+    <div class="glitch-border-container space-y-8">
+      
+      <div>
+        <div class="mb-4">
+          <object data="/press_kit_placeholders/PR_Announce_Game.pdf?v=3" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-700" title="PR Announce Game Preview">
+            <p>Cannot preview. <a href="/press_kit_placeholders/PR_Announce_Game.pdf?v=3" download class="text-cyan-400 hover:text-magenta-400 transition-colors">Download PR_Announce_Game.pdf</a>.</p>
+          </object>
+        </div>
+        <a href="/press_kit_placeholders/PR_Announce_Game.pdf?v=3" download="PR_Announce_Game.pdf" class="block text-center download-button">
+          Download PR_Announce_Game.pdf
+        </a>
       </div>
-      <a href="/press_kit_placeholders/PR_Announce_Game.pdf?v=3" download="PR_Announce_Game.pdf" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold">
-        Download PR_Announce_Game.pdf
-      </a>
 
-      <div class="mb-4">
-        <object data="/press_kit_placeholders/PR_Trailer_Reveal.pdf?v=3" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-700" title="PR Trailer Reveal Preview">
-          <p>Cannot preview. <a href="/press_kit_placeholders/PR_Trailer_Reveal.pdf?v=3" download>Download PR_Trailer_Reveal.pdf</a>.</p>
-        </object>
+      <div>
+        <div class="mb-4">
+          <object data="/press_kit_placeholders/PR_Trailer_Reveal.pdf?v=3" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-700" title="PR Trailer Reveal Preview">
+            <p>Cannot preview. <a href="/press_kit_placeholders/PR_Trailer_Reveal.pdf?v=3" download class="text-cyan-400 hover:text-magenta-400 transition-colors">Download PR_Trailer_Reveal.pdf</a>.</p>
+          </object>
+        </div>
+        <a href="/press_kit_placeholders/PR_Trailer_Reveal.pdf?v=3" download="PR_Trailer_Reveal.pdf" class="block text-center download-button">
+          Download PR_Trailer_Reveal.pdf
+        </a>
       </div>
-      <a href="/press_kit_placeholders/PR_Trailer_Reveal.pdf?v=3" download="PR_Trailer_Reveal.pdf" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold">
-        Download PR_Trailer_Reveal.pdf
-      </a>
 
-      <div class="mb-4">
-        <object data="/press_kit_placeholders/PR_Launch_Day.pdf?v=3" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-700" title="PR Launch Day Preview">
-          <p>Cannot preview. <a href="/press_kit_placeholders/PR_Launch_Day.pdf?v=3" download>Download PR_Launch_Day.pdf</a>.</p>
-        </object>
+      <div>
+        <div class="mb-4">
+          <object data="/press_kit_placeholders/PR_Launch_Day.pdf?v=3" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-700" title="PR Launch Day Preview">
+            <p>Cannot preview. <a href="/press_kit_placeholders/PR_Launch_Day.pdf?v=3" download class="text-cyan-400 hover:text-magenta-400 transition-colors">Download PR_Launch_Day.pdf</a>.</p>
+          </object>
+        </div>
+        <a href="/press_kit_placeholders/PR_Launch_Day.pdf?v=3" download="PR_Launch_Day.pdf" class="block text-center download-button">
+          Download PR_Launch_Day.pdf
+        </a>
       </div>
-      <a href="/press_kit_placeholders/PR_Launch_Day.pdf?v=3" download="PR_Launch_Day.pdf" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold">
-        Download PR_Launch_Day.pdf
-      </a>
     </div>
   </section>
 
-  <!-- About the Studio -->
   <section id="about-studio">
-    <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">3. About The Studio</h2>
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg space-y-4">
+    <h2 class="font-creepster text-4xl text-white tracking-widest text-glow-magenta mb-6">3. About The Studio</h2>
+    <div class="glitch-border-container space-y-4 text-center">
       <iframe src="/press_kit_placeholders/Studio_Bio.txt?v=3" class="w-full h-64 rounded-lg border border-gray-700 p-2" title="Studio Bio Preview"></iframe>
-      <a href="/press_kit_placeholders/Studio_Bio.txt?v=3" download="Studio_Bio.txt" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold">
+      <a href="/press_kit_placeholders/Studio_Bio.txt?v=3" download="Studio_Bio.txt" class="block text-center download-button">
         Download Studio_Bio.txt
       </a>
-      <img src="/press_kit_placeholders/Headshot_[Your_Name].jpg?v=3" alt="Headshot" class="w-64 h-auto rounded-lg mx-auto border border-gray-700 mb-2">
-      <a href="/press_kit_placeholders/Headshot_[Your_Name].jpg?v=3" download="Headshot.jpg" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold text-center">
+      
+      <div class="mx-auto w-64 pt-6">
+        <img src="/press_kit_placeholders/Headshot_[Your_Name].jpg?v=3" alt="Headshot" class="w-full h-auto rounded-lg mx-auto border border-gray-700 mb-2 shadow-xl hover:shadow-[0_0_20px_var(--cyan-glow)] transition-shadow">
+      </div>
+      <a href="/press_kit_placeholders/Headshot_[Your_Name].jpg?v=3" download="Headshot.jpg" class="block text-center download-button">
         Download Headshot.jpg
       </a>
     </div>
   </section>
 
-  <!-- Logos -->
   <section id="logos">
-    <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">4. Logos</h2>
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-3 gap-6">
-      <a href="/press_kit_placeholders/AAA_Logo_HighRes.png?v=3" download="AAA_Logo_HighRes.png" class="block hover:opacity-80 transition-opacity">
+    <h2 class="font-creepster text-4xl text-white tracking-widest text-glow-magenta mb-6">4. Logos</h2>
+    <div class="glitch-border-container grid grid-cols-1 md:grid-cols-3 gap-6">
+      <a href="/press_kit_placeholders/AAA_Logo_HighRes.png?v=3" download="AAA_Logo_HighRes.png" class="block image-link-container text-center">
         <img loading="lazy" src="/press_kit_placeholders/AAA_Logo_HighRes.png?v=3" alt="AAA Logo HighRes" class="w-full h-auto rounded-lg mb-2">
-        <span class="text-lg font-bold">AAA_Logo_HighRes.png</span>
+        <span class="text-sm font-bold block p-2">AAA_Logo_HighRes.png</span>
       </a>
-      <a href="/press_kit_placeholders/AAA_Logo_White.png?v=3" download="AAA_Logo_White.png" class="block hover:opacity-80 transition-opacity">
-        <img loading="lazy" src="/press_kit_placeholders/AAA_Logo_White.png?v=3" alt="AAA Logo White" class="w-full h-auto rounded-lg mb-2">
-        <span class="text-lg font-bold">AAA_Logo_White.png</span>
+      <a href="/press_kit_placeholders/AAA_Logo_White.png?v=3" download="AAA_Logo_White.png" class="block image-link-container text-center">
+        <img loading="lazy" src="/press_kit_placeholders/AAA_Logo_White.png?v=3" alt="AAA Logo White" class="w-full h-auto rounded-lg mb-2 bg-gray-700">
+        <span class="text-sm font-bold block p-2">AAA_Logo_White.png</span>
       </a>
-      <a href="/press_kit_placeholders/AAA_Logo_Black.png?v=3" download="AAA_Logo_Black.png" class="block hover:opacity-80 transition-opacity">
-        <img loading="lazy" src="/press_kit_placeholders/AAA_Logo_Black.png?v=3" alt="AAA Logo Black" class="w-full h-auto rounded-lg mb-2">
-        <span class="text-lg font-bold">AAA_Logo_Black.png</span>
+      <a href="/press_kit_placeholders/AAA_Logo_Black.png?v=3" download="AAA_Logo_Black.png" class="block image-link-container text-center">
+        <img loading="lazy" src="/press_kit_placeholders/AAA_Logo_Black.png?v=3" alt="AAA Logo Black" class="w-full h-auto rounded-lg mb-2 bg-gray-300">
+        <span class="text-sm font-bold block p-2">AAA_Logo_Black.png</span>
       </a>
     </div>
   </section>
 
-  <!-- Screenshots -->
   <section id="screenshots">
-    <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">5. Screenshots</h2>
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a href="/press_kit_placeholders/Screenshot01.png?v=3" download="Screenshot01.png" class="block hover:opacity-80 transition-opacity">
+    <h2 class="font-creepster text-4xl text-white tracking-widest text-glow-magenta mb-6">5. Screenshots</h2>
+    <div class="glitch-border-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="/press_kit_placeholders/Screenshot01.png?v=3" download="Screenshot01.png" class="block image-link-container">
         <img loading="lazy" src="/press_kit_placeholders/Screenshot01.png?v=3" alt="Screenshot 01" class="w-full h-auto rounded-lg">
       </a>
-      <a href="/press_kit_placeholders/Screenshot02.png?v=3" download="Screenshot02.png" class="block hover:opacity-80 transition-opacity">
+      <a href="/press_kit_placeholders/Screenshot02.png?v=3" download="Screenshot02.png" class="block image-link-container">
         <img loading="lazy" src="/press_kit_placeholders/Screenshot02.png?v=3" alt="Screenshot 02" class="w-full h-auto rounded-lg">
       </a>
-      <a href="/press_kit_placeholders/Screenshot03.png?v=3" download="Screenshot03.png" class="block hover:opacity-80 transition-opacity">
+      <a href="/press_kit_placeholders/Screenshot03.png?v=3" download="Screenshot03.png" class="block image-link-container">
         <img loading="lazy" src="/press_kit_placeholders/Screenshot03.png?v=3" alt="Screenshot 03" class="w-full h-auto rounded-lg">
       </a>
     </div>
   </section>
 
-  <!-- Key Art -->
   <section id="key-art">
-    <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">6. Key Art</h2>
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a href="/press_kit_placeholders/Box_Art.png?v=3" download="Box_Art.png" class="block hover:opacity-80 transition-opacity">
+    <h2 class="font-creepster text-4xl text-white tracking-widest text-glow-magenta mb-6">6. Key Art</h2>
+    <div class="glitch-border-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="/press_kit_placeholders/Box_Art.png?v=3" download="Box_Art.png" class="block image-link-container">
         <img loading="lazy" src="/press_kit_placeholders/Box_Art.png?v=3" alt="Box Art" class="w-full h-auto rounded-lg">
       </a>
-      <a href="/press_kit_placeholders/Horizontal_Banner.png?v=3" download="Horizontal_Banner.png" class="block hover:opacity-80 transition-opacity">
+      <a href="/press_kit_placeholders/Horizontal_Banner.png?v=3" download="Horizontal_Banner.png" class="block image-link-container">
         <img loading="lazy" src="/press_kit_placeholders/Horizontal_Banner.png?v=3" alt="Horizontal Banner" class="w-full h-auto rounded-lg">
       </a>
-      <a href="/press_kit_placeholders/Vertical_Poster.png?v=3" download="Vertical_Poster.png" class="block hover:opacity-80 transition-opacity">
+      <a href="/press_kit_placeholders/Vertical_Poster.png?v=3" download="Vertical_Poster.png" class="block image-link-container">
         <img loading="lazy" src="/press_kit_placeholders/Vertical_Poster.png?v=3" alt="Vertical Poster" class="w-full h-auto rounded-lg">
       </a>
     </div>
   </section>
 
-  <!-- Videos -->
   <section id="videos">
-    <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">7. Videos</h2>
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-1 gap-6">
+    <h2 class="font-creepster text-4xl text-white tracking-widest text-glow-magenta mb-6">7. Videos</h2>
+    <div class="glitch-border-container grid grid-cols-1 md:grid-cols-1 gap-6">
 
-      <!-- Trailer -->
       <div class="space-y-2">
         <video controls class="w-full rounded-lg">
           <source src="/press_kit_placeholders/Trailer_Reveal_4K.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <a href="/press_kit_placeholders/Trailer_Reveal_4K.mp4" download="Trailer_Reveal_4K.mp4" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold mt-2">
+        <a href="/press_kit_placeholders/Trailer_Reveal_4K.mp4" download="Trailer_Reveal_4K.mp4" class="block text-center download-button mt-2">
           Download Trailer_Reveal_4K.mp4
         </a>
       </div>
 
-      <!-- Gameplay -->
       <div class="space-y-2">
         <video controls class="w-full rounded-lg">
           <source src="/press_kit_placeholders/Gameplay_B-Roll_1080p.mov" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <a href="/press_kit_placeholders/Gameplay_B-Roll_1080p.mov" download="Gameplay_B-Roll_1080p.mov" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold mt-2">
+        <a href="/press_kit_placeholders/Gameplay_B-Roll_1080p.mov" download="Gameplay_B-Roll_1080p.mov" class="block text-center download-button mt-2">
           Download Gameplay_B-Roll_1080p.mov
         </a>
       </div>
 
-      <!-- Logo Animation -->
       <div class="space-y-2">
         <video controls class="w-full rounded-lg">
           <source src="/press_kit_placeholders/Logo_Animation_Final.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <a href="/press_kit_placeholders/Logo_Animation_Final.mp4" download="Logo_Animation_Final.mp4" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold mt-2">
+        <a href="/press_kit_placeholders/Logo_Animation_Final.mp4" download="Logo_Animation_Final.mp4" class="block text-center download-button mt-2">
           Download Logo_Animation_Final.mp4
         </a>
       </div>
@@ -227,22 +334,20 @@
     </div>
   </section>
 
-  <!-- Audio -->
   <section id="audio">
-    <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">8. Audio</h2>
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+    <h2 class="font-creepster text-4xl text-white tracking-widest text-glow-magenta mb-6">8. Audio</h2>
+    <div class="glitch-border-container">
       <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/emceskaffa/sets/all-hallows&color=%2300bfff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/emceskaffa/sets/all-hallows&color=%23ff33ff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
         title="All Hallows Audio"></iframe>
     </div>
   </section>
 
-  <!-- README -->
   <section id="readme">
-    <h2 class="font-creepster text-4xl text-cyan-400 text-glow-cyan mb-6">9. README.txt</h2>
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+    <h2 class="font-creepster text-4xl text-white tracking-widest text-glow-magenta mb-6">9. README.txt</h2>
+    <div class="glitch-border-container">
       <iframe src="/press_kit_placeholders/README.txt?v=3" class="w-full h-64 rounded-lg border border-gray-700 p-2" title="README Preview"></iframe>
-      <a href="/press_kit_placeholders/README.txt?v=3" download="README.txt" class="block px-4 py-3 bg-gray-800 rounded-lg hover:bg-cyan-500 transition-colors font-bold mt-2">
+      <a href="/press_kit_placeholders/README.txt?v=3" download="README.txt" class="block text-center download-button mt-2">
         Download README.txt
       </a>
     </div>
@@ -250,8 +355,7 @@
 
 </main>
 
-<!-- Footer -->
-<footer class="bg-white text-gray-800 shadow-lg py-6">
+<footer class="bg-black/50 text-gray-400 shadow-lg py-6 border-t-2 border-magenta-500">
   <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mb-4 flex-wrap">
     <a href="/all-hallows/terms" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
     <a href="/all-hallows/cookies" class="hover:text-cyan-400 transition-colors">Cookies Policy</a>
