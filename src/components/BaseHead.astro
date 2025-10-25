@@ -3,14 +3,39 @@ const { title, description } = Astro.props;
 ---
 
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
 
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
+      <script id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="f8906613-166a-4534-a5e5-5e83c7a6270a"
+    type="text/javascript"
+    async>
+  </script>
 
+      <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    // Google Consent Mode Default Settings (Sets initial state to 'denied' for compliance)
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'functionality_storage': 'denied'
+    });
 
-  <!-- Google Fonts / other head assets can go here -->
-</head>
+    // The gtag 'config' command for your Measurement ID
+    gtag('config', 'G-XCTPMMLNM3');
+  </script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCTPMMLNM3"></script>
+
+  </head>
