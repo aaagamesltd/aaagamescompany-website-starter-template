@@ -13,12 +13,12 @@ const posts = (await getCollection('blog')).sort(
 
 <!doctype html>
 <html lang="en">
-  <head>
+	<head> ⬅️ Start of <head> tag
 
-
-
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} /> ⬅️ **This includes all your scripts and basic meta tags**
+		
 		<style>
+			/* Unique styles for the blog index */
 			main {
 				width: 960px;
 			}
@@ -87,7 +87,7 @@ const posts = (await getCollection('blog')).sort(
 				}
 			}
 		</style>
-	</head>
+	</head> ⬅️ End of <head> tag
 	<body>
 		<Header />
 		<main>
